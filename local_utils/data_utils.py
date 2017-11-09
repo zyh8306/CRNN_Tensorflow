@@ -22,9 +22,11 @@ class FeatureIO(object):
         Implement the base writer class
     """
     def __init__(self, char_dict_path=ops.join(os.getcwd(), 'data/char_dict/char_dict.json'),
-                 ord_map_dict_path=ops.join(os.getcwd(), 'data/char_dict/ord_map.json')):
+                 ord_2_index_map_dict_path=ops.join(os.getcwd(), 'data/char_dict/ord_2_index_map.json'),
+                 index_2_ord_map_dict_path=ops.join(os.getcwd(), 'data/char_dict/index_2_ord_map.json')):
         self.__char_list = establish_char_dict.CharDictBuilder.read_char_dict(char_dict_path)
-        self.__ord_map = establish_char_dict.CharDictBuilder.read_ord_map_dict(ord_map_dict_path)
+        self.__ord_2_index_map = establish_char_dict.CharDictBuilder.read_ord_2_index_map_dict(ord_2_index_map_dict_path)
+        self.__index_2_ord_map = establish_char_dict.CharDictBuilder.read_index_2_ord_map_dict(index_2_ord_map_dict_path)
         return
 
     @property
@@ -94,15 +96,10 @@ class FeatureIO(object):
         if 65 <= temp <= 90:
             temp = temp + 32
 
-        for k, v in self.__ord_map.items():
-            if v == str(temp):
-                temp = int(k)
-                break
-
         # TODO
         # Here implement a double way dict or two dict to quickly map ord and it's corresponding index
 
-        return temp
+        return self.__ord_2_index_map[str(temp)]
 
     def int_to_char(self, number):
         """
@@ -115,7 +112,8 @@ class FeatureIO(object):
         if number == 1:
             return '*'
         else:
-            return self.__char_list[str(number)]
+            ord_tmp = self.__index_2_ord_map[str(number)]
+            return self.__char_list[ord_tmp]
 
     def encode_labels(self, labels):
         """
@@ -138,7 +136,7 @@ class FeatureIO(object):
         """
         indices = spares_tensor.indices
         values = spares_tensor.values
-        values = np.array([self.__ord_map[str(tmp)] for tmp in values])
+        # values = np.array([self.__ord_2_index_map[str(tmp)] for tmp in values])
         dense_shape = spares_tensor.dense_shape
 
         number_lists = np.ones(dense_shape, dtype=values.dtype)

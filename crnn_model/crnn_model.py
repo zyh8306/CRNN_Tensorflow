@@ -9,9 +9,7 @@
 Implement the crnn model mentioned in An End-to-End Trainable Neural Network for Image-based Sequence
 Recognition and Its Application to Scene Text Recognition paper
 """
-import numpy as np
 import tensorflow as tf
-from tensorflow.contrib import layers as tflayers
 from tensorflow.contrib import rnn
 
 from crnn_model import cnn_basenet
@@ -64,7 +62,11 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
         :return:
         """
         conv = self.conv2d(inputdata=inputdata, out_channel=out_dims, kernel_size=3, stride=1, use_bias=False, name=name)
-        relu = self.relu(inputdata=conv)
+        if self.phase.lower() == 'train':
+            conv_bn = self.layerbn(conv, is_training=True)
+        else:
+            conv_bn = self.layerbn(conv, is_training=False)
+        relu = self.relu(inputdata=conv_bn)
         max_pool = self.maxpooling(inputdata=relu, kernel_size=2, stride=2)
         return max_pool
 
@@ -76,24 +78,32 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
         """
         conv1 = self.__conv_stage(inputdata=inputdata, out_dims=64, name='conv1')  # batch*16*50*64
         conv2 = self.__conv_stage(inputdata=conv1, out_dims=128, name='conv2')  # batch*8*25*128
-        conv3 = self.conv2d(inputdata=conv2, out_channel=256, kernel_size=3, stride=1, use_bias=False, name='conv3')  # batch*8*25*256
-        relu3 = self.relu(conv3) # batch*8*25*256
+        conv3 = self.conv2d(inputdata=conv2, out_channel=256, kernel_size=3, stride=1, use_bias=False, name='conv3') # batch*8*25*256
+        if self.phase.lower() == 'train':
+            conv3_bn = self.layerbn(conv3, is_training=True)
+        else:
+            conv3_bn = self.layerbn(conv3, is_training=False)
+        relu3 = self.relu(conv3_bn) # batch*8*25*256
         conv4 = self.conv2d(inputdata=relu3, out_channel=256, kernel_size=3, stride=1, use_bias=False, name='conv4')  # batch*8*25*256
-        relu4 = self.relu(conv4)  # batch*8*25*256
+        if self.phase.lower() == 'train':
+            conv4_bn = self.layerbn(conv4, is_training=True)
+        else:
+            conv4_bn = self.layerbn(conv4, is_training=False)
+        relu4 = self.relu(conv4_bn)  # batch*8*25*256
         max_pool4 = self.maxpooling(inputdata=relu4, kernel_size=[2, 1], stride=[2, 1], padding='VALID')  # batch*4*25*256
         conv5 = self.conv2d(inputdata=max_pool4, out_channel=512, kernel_size=3, stride=1, use_bias=False, name='conv5')  # batch*4*25*512
-        relu5 = self.relu(conv5)  # batch*4*25*512
         if self.phase.lower() == 'train':
-            bn5 = self.layerbn(inputdata=relu5, is_training=True)
+            conv5_bn5 = self.layerbn(inputdata=conv5, is_training=True)
         else:
-            bn5 = self.layerbn(inputdata=relu5, is_training=False)  # batch*4*25*512
-        conv6 = self.conv2d(inputdata=bn5, out_channel=512, kernel_size=3, stride=1, use_bias=False, name='conv6')  # batch*4*25*512
-        relu6 = self.relu(conv6)  # batch*4*25*512
+            conv5_bn5 = self.layerbn(inputdata=conv5, is_training=False)  # batch*4*25*512
+        relu5 = self.relu(conv5_bn5)  # batch*4*25*512
+        conv6 = self.conv2d(inputdata=relu5, out_channel=512, kernel_size=3, stride=1, use_bias=False, name='conv6')  # batch*4*25*512
         if self.phase.lower() == 'train':
-            bn6 = self.layerbn(inputdata=relu6, is_training=True)
+            conv6_bn6 = self.layerbn(inputdata=conv6, is_training=True)
         else:
-            bn6 = self.layerbn(inputdata=relu6, is_training=False)  # batch*4*25*512
-        max_pool6 = self.maxpooling(inputdata=bn6, kernel_size=[2, 1], stride=[2, 1])  # batch*2*25*512
+            conv6_bn6 = self.layerbn(inputdata=conv6, is_training=False)  # batch*4*25*512
+        relu6 = self.relu(conv6_bn6)  # batch*4*25*512
+        max_pool6 = self.maxpooling(inputdata=relu6, kernel_size=[2, 1], stride=[2, 1])  # batch*2*25*512
         conv7 = self.conv2d(inputdata=max_pool6, out_channel=512, kernel_size=2, stride=[2, 1], use_bias=False, name='conv7')  # batch*1*25*512
         relu7 = self.relu(conv7)  # batch*1*25*512
         return relu7

@@ -52,7 +52,8 @@ def train_shadownet(dataset_dir, weights_path=None):
     inputdata = tf.cast(x=inputdata, dtype=tf.float32)
 
     # initializa the net model
-    shadownet = crnn_model.ShadowNet(phase='Train', hidden_nums=256, layers_nums=2, seq_length=25, num_classes=37)
+    shadownet = crnn_model.ShadowNet(phase='Train', hidden_nums=256, layers_nums=2, seq_length=25,
+                                     num_classes=config.cfg.TRAIN.CLASSES_NUMS)
 
     with tf.variable_scope('shadow', reuse=False):
         net_out = shadownet.build_shadownet(inputdata=inputdata)
@@ -106,6 +107,7 @@ def train_shadownet(dataset_dir, weights_path=None):
     train_epochs = config.cfg.TRAIN.EPOCHS
 
     with sess.as_default():
+
         if weights_path is None:
             logger.info('Training from scratch')
             init = tf.global_variables_initializer()

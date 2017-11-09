@@ -64,7 +64,7 @@ class CharDictBuilder(object):
         return res
 
     @staticmethod
-    def map_ord_to_index(origin_char_list, save_path):
+    def map_index_to_ord(origin_char_list, save_path):
         """
             Map ord of character in origin char list into index start from 0 in order to meet the output of the DNN
         :param origin_char_list:
@@ -84,7 +84,7 @@ class CharDictBuilder(object):
         with open(origin_char_list, 'r', encoding='utf-8') as origin_f:
             for index, info in enumerate(origin_f.readlines()):
                 char_value = str(ord(info[0]))
-                char_key = index
+                char_key = str(index)
                 char_dict[char_key] = char_value
 
         with open(save_path, 'w', encoding='utf-8') as json_f:
@@ -93,15 +93,58 @@ class CharDictBuilder(object):
         return
 
     @staticmethod
-    def read_ord_map_dict(ord_map_dict_path):
+    def map_ord_to_index(origin_char_list, save_path):
         """
 
-        :param ord_map_dict_path:
+        :param origin_char_list:
+        :param save_path:
         :return:
         """
-        assert ops.exists(ord_map_dict_path)
+        assert ops.exists(origin_char_list)
 
-        with open(ord_map_dict_path, 'r', encoding='utf-8') as json_f:
+        if not save_path.endswith('.json'):
+            raise ValueError('save path {:s} should be a json file'.format(save_path))
+
+        if not ops.exists(ops.split(save_path)[0]):
+            os.makedirs(ops.split(save_path)[0])
+
+        char_dict = dict()
+
+        with open(origin_char_list, 'r', encoding='utf-8') as origin_f:
+            for index, info in enumerate(origin_f.readlines()):
+                char_key = str(ord(info[0]))
+                char_value = str(index)
+                char_dict[char_key] = char_value
+
+        with open(save_path, 'w', encoding='utf-8') as json_f:
+            json.dump(char_dict, json_f)
+
+        return
+
+    @staticmethod
+    def read_ord_2_index_map_dict(ord_2_index_map_dict_path):
+        """
+
+        :param ord_2_index_map_dict_path:
+        :return:
+        """
+        assert ops.exists(ord_2_index_map_dict_path)
+
+        with open(ord_2_index_map_dict_path, 'r', encoding='utf-8') as json_f:
+            res = json.load(json_f)
+
+        return res
+
+    @staticmethod
+    def read_index_2_ord_map_dict(index_2_ord_map_dict_path):
+        """
+
+        :param index_2_ord_map_dict_path:
+        :return:
+        """
+        assert ops.exists(index_2_ord_map_dict_path)
+
+        with open(index_2_ord_map_dict_path, 'r', encoding='utf-8') as json_f:
             res = json.load(json_f)
 
         return res
