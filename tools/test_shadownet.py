@@ -45,7 +45,7 @@ def test_shadownet(dataset_dir, weights_path, is_vis=False, is_recursive=True):
     # Initialize the record decoder
     decoder = data_utils.TextFeatureIO().reader
     images_t, labels_t, imagenames_t = decoder.read_features(
-        ops.join(dataset_dir, 'test_feature.tfrecords'), num_epochs=None)
+        ops.join(dataset_dir, 'train_feature.tfrecords'), num_epochs=None)
     if not is_recursive:
         images_sh, labels_sh, imagenames_sh = tf.train.shuffle_batch(tensors=[images_t, labels_t, imagenames_t],
                                                                      batch_size=32, capacity=1000+32*2,
@@ -57,7 +57,8 @@ def test_shadownet(dataset_dir, weights_path, is_vis=False, is_recursive=True):
     images_sh = tf.cast(x=images_sh, dtype=tf.float32)
 
     # build shadownet
-    net = crnn_model.ShadowNet(phase='Test', hidden_nums=256, layers_nums=2, seq_length=25, num_classes=37)
+    net = crnn_model.ShadowNet(phase='Test', hidden_nums=256, layers_nums=2, seq_length=25,
+                               num_classes=config.cfg.TRAIN.CLASSES_NUMS)
 
     with tf.variable_scope('shadow'):
         net_out = net.build_shadownet(inputdata=images_sh)

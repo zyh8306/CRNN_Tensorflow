@@ -105,7 +105,7 @@ class TextDataset(base_data_provider.Dataset):
         images_slice = self._epoch_images[start:end]
         labels_slice = self._epoch_labels[start:end]
         imagenames_slice = self._epoch_imagenames[start:end]
-        # if overflow restart from the begining
+        # if overflow restart from the beginning
         if images_slice.shape[0] != batch_size:
             self.__start_new_epoch()
             return self.next_batch(batch_size)

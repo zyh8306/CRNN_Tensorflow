@@ -60,6 +60,9 @@ def train_shadownet(dataset_dir, weights_path=None):
 
     cost = tf.reduce_mean(tf.nn.ctc_loss(labels=input_labels, inputs=net_out, sequence_length=25*np.ones(32)))
 
+    # TODO
+    # Check if the ctc_beam_search_decoder is wrong
+
     decoded, log_prob = tf.nn.ctc_beam_search_decoder(net_out, 25*np.ones(32), merge_repeated=False)
 
     sequence_dist = tf.reduce_mean(tf.edit_distance(tf.cast(decoded[0], tf.int32), input_labels))
@@ -122,6 +125,8 @@ def train_shadownet(dataset_dir, weights_path=None):
         for epoch in range(train_epochs):
             _, c, seq_distance, preds, gt_labels, summary = sess.run(
                 [optimizer, cost, sequence_dist, decoded, input_labels, merge_summary_op])
+            # _, c, seq_distance, preds, gt_labels, gt_imagenames, net_out_val = sess.run(
+            #     [optimizer, cost, sequence_dist, decoded, input_labels, input_imagenames, net_out])
 
             # calculate the precision
             preds = decoder.sparse_tensor_to_str(preds[0])
