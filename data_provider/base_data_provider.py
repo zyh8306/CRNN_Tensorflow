@@ -19,25 +19,23 @@ class Dataset(object):
         pass
 
     @staticmethod
-    def shuffle_images_labels(images, labels, imagenames):
+    def shuffle_images_labels(imagenames, labels):
         """
 
-        :param images:
         :param labels:
         :param imagenames:
         :return:
         """
-        images = np.array(images)
+        imagenames = np.array(imagenames)
         labels = np.array(labels)
 
-        assert images.shape[0] == labels.shape[0]
+        assert imagenames.shape[0] == labels.shape[0]
 
-        random_index = np.random.permutation(images.shape[0])
-        shuffled_images = images[random_index]
+        random_index = np.random.permutation(imagenames.shape[0])
         shuffled_labels = labels[random_index]
         shuffled_imagenames = imagenames[random_index]
 
-        return shuffled_images, shuffled_labels, shuffled_imagenames
+        return shuffled_imagenames, shuffled_labels
 
     @staticmethod
     def normalize_images(images, normalization_type):

@@ -11,7 +11,10 @@ Write text features into tensorflow records
 import os
 import os.path as ops
 import argparse
+import math
+
 import numpy as np
+import tqdm
 import cv2
 try:
     from cv2 import cv2
@@ -30,15 +33,17 @@ def init_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset_dir', type=str, help='Where you store the dataset')
     parser.add_argument('--save_dir', type=str, help='Where you store tfrecords')
+    parser.add_argument('--batch_size', type=int, help='The numbers of examples that every single tfrecord holds')
 
     return parser.parse_args()
 
 
-def write_features(dataset_dir, save_dir):
+def write_features(dataset_dir, save_dir, batch_size):
     """
 
     :param dataset_dir:
     :param save_dir:
+    :param batch_size:
     :return:
     """
     if not ops.exists(save_dir):
@@ -55,41 +60,59 @@ def write_features(dataset_dir, save_dir):
     # write train tfrecords
     print('Start writing training tf records')
 
-    train_images = provider.train.images
-    train_images = [cv2.resize(tmp, (100, 32)) for tmp in train_images]
-    train_images = [bytes(list(np.reshape(tmp, [100 * 32 * 3]))) for tmp in train_images]
-    train_labels = provider.train.labels
-    train_imagenames = provider.train.imagenames
+    train_images_nums = provider.train.num_examples
+    epoch_nums = int(math.ceil(train_images_nums / batch_size))
+    for loop in tqdm.tqdm(range(epoch_nums)):
+        train_images, train_labels, train_imagenames = provider.train.next_batch(batch_size=batch_size)
+        train_images = [cv2.resize(tmp, (100, 32)) for tmp in train_images]
+        train_images = [bytes(list(np.reshape(tmp, [100 * 32 * 3]))) for tmp in train_images]
 
-    train_tfrecord_path = ops.join(save_dir, 'train_feature.tfrecords')
-    feature_io.writer.write_features(tfrecords_path=train_tfrecord_path, labels=train_labels, images=train_images,
-                                     imagenames=train_imagenames)
+        if loop*batch_size+batch_size > train_images_nums:
+            train_tfrecord_path = ops.join(save_dir, 'train_feature_{:d}_{:d}.tfrecords'.format(
+                loop * batch_size, train_images_nums))
+        else:
+            train_tfrecord_path = ops.join(save_dir, 'train_feature_{:d}_{:d}.tfrecords'.format(
+                loop*batch_size, loop*batch_size+batch_size))
+        feature_io.writer.write_features(tfrecords_path=train_tfrecord_path, labels=train_labels, images=train_images,
+                                         imagenames=train_imagenames)
 
     # write test tfrecords
     print('Start writing testing tf records')
 
-    test_images = provider.test.images
-    test_images = [cv2.resize(tmp, (100, 32)) for tmp in test_images]
-    test_images = [bytes(list(np.reshape(tmp, [100 * 32 * 3]))) for tmp in test_images]
-    test_labels = provider.test.labels
-    test_imagenames = provider.test.imagenames
+    test_images_nums = provider.test.num_examples
+    epoch_nums = int(math.ceil(test_images_nums / batch_size))
+    for loop in tqdm.tqdm(range(epoch_nums)):
+        test_images, test_labels, test_imagenames = provider.test.next_batch(batch_size=batch_size)
+        test_images = [cv2.resize(tmp, (100, 32)) for tmp in test_images]
+        test_images = [bytes(list(np.reshape(tmp, [100 * 32 * 3]))) for tmp in test_images]
 
-    test_tfrecord_path = ops.join(save_dir, 'test_feature.tfrecords')
-    feature_io.writer.write_features(tfrecords_path=test_tfrecord_path, labels=test_labels, images=test_images,
-                                     imagenames=test_imagenames)
+        if loop * batch_size + batch_size > test_images_nums:
+            test_tfrecord_path = ops.join(save_dir, 'test_feature_{:d}_{:d}.tfrecords'.format(
+                loop*batch_size, test_images_nums))
+        else:
+            test_tfrecord_path = ops.join(save_dir, 'test_feature_{:d}_{:d}.tfrecords'.format(
+                loop * batch_size, loop * batch_size + batch_size))
+        feature_io.writer.write_features(tfrecords_path=test_tfrecord_path, labels=test_labels, images=test_images,
+                                         imagenames=test_imagenames)
 
     # write val tfrecords
     print('Start writing validation tf records')
 
-    val_images = provider.validation.images
-    val_images = [cv2.resize(tmp, (100, 32)) for tmp in val_images]
-    val_images = [bytes(list(np.reshape(tmp, [100 * 32 * 3]))) for tmp in val_images]
-    val_labels = provider.validation.labels
-    val_imagenames = provider.validation.imagenames
+    val_image_nums = provider.validation.num_examples
+    epoch_nums = int(math.ceil(val_image_nums / batch_size))
+    for loop in tqdm.tqdm(range(epoch_nums)):
+        val_images, val_labels, val_imagenames = provider.validation.next_batch(batch_size=batch_size)
+        val_images = [cv2.resize(tmp, (100, 32)) for tmp in val_images]
+        val_images = [bytes(list(np.reshape(tmp, [100 * 32 * 3]))) for tmp in val_images]
 
-    val_tfrecord_path = ops.join(save_dir, 'validation_feature.tfrecords')
-    feature_io.writer.write_features(tfrecords_path=val_tfrecord_path, labels=val_labels, images=val_images,
-                                     imagenames=val_imagenames)
+        if loop*batch_size+batch_size > val_image_nums:
+            val_tfrecord_path = ops.join(save_dir, 'validation_feature_{:d}_{:d}.tfrecords'.format(
+                loop*batch_size, val_image_nums))
+        else:
+            val_tfrecord_path = ops.join(save_dir, 'validation_feature_{:d}_{:d}.tfrecords'.format(
+                loop * batch_size, loop*batch_size+batch_size))
+        feature_io.writer.write_features(tfrecords_path=val_tfrecord_path, labels=val_labels, images=val_images,
+                                         imagenames=val_imagenames)
 
     return
 
@@ -101,4 +124,4 @@ if __name__ == '__main__':
         raise ValueError('Dataset {:s} doesn\'t exist'.format(args.dataset_dir))
 
     # write tf records
-    write_features(dataset_dir=args.dataset_dir, save_dir=args.save_dir)
+    write_features(dataset_dir=args.dataset_dir, save_dir=args.save_dir, batch_size=args.batch_size)

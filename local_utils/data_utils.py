@@ -184,10 +184,10 @@ class TextFeatureWriter(FeatureIO):
                 })
                 example = tf.train.Example(features=features)
                 writer.write(example.SerializeToString())
-                sys.stdout.write('\r>>Writing {:d}/{:d} {:s} tfrecords'.format(index+1, len(images), imagenames[index]))
-                sys.stdout.flush()
-            sys.stdout.write('\n')
-            sys.stdout.flush()
+                # sys.stdout.write('\r>>Writing {:d}/{:d} {:s} tfrecords'.format(index+1, len(images), imagenames[index]))
+                # sys.stdout.flush()
+            # sys.stdout.write('\n')
+            # sys.stdout.flush()
         return
 
 
