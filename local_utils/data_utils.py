@@ -12,6 +12,7 @@ import numpy as np
 import tensorflow as tf
 import os
 import os.path as ops
+import re
 import sys
 
 from local_utils import establish_char_dict
@@ -200,16 +201,31 @@ class TextFeatureReader(FeatureIO):
         return
 
     @staticmethod
-    def read_features(tfrecords_path, num_epochs):
+    def read_features(tfrecords_dir, num_epochs, flag):
         """
 
-        :param tfrecords_path:
+        :param tfrecords_dir:
         :param num_epochs:
+        :param flag: 'Train', 'Test', 'Validation'
         :return:
         """
-        assert ops.exists(tfrecords_path)
+        assert ops.exists(tfrecords_dir)
 
-        filename_queue = tf.train.string_input_producer([tfrecords_path], num_epochs=num_epochs)
+        if not isinstance(flag, str):
+            raise ValueError('flag should be a str in [\'Train\', \'Test\', \'Validation\']')
+        if flag.lower() not in ['train', 'test', 'validation']:
+            raise ValueError('flag should be a str in [\'Train\', \'Test\', \'Validation\']')
+
+        if flag.lower() == 'train':
+            re_patten = r'^train_feature_\d{0,15}_\d{0,15}\.tfrecords\Z'
+        elif flag.lower() == 'test':
+            re_patten = r'^test_feature_\d{0,15}_\d{0,15}\.tfrecords\Z'
+        else:
+            re_patten = r'^validation_feature_\d{0,15}_\d{0,15}\.tfrecords\Z'
+
+        tfrecords_list = [ops.join(tfrecords_dir, tmp) for tmp in os.listdir(tfrecords_dir) if re.match(re_patten, tmp)]
+
+        filename_queue = tf.train.string_input_producer(tfrecords_list, num_epochs=num_epochs)
         reader = tf.TFRecordReader()
         _, serialized_example = reader.read(filename_queue)
 

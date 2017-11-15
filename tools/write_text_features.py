@@ -12,6 +12,7 @@ import os
 import os.path as ops
 import argparse
 import math
+import sys
 
 import numpy as np
 import tqdm
@@ -20,6 +21,9 @@ try:
     from cv2 import cv2
 except ImportError:
     pass
+
+
+sys.path.append(os.getcwd())
 
 from data_provider import data_provider
 from local_utils import data_utils

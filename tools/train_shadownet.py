@@ -14,6 +14,9 @@ import os.path as ops
 import time
 import numpy as np
 import argparse
+import sys
+
+sys.path.append(os.getcwd())
 
 from crnn_model import crnn_model
 from local_utils import data_utils, log_utils
@@ -44,8 +47,7 @@ def train_shadownet(dataset_dir, weights_path=None):
     """
     # decode the tf records to get the training data
     decoder = data_utils.TextFeatureIO().reader
-    images, labels, imagenames = decoder.read_features(ops.join(dataset_dir, 'train_feature.tfrecords'),
-                                                       num_epochs=None)
+    images, labels, imagenames = decoder.read_features(dataset_dir, num_epochs=None, flag='Train')
     inputdata, input_labels, input_imagenames = tf.train.shuffle_batch(
         tensors=[images, labels, imagenames], batch_size=32, capacity=1000+2*32, min_after_dequeue=100, num_threads=1)
 
