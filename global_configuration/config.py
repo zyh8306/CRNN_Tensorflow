@@ -41,7 +41,7 @@ __C.TRAIN.LR_DECAY_STEPS = 100000
 # Set the learning rate decay rate
 __C.TRAIN.LR_DECAY_RATE = 0.1
 # Set the class numbers
-__C.TRAIN.CLASSES_NUMS = 3792
+__C.TRAIN.CLASSES_NUMS = 3791
 
 # Test options
 __C.TEST = edict()

@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# @Time    : 17-9-22 下午1:39
+# @Time    : 17-11-23 下午4:20
 # @Author  : Luo Yao
 # @Site    : http://github.com/TJCVRS
-# @File    : train_shadownet.py
+# @File    : train_shadownet_subnet.py.py
 # @IDE: PyCharm Community Edition
 """
-Train shadow net script
+Train shadow net CNN sub network
 """
 import argparse
 import os
@@ -40,7 +40,7 @@ def init_args():
     return parser.parse_args()
 
 
-def train_shadownet(dataset_dir, weights_path=None, restore_from_cnn_subnet_work=True):
+def train_shadownet(dataset_dir, weights_path=None):
     """
 
     :param dataset_dir:
@@ -60,13 +60,15 @@ def train_shadownet(dataset_dir, weights_path=None, restore_from_cnn_subnet_work
                                      num_classes=config.cfg.TRAIN.CLASSES_NUMS, rnn_cell_type='lstm')
 
     with tf.variable_scope('shadow', reuse=False):
-        net_out = shadownet.build_shadownet(inputdata=inputdata)
+        net_out = shadownet.build_shadownet_cnn_subnet(inputdata=inputdata)
 
-    cost = tf.reduce_mean(tf.nn.ctc_loss(labels=input_labels, inputs=net_out, sequence_length=25*np.ones(32)))
+    correct_preds = tf.equal(tf.argmax(tf.nn.softmax(net_out), 1),
+                             tf.argmax(input_labels, 1))
+    accuracy = tf.reduce_mean(tf.cast(correct_preds, tf.float32), name='accuracy_train')
 
-    decoded, log_prob = tf.nn.ctc_beam_search_decoder(net_out, 25*np.ones(32), merge_repeated=False)
-
-    sequence_dist = tf.reduce_mean(tf.edit_distance(tf.cast(decoded[0], tf.int32), input_labels))
+    print(net_out.get_shape().as_list())
+    print(input_labels.get_shape().as_list())
+    cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=input_labels, logits=net_out, name='cost'))
 
     global_step = tf.Variable(0, name='global_step', trainable=False)
 
@@ -74,8 +76,8 @@ def train_shadownet(dataset_dir, weights_path=None, restore_from_cnn_subnet_work
     learning_rate = tf.train.exponential_decay(starter_learning_rate, global_step,
                                                config.cfg.TRAIN.LR_DECAY_STEPS, config.cfg.TRAIN.LR_DECAY_RATE,
                                                staircase=True)
-    update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
 
+    update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
     with tf.control_dependencies(update_ops):
         optimizer = tf.train.AdadeltaOptimizer(learning_rate=learning_rate).minimize(loss=cost, global_step=global_step)
 
@@ -85,18 +87,16 @@ def train_shadownet(dataset_dir, weights_path=None, restore_from_cnn_subnet_work
         os.makedirs(tboard_save_path)
     tf.summary.scalar(name='Cost', tensor=cost)
     tf.summary.scalar(name='Learning_Rate', tensor=learning_rate)
-    tf.summary.scalar(name='Seq_Dist', tensor=sequence_dist)
+    tf.summary.scalar(name='Accuracy', tensor=accuracy)
     merge_summary_op = tf.summary.merge_all()
 
     # Set saver configuration
-    restore_variable_list = [tmp for tmp in tf.trainable_variables() if 'conv' in tmp.name.split('/')[2]
-                             or 'Batch' in tmp.name.split('/')[2]]
     saver = tf.train.Saver()
     model_save_dir = 'model/shadownet'
     if not ops.exists(model_save_dir):
         os.makedirs(model_save_dir)
     train_start_time = time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime(time.time()))
-    model_name = 'shadownet_two_stage_train_{:s}.ckpt'.format(str(train_start_time))
+    model_name = 'shadownet_cnnsub_{:s}.ckpt'.format(str(train_start_time))
     model_save_path = ops.join(model_save_dir, model_name)
 
     # Set sess configuration
@@ -122,54 +122,22 @@ def train_shadownet(dataset_dir, weights_path=None, restore_from_cnn_subnet_work
             init = tf.global_variables_initializer()
             sess.run(init)
         else:
-            if restore_from_cnn_subnet_work:
-                logger.info('Restore model from cnn subnetwork {:s}'.format(weights_path))
-                init = tf.global_variables_initializer()
-                sess.run(init)
-                restore_saver = tf.train.Saver(var_list=restore_variable_list)
-                restore_saver.restore(sess=sess, save_path=weights_path)
-            else:
-                logger.info('Restore model from last crnn check point{:s}'.format(weights_path))
-                saver.restore(sess=sess, save_path=weights_path)
+            logger.info('Restore model from {:s}'.format(weights_path))
+            saver.restore(sess=sess, save_path=weights_path)
 
         coord = tf.train.Coordinator()
         threads = tf.train.start_queue_runners(sess=sess, coord=coord)
 
         for epoch in range(train_epochs):
-            _, c, seq_distance, preds, gt_labels, summary = sess.run(
-                [optimizer, cost, sequence_dist, decoded, input_labels, merge_summary_op])
-
-            # calculate the precision
-            preds = decoder.sparse_tensor_to_str(preds[0])
-            gt_labels = decoder.sparse_tensor_to_str(gt_labels)
-
-            accuracy = []
-
-            for index, gt_label in enumerate(gt_labels):
-                pred = preds[index]
-                totol_count = len(gt_label)
-                correct_count = 0
-                try:
-                    for i, tmp in enumerate(gt_label):
-                        if tmp == pred[i]:
-                            correct_count += 1
-                except IndexError:
-                    continue
-                finally:
-                    try:
-                        accuracy.append(correct_count / totol_count)
-                    except ZeroDivisionError:
-                        if len(pred) == 0:
-                            accuracy.append(1)
-                        else:
-                            accuracy.append(0)
-            accuracy = np.mean(np.array(accuracy).astype(np.float32), axis=0)
-
-            if epoch % config.cfg.TRAIN.DISPLAY_STEP == 0:
-                logger.info('Epoch: {:d} cost= {:9f} seq distance= {:9f} train accuracy= {:9f}'.format(
-                    epoch + 1, c, seq_distance, accuracy))
+            _, c, train_out, train_accuracy, summary = sess.run(
+                [optimizer, cost, net_out, accuracy, merge_summary_op])
 
             summary_writer.add_summary(summary=summary, global_step=epoch)
+
+            if epoch % config.cfg.TRAIN.DISPLAY_STEP == 0:
+                logger.info('Epoch: {:03d} batch: {:d} cost= {:9f} training accuracy= {:9f}'.format(
+                    epoch + 1, epoch + 1, c, train_accuracy))
+
             saver.save(sess=sess, save_path=model_save_path, global_step=epoch)
 
         coord.request_stop()
@@ -187,8 +155,5 @@ if __name__ == '__main__':
     if not ops.exists(args.dataset_dir):
         raise ValueError('{:s} doesn\'t exist'.format(args.dataset_dir))
 
-    if 'two_stage' in args.weights_path:
-        train_shadownet(args.dataset_dir, args.weights_path, restore_from_cnn_subnet_work=True)
-    elif 'cnnsub' in args.weights_path:
-        train_shadownet(args.dataset_dir, args.weights_path, restore_from_cnn_subnet_work=True)
+    train_shadownet(args.dataset_dir, args.weights_path)
     print('Done')

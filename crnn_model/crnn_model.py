@@ -13,16 +13,24 @@ import tensorflow as tf
 from tensorflow.contrib import rnn
 
 from crnn_model import cnn_basenet
+from global_configuration import config
+
+cfg = config.cfg
 
 
 class ShadowNet(cnn_basenet.CNNBaseModel):
     """
         Implement the crnn model for squence recognition
     """
-    def __init__(self, phase, hidden_nums, layers_nums, seq_length, num_classes):
+    def __init__(self, phase, hidden_nums, layers_nums, seq_length, num_classes, rnn_cell_type='lstm'):
         """
 
         :param phase:
+        :param hidden_nums:
+        :param layers_nums:
+        :param seq_length:
+        :param num_classes:
+        :param rnn_cell_type:
         """
         super(ShadowNet, self).__init__()
         self.__phase = phase
@@ -30,6 +38,9 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
         self.__layers_nums = layers_nums
         self.__seq_length = seq_length
         self.__num_classes = num_classes
+        self.__rnn_cell_type = rnn_cell_type.lower()
+        if self.__rnn_cell_type not in ['lstm', 'gru']:
+            raise ValueError('rnn_cell_type should be in [\'lstm\', \'gru\']')
         return
 
     @property
@@ -125,33 +136,64 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
         :param inputdata:
         :return:
         """
-        with tf.variable_scope('LSTMLayers'):
-            # construct stack lstm rcnn layer
-            # forward lstm cell
-            fw_cell_list = [rnn.BasicLSTMCell(nh, forget_bias=1.0) for nh in [self.__hidden_nums, self.__hidden_nums]]
-            # Backward direction cells
-            bw_cell_list = [rnn.BasicLSTMCell(nh, forget_bias=1.0) for nh in [self.__hidden_nums, self.__hidden_nums]]
+        if self.__rnn_cell_type == 'lstm':
+            with tf.variable_scope('LSTMLayers'):
+                # construct stack lstm rcnn layer
+                # forward lstm cell
+                fw_cell_list = [rnn.BasicLSTMCell(nh, forget_bias=1.0) for nh in [self.__hidden_nums, self.__hidden_nums]]
+                # Backward direction cells
+                bw_cell_list = [rnn.BasicLSTMCell(nh, forget_bias=1.0) for nh in [self.__hidden_nums, self.__hidden_nums]]
 
-            stack_lstm_layer, _, _ = rnn.stack_bidirectional_dynamic_rnn(fw_cell_list, bw_cell_list, inputdata,
-                                                                         dtype=tf.float32)
+                stack_lstm_layer, _, _ = rnn.stack_bidirectional_dynamic_rnn(fw_cell_list, bw_cell_list, inputdata,
+                                                                             dtype=tf.float32)
 
-            if self.phase.lower() == 'train':
-                stack_lstm_layer = self.dropout(inputdata=stack_lstm_layer, keep_prob=0.5)
+                if self.phase.lower() == 'train':
+                    stack_lstm_layer = self.dropout(inputdata=stack_lstm_layer, keep_prob=0.5)
 
-            [batch_s, _, hidden_nums] = inputdata.get_shape().as_list()  # [batch, width, 2*n_hidden]
-            rnn_reshaped = tf.reshape(stack_lstm_layer, [-1, hidden_nums])  # [batch x width, 2*n_hidden]
+                [batch_s, _, hidden_nums] = inputdata.get_shape().as_list()  # [batch, width, 2*n_hidden]
+                rnn_reshaped = tf.reshape(stack_lstm_layer, [-1, hidden_nums])  # [batch x width, 2*n_hidden]
 
-            w = tf.Variable(tf.truncated_normal([hidden_nums, self.__num_classes], stddev=0.1), name="w")
-            # Doing the affine projection
+                w = tf.Variable(tf.truncated_normal([hidden_nums, self.__num_classes], stddev=0.1), name="w")
+                # Doing the affine projection
 
-            logits = tf.matmul(rnn_reshaped, w)
+                logits = tf.matmul(rnn_reshaped, w)
 
-            logits = tf.reshape(logits, [batch_s, -1, self.__num_classes])
+                logits = tf.reshape(logits, [batch_s, -1, self.__num_classes])
 
-            raw_pred = tf.argmax(tf.nn.softmax(logits), axis=2, name='raw_prediction')
+                raw_pred = tf.argmax(tf.nn.softmax(logits), axis=2, name='raw_prediction')
 
-            # Swap batch and batch axis
-            rnn_out = tf.transpose(logits, (1, 0, 2), name='transpose_time_major')  # [width, batch, n_classes]
+                # Swap batch and batch axis
+                rnn_out = tf.transpose(logits, (1, 0, 2), name='transpose_time_major')  # [width, batch, n_classes]
+        else:
+            with tf.variable_scope('GRULayers'):
+                # construct stack lstm rcnn layer
+                # forward lstm cell
+                fw_cell_list = [rnn.GRUCell(nh) for nh in
+                                [self.__hidden_nums, self.__hidden_nums]]
+                # Backward direction cells
+                bw_cell_list = [rnn.GRUCell(nh) for nh in
+                                [self.__hidden_nums, self.__hidden_nums]]
+
+                stack_gru_layer, _, _ = rnn.stack_bidirectional_dynamic_rnn(fw_cell_list, bw_cell_list, inputdata,
+                                                                            dtype=tf.float32)
+
+                if self.phase.lower() == 'train':
+                    stack_gru_layer = self.dropout(inputdata=stack_gru_layer, keep_prob=0.5)
+
+                [batch_s, _, hidden_nums] = inputdata.get_shape().as_list()  # [batch, width, 2*n_hidden]
+                rnn_reshaped = tf.reshape(stack_gru_layer, [-1, hidden_nums])  # [batch x width, 2*n_hidden]
+
+                w = tf.Variable(tf.truncated_normal([hidden_nums, self.__num_classes], stddev=0.1), name="w")
+                # Doing the affine projection
+
+                logits = tf.matmul(rnn_reshaped, w)
+
+                logits = tf.reshape(logits, [batch_s, -1, self.__num_classes])
+
+                raw_pred = tf.argmax(tf.nn.softmax(logits), axis=2, name='raw_prediction')
+
+                # Swap batch and batch axis
+                rnn_out = tf.transpose(logits, (1, 0, 2), name='transpose_time_major')  # [width, batch, n_classes]
 
         return rnn_out, raw_pred
 
@@ -161,13 +203,32 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
         :param inputdata:
         :return:
         """
-        # first apply the cnn feature extraction stage
-        cnn_out = self.__feature_sequence_extraction(inputdata=inputdata)
+        with tf.variable_scope('cnn_subnetwork'):
+            # first apply the cnn feature extraction stage
+            cnn_out = self.__feature_sequence_extraction(inputdata=inputdata)
 
-        # second apply the map to sequence stage
-        sequence = self.__map_to_sequence(inputdata=cnn_out)
+            # second apply the map to sequence stage
+            sequence = self.__map_to_sequence(inputdata=cnn_out)
 
-        # third apply the sequence label stage
-        net_out, raw_pred = self.__sequence_label(inputdata=sequence)
+            # third apply the sequence label stage
+            net_out, raw_pred = self.__sequence_label(inputdata=sequence)
 
         return net_out
+
+    def build_shadownet_cnn_subnet(self, inputdata):
+        """
+
+        :param inputdata:
+        :return:
+        """
+        # first apply the cnn feture extraction stage
+        with tf.variable_scope('cnn_subnetwork'):
+            cnn_out = self.__feature_sequence_extraction(inputdata=inputdata)
+
+            fc1 = self.fullyconnect(inputdata=cnn_out, out_dim=4096, use_bias=False, name='fc1')
+
+            relu1 = self.relu(inputdata=fc1, name='relu1')
+
+            fc2 = self.fullyconnect(inputdata=relu1, out_dim=cfg.TRAIN.CLASSES_NUMS, use_bias=False, name='fc2')
+
+        return fc2

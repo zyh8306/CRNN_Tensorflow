@@ -13,8 +13,8 @@ import tensorflow as tf
 import os
 import os.path as ops
 import re
-import sys
 
+from global_configuration import config
 from local_utils import establish_char_dict
 
 
@@ -234,10 +234,12 @@ class TextFeatureReader(FeatureIO):
                                                'images': tf.FixedLenFeature((), tf.string),
                                                'imagenames': tf.FixedLenFeature([1], tf.string),
                                                'labels': tf.VarLenFeature(tf.int64),
+                                               # 'labels': tf.FixedLenFeature([], tf.int64),
                                            })
         image = tf.decode_raw(features['images'], tf.uint8)
         images = tf.reshape(image, [32, 100, 3])
         labels = features['labels']
+        # labels = tf.one_hot(indices=labels, depth=config.cfg.TRAIN.CLASSES_NUMS)
         labels = tf.cast(labels, tf.int32)
         imagenames = features['imagenames']
         return images, labels, imagenames
