@@ -9,6 +9,7 @@
 The base convolution neural networks mainly implement some useful cnn functions
 """
 import tensorflow as tf
+import tensorflow.contrib.layers as tf_layer
 import numpy as np
 from abc import ABCMeta
 
@@ -292,14 +293,36 @@ class CNNBaseModel(metaclass=ABCMeta):
         return ret
 
     @staticmethod
-    def layerbn(inputdata, is_training):
+    def layerbn(inputdata, is_training, name):
         """
 
         :param inputdata:
         :param is_training:
         :return:
         """
-        output = tf.contrib.layers.batch_norm(inputdata, scale=True, is_training=is_training, updates_collections=None)
+        def f1():
+            """
+
+            :return:
+            """
+            # print('batch_normalization: train phase')
+            return tf_layer.batch_norm(
+                             inputdata, is_training=True,
+                             center=True, updates_collections=None,
+                             scope=name, reuse=False)
+
+        def f2():
+            """
+
+            :return:
+            """
+            # print('batch_normalization: test phase')
+            return tf_layer.batch_norm(
+                             inputdata, is_training=False,
+                             center=True, updates_collections=None,
+                             scope=name, reuse=True)
+
+        output = tf.cond(is_training, f1, f2)
         return output
 
     @staticmethod

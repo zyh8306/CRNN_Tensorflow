@@ -1,12 +1,12 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# @Time    : 17-9-25 下午3:56
+# @Time    : 18-1-30 下午1:44
 # @Author  : Luo Yao
-# @Site    : http://github.com/TJCVRS
-# @File    : test_shadownet.py
+# @Site    : http://icode.baidu.com/repos/baidu/personal-code/Luoyao
+# @File    : test_shaodwnet_car_plate.py
 # @IDE: PyCharm Community Edition
 """
-Test shadow net script
+检测车牌ocr准确率
 """
 import os.path as ops
 import tensorflow as tf
@@ -77,8 +77,9 @@ def test_shadownet(dataset_dir, weights_path, is_vis=False, is_recursive=True):
     test_sample_count = 0
     for record in tf.python_io.tf_record_iterator(ops.join(dataset_dir, 'test_feature_0_5000.tfrecords')):
         test_sample_count += 1
+    for record in tf.python_io.tf_record_iterator(ops.join(dataset_dir, 'test_feature_5000_6379.tfrecords')):
+        test_sample_count += 1
     loops_nums = int(math.ceil(test_sample_count / 32))
-    # loops_nums = 100
 
     with sess.as_default():
 
@@ -100,22 +101,10 @@ def test_shadownet(dataset_dir, weights_path, is_vis=False, is_recursive=True):
 
             for index, gt_label in enumerate(gt_res):
                 pred = preds_res[index]
-                totol_count = len(gt_label)
-                correct_count = 0
-                try:
-                    for i, tmp in enumerate(gt_label):
-                        if tmp == pred[i]:
-                            correct_count += 1
-                except IndexError:
-                    continue
-                finally:
-                    try:
-                        accuracy.append(correct_count / totol_count)
-                    except ZeroDivisionError:
-                        if len(pred) == 0:
-                            accuracy.append(1)
-                        else:
-                            accuracy.append(0)
+                if pred == gt_label:
+                    accuracy.append(1)
+                else:
+                    accuracy.append(0)
 
             accuracy_val = np.mean(np.array(accuracy).astype(np.float32), axis=0)
             print('Test nums: {:d} mean accuracy is {:5f}'.format(len(accuracy), accuracy_val))
@@ -137,29 +126,14 @@ def test_shadownet(dataset_dir, weights_path, is_vis=False, is_recursive=True):
 
                 for index, gt_label in enumerate(gt_res):
                     pred = preds_res[index]
-                    totol_count = len(gt_label)
-                    correct_count = 0
-                    try:
-                        for i, tmp in enumerate(gt_label):
-                            if tmp == pred[i]:
-                                correct_count += 1
-                    except IndexError:
-                        continue
-                    finally:
-                        try:
-                            accuracy.append(correct_count / totol_count)
-                        except ZeroDivisionError:
-                            if len(pred) == 0:
-                                accuracy.append(1)
-                            else:
-                                accuracy.append(0)
+                    if pred == gt_label:
+                        accuracy.append(1)
+                    else:
+                        accuracy.append(0)
 
                 for index, image in enumerate(images):
                     print('Predict {:s} image with gt label: {:s} **** predict label: {:s}'.format(
                         imagenames[index], gt_res[index], preds_res[index]))
-                    # if is_vis:
-                    #     plt.imshow(image[:, :, (2, 1, 0)])
-                    #     plt.show()
 
             accuracy_val = np.mean(np.array(accuracy).astype(np.float32), axis=0)
             print('Test nums: {:d} accuracy is {:5f}'.format(len(accuracy), accuracy_val))

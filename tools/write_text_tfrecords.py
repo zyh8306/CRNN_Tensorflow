@@ -3,7 +3,7 @@
 # @Time    : 17-9-22 下午7:47
 # @Author  : Luo Yao
 # @Site    : http://github.com/TJCVRS
-# @File    : write_text_features.py
+# @File    : write_text_tfrecords.py
 # @IDE: PyCharm Community Edition
 """
 Write text features into tensorflow records
@@ -55,7 +55,7 @@ def write_features(dataset_dir, save_dir, batch_size):
 
     print('Initialize the dataset provider ......')
     provider = data_provider.TextDataProvider(dataset_dir=dataset_dir, annotation_name='sample.txt',
-                                              validation_set=True, validation_split=0.15, shuffle='every_epoch',
+                                              validation_set=True, validation_split=0.05, shuffle='every_epoch',
                                               normalization=None)
     print('Dataset provider intialize complete')
 

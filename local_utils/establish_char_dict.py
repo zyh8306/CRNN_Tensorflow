@@ -148,3 +148,7 @@ class CharDictBuilder(object):
             res = json.load(json_f)
 
         return res
+
+
+if __name__ == '__main__':
+    print(ord(' '))

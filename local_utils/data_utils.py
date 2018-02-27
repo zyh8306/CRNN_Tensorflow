@@ -14,7 +14,6 @@ import os
 import os.path as ops
 import re
 
-from global_configuration import config
 from local_utils import establish_char_dict
 
 
@@ -93,12 +92,6 @@ class FeatureIO(object):
         :return:
         """
         temp = ord(char)
-        # convert upper character into lower character
-        if 65 <= temp <= 90:
-            temp = temp + 32
-
-        # TODO
-        # Here implement a double way dict or two dict to quickly map ord and it's corresponding index
 
         return self.__ord_2_index_map[str(temp)]
 
@@ -108,9 +101,9 @@ class FeatureIO(object):
         :param number:
         :return:
         """
-        if number == '1':
+        if number == '84':
             return '*'
-        if number == 1:
+        if number == 84:
             return '*'
         else:
             ord_tmp = self.__index_2_ord_map[str(number)]
@@ -272,3 +265,31 @@ class TextFeatureIO(object):
         :return:
         """
         return self.__reader
+
+
+if __name__ == '__main__':
+    decoder = TextFeatureIO()
+    imgs, labels, img_names = decoder.reader.read_features(
+        '/home/baidu/DataBase/Sequence_Recognition/Car_Plate/tfrecords',
+        num_epochs=None, flag='Test')
+    inputdata, input_labels, input_imagenames = tf.train.shuffle_batch(
+        tensors=[imgs, labels, img_names], batch_size=128, capacity=1000 + 2 * 128, min_after_dequeue=100,
+        num_threads=1)
+
+    sess = tf.Session()
+
+    coord = tf.train.Coordinator()
+    threads = tf.train.start_queue_runners(sess=sess, coord=coord)
+
+    with sess.as_default():
+        imgs_val, labels_val, img_names_val = sess.run([inputdata, input_labels, input_imagenames])
+        print(type(labels_val))
+        gt_labels = decoder.reader.sparse_tensor_to_str(labels_val)
+        for index, gt_label in enumerate(gt_labels):
+            name = img_names_val[index][0].decode('utf-8')
+            name = ops.split(name)[1]
+            name = name.split('_')[-2]
+            print('{:s} --- {:s}'.format(gt_label, name))
+
+        coord.request_stop()
+        coord.join(threads=threads)
