@@ -21,7 +21,7 @@ import pprint
 sys.path.append(os.getcwd())
 
 from crnn_model import crnn_model
-from local_utils import data_utils, log_utils
+from local_utils import data_utils, log_utils, tensorboard_vis_summary
 from global_configuration import config
 
 
@@ -64,7 +64,6 @@ def train_shadownet(dataset_dir, weights_path=None):
         min_after_dequeue=100, num_threads=1)
 
     inputdata = tf.cast(x=inputdata, dtype=tf.float32)
-    # inputdata_val = tf.cast(x=inputdata_val, dtype=tf.float32)
     phase_tensor = tf.placeholder(dtype=tf.string, shape=None, name='phase')
     accuracy_tensor = tf.placeholder(dtype=tf.float32, shape=None, name='accuracy_tensor')
 
@@ -73,20 +72,13 @@ def train_shadownet(dataset_dir, weights_path=None):
                                      num_classes=config.cfg.TRAIN.CLASSES_NUMS, rnn_cell_type='lstm')
 
     with tf.variable_scope('shadow', reuse=False):
-        net_out, tf_summary = shadownet.build_shadownet(inputdata=input_tensor)
-
-    # with tf.variable_scope('shadow', reuse=True):
-    #     net_out_val = shadownet.build_shadownet(inputdata=inputdata_val)
+        net_out, tensor_dict = shadownet.build_shadownet(inputdata=input_tensor)
 
     cost = tf.reduce_mean(tf.nn.ctc_loss(labels=input_labels, inputs=net_out, sequence_length=15*np.ones(128)))
-    # cost_val = tf.reduce_mean(tf.nn.ctc_loss(labels=input_labels_val,
-    #                                          inputs=net_out_val, sequence_length=15 * np.ones(64)))
 
     decoded, log_prob = tf.nn.ctc_beam_search_decoder(net_out, 15*np.ones(128), merge_repeated=False)
-    # decoded_val, log_prob_val = tf.nn.ctc_beam_search_decoder(net_out_val, 15 * np.ones(64), merge_repeated=False)
 
     sequence_dist = tf.reduce_mean(tf.edit_distance(tf.cast(decoded[0], tf.int32), input_labels))
-    # sequence_dist_val = tf.reduce_mean(tf.edit_distance(tf.cast(decoded_val[0], tf.int32), input_labels_val))
 
     global_step = tf.Variable(0, name='global_step', trainable=False)
 
@@ -105,20 +97,39 @@ def train_shadownet(dataset_dir, weights_path=None):
     tboard_save_path = 'tboard/shadownet/car_plate'
     if not ops.exists(tboard_save_path):
         os.makedirs(tboard_save_path)
+
+    visualizor = tensorboard_vis_summary.CNNVisualizer()
+
+    # training过程summary
     train_cost_scalar = tf.summary.scalar(name='train_cost', tensor=cost)
     train_accuracy_scalar = tf.summary.scalar(name='train_accuray', tensor=accuracy_tensor)
     train_seq_scalar = tf.summary.scalar(name='train_seq_dist', tensor=sequence_dist)
+    train_conv1_image = visualizor.merge_conv_image(feature_map=tensor_dict['conv1'],
+                                                    scope='conv1_image')
+    train_conv2_image = visualizor.merge_conv_image(feature_map=tensor_dict['conv2'],
+                                                    scope='conv2_image')
+    train_conv3_image = visualizor.merge_conv_image(feature_map=tensor_dict['conv3'],
+                                                    scope='conv3_image')
+    lr_scalar = tf.summary.scalar(name='Learning_Rate', tensor=learning_rate)
 
+    weights_tensor_dict = dict()
+    for vv in tf.trainable_variables():
+        if 'conv' in vv.name:
+            weights_tensor_dict[vv.name] = vv
+    train_weights_hist_dict = visualizor.merge_weights_hist(
+        weights_tensor_dict=weights_tensor_dict, scope='weights_histogram', is_merge=False)
+
+    train_summary_merge_list = [train_cost_scalar, train_accuracy_scalar, train_seq_scalar, lr_scalar,
+                                train_conv1_image, train_conv2_image, train_conv3_image]
+    for _, weights_hist in train_weights_hist_dict.items():
+        train_summary_merge_list.append(weights_hist)
+
+    # validation过程summary
     val_cost_scalar = tf.summary.scalar(name='val_cost', tensor=cost)
     val_seq_scalar = tf.summary.scalar(name='val_seq_dist', tensor=sequence_dist)
     val_accuracy_scalar = tf.summary.scalar(name='val_accuracy', tensor=accuracy_tensor)
 
-    lr_scalar = tf.summary.scalar(name='Learning_Rate', tensor=learning_rate)
-
-    train_summary_op_merge = tf.summary.merge(inputs=[train_cost_scalar, train_accuracy_scalar,
-                                                      train_seq_scalar, lr_scalar,
-                                                      tf_summary['conv1'], tf_summary['conv2'],
-                                                      tf_summary['conv3']])
+    train_summary_op_merge = tf.summary.merge(inputs=train_summary_merge_list)
     test_summary_op_merge = tf.summary.merge(inputs=[val_cost_scalar, val_accuracy_scalar,
                                                      val_seq_scalar])
 
