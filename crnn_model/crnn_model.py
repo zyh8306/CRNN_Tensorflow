@@ -96,39 +96,49 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
         :param inputdata: eg. batch*32*100*3 NHWC format
         :return: a NHWC tensor
         """
+        tf_summary = dict()
+
         conv1 = self._conv_stage(inputdata=inputdata, out_dims=64, name='conv1')  # batch*16*50*64
+        tf_summary['conv1'] = tf.summary.histogram('conv1', conv1)
+
         conv2 = self._conv_stage(inputdata=conv1, out_dims=128, name='conv2')  # batch*8*25*128
+        tf_summary['conv2'] = tf.summary.histogram('conv2', conv2)
+
         conv3 = self.conv2d(inputdata=conv2, out_channel=256,
                             kernel_size=3, stride=1, use_bias=False,
                             name='conv3')  # batch*8*25*256
         relu3 = self.relu(conv3)  # batch*8*25*256
+        tf_summary['conv3'] = tf.summary.histogram('conv3', conv3)
+
         conv4 = self.conv2d(inputdata=relu3, out_channel=256,
                             kernel_size=3, stride=1, use_bias=False,
                             name='conv4')  # batch*8*25*256
         relu4 = self.relu(conv4)  # batch*8*25*256
         max_pool4 = self.maxpooling(inputdata=relu4, kernel_size=[2, 1], stride=[2, 1],
                                     padding='VALID')  # batch*4*25*256
+        tf_summary['conv4'] = tf.summary.histogram('conv4', conv4)
+
         conv5 = self.conv2d(inputdata=max_pool4, out_channel=512,
                             kernel_size=3, stride=1, use_bias=False,
                             name='conv5')  # batch*4*25*512
-
         conv5_bn5 = self.layerbn(inputdata=conv5, is_training=self._is_training, name='bn5')
-
         relu5 = self.relu(conv5_bn5)  # batch*4*25*512
+        tf_summary['conv5'] = tf.summary.histogram('conv5', conv5)
+
         conv6 = self.conv2d(inputdata=relu5, out_channel=512,
                             kernel_size=3, stride=1, use_bias=False,
                             name='conv6')  # batch*4*25*512
-
         conv6_bn6 = self.layerbn(inputdata=conv6, is_training=self._is_training, name='bn6')
-
         relu6 = self.relu(conv6_bn6)  # batch*4*25*512
         max_pool6 = self.maxpooling(inputdata=relu6,
                                     kernel_size=[2, 1], stride=[2, 1])  # batch*2*25*512
+        tf_summary['conv6'] = tf.summary.histogram('conv6', conv6)
+
         conv7 = self.conv2d(inputdata=max_pool6, out_channel=512,
                             kernel_size=2, stride=[2, 1], use_bias=False,
                             name='conv7')  # batch*1*25*512
         relu7 = self.relu(conv7)  # batch*1*25*512
-        return relu7
+        return relu7, tf_summary
 
     def _map_to_sequence(self, inputdata):
         """
@@ -258,7 +268,7 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
         """
         with tf.variable_scope('cnn_subnetwork'):
             # first apply the cnn feature extraction stage
-            cnn_out = self._feature_sequence_extraction(inputdata=inputdata)
+            cnn_out, tf_summary = self._feature_sequence_extraction(inputdata=inputdata)
 
             # second apply the map to sequence stage
             sequence = self._map_to_sequence(inputdata=cnn_out)
@@ -266,7 +276,7 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
             # third apply the sequence label stage
             net_out, _ = self._sequence_label(inputdata=sequence)
 
-        return net_out
+        return net_out, tf_summary
 
     def build_shadownet_cnn_subnet(self, inputdata):
         """
