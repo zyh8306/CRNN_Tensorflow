@@ -52,7 +52,8 @@ def recognize(image_path_dir, weights_path, is_vis=False):
     """
     inputdata = tf.placeholder(dtype=tf.float32, shape=[1, 32, 100, 3], name='input')
 
-    net = crnn_model.ShadowNet(phase='Test', hidden_nums=256, layers_nums=2, seq_length=15,
+    phase_tensor = tf.placeholder(dtype=tf.string, shape=None, name='phase_tensor')
+    net = crnn_model.ShadowNet(phase=phase_tensor, hidden_nums=256, layers_nums=2, seq_length=15,
                                num_classes=config.cfg.TRAIN.CLASSES_NUMS, rnn_cell_type='lstm')
 
     with tf.variable_scope('shadow'):
@@ -66,6 +67,7 @@ def recognize(image_path_dir, weights_path, is_vis=False):
     sess_config = tf.ConfigProto(device_count={'GPU': 1})
     sess_config.gpu_options.per_process_gpu_memory_fraction = config.cfg.TRAIN.GPU_MEMORY_FRACTION
     sess_config.gpu_options.allow_growth = config.cfg.TRAIN.TF_ALLOW_GROWTH
+    sess_config.gpu_options.allocator_type = 'BFC'
 
     # config tf saver
     saver = tf.train.Saver()
@@ -91,7 +93,8 @@ def recognize(image_path_dir, weights_path, is_vis=False):
 
             label = ops.split(image_path)[1].split('_')[-2]
 
-            preds = sess.run(decodes, feed_dict={inputdata: image})
+            preds = sess.run(decodes, feed_dict={inputdata: image,
+                                                 phase_tensor: 'test'})
 
             preds = decoder.writer.sparse_tensor_to_str(preds[0])[0]
 

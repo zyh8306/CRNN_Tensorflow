@@ -47,6 +47,8 @@ def train_shadownet(dataset_dir, weights_path=None):
     :param weights_path:
     :return:
     """
+    input_tensor = tf.placeholder(dtype=tf.float32, shape=[128, 32, 100, 3], name='input_tensor')
+
     # decode the tf records to get the training data
     decoder = data_utils.TextFeatureIO().reader
     images, labels, imagenames = decoder.read_features(dataset_dir, num_epochs=None,
@@ -54,37 +56,37 @@ def train_shadownet(dataset_dir, weights_path=None):
     images_val, labels_val, imagenames_val = decoder.read_features(dataset_dir, num_epochs=None,
                                                                    flag='Validation')
     inputdata, input_labels, input_imagenames = tf.train.shuffle_batch(
-        tensors=[images, labels, imagenames], batch_size=128, capacity=1000+2*128,
+        tensors=[images, labels, imagenames], batch_size=128, capacity=1000 + 2 * 128,
         min_after_dequeue=100, num_threads=1)
 
     inputdata_val, input_labels_val, input_imagenames_val = tf.train.shuffle_batch(
-        tensors=[images_val, labels_val, imagenames_val], batch_size=64, capacity=1000 + 2 * 64,
+        tensors=[images_val, labels_val, imagenames_val], batch_size=128, capacity=1000 + 2 * 128,
         min_after_dequeue=100, num_threads=1)
 
     inputdata = tf.cast(x=inputdata, dtype=tf.float32)
-    inputdata_val = tf.cast(x=inputdata_val, dtype=tf.float32)
+    # inputdata_val = tf.cast(x=inputdata_val, dtype=tf.float32)
     phase_tensor = tf.placeholder(dtype=tf.string, shape=None, name='phase')
     accuracy_tensor = tf.placeholder(dtype=tf.float32, shape=None, name='accuracy_tensor')
 
-    # initializa the net model
+    # initialize the net model
     shadownet = crnn_model.ShadowNet(phase=phase_tensor, hidden_nums=256, layers_nums=2, seq_length=15,
                                      num_classes=config.cfg.TRAIN.CLASSES_NUMS, rnn_cell_type='lstm')
 
     with tf.variable_scope('shadow', reuse=False):
-        net_out = shadownet.build_shadownet(inputdata=inputdata)
+        net_out, tf_summary = shadownet.build_shadownet(inputdata=input_tensor)
 
-    with tf.variable_scope('shadow', reuse=True):
-        net_out_val = shadownet.build_shadownet(inputdata=inputdata_val)
+    # with tf.variable_scope('shadow', reuse=True):
+    #     net_out_val = shadownet.build_shadownet(inputdata=inputdata_val)
 
     cost = tf.reduce_mean(tf.nn.ctc_loss(labels=input_labels, inputs=net_out, sequence_length=15*np.ones(128)))
-    cost_val = tf.reduce_mean(tf.nn.ctc_loss(labels=input_labels_val,
-                                             inputs=net_out_val, sequence_length=15 * np.ones(64)))
+    # cost_val = tf.reduce_mean(tf.nn.ctc_loss(labels=input_labels_val,
+    #                                          inputs=net_out_val, sequence_length=15 * np.ones(64)))
 
     decoded, log_prob = tf.nn.ctc_beam_search_decoder(net_out, 15*np.ones(128), merge_repeated=False)
-    decoded_val, log_prob_val = tf.nn.ctc_beam_search_decoder(net_out_val, 15 * np.ones(64), merge_repeated=False)
+    # decoded_val, log_prob_val = tf.nn.ctc_beam_search_decoder(net_out_val, 15 * np.ones(64), merge_repeated=False)
 
     sequence_dist = tf.reduce_mean(tf.edit_distance(tf.cast(decoded[0], tf.int32), input_labels))
-    sequence_dist_val = tf.reduce_mean(tf.edit_distance(tf.cast(decoded_val[0], tf.int32), input_labels_val))
+    # sequence_dist_val = tf.reduce_mean(tf.edit_distance(tf.cast(decoded_val[0], tf.int32), input_labels_val))
 
     global_step = tf.Variable(0, name='global_step', trainable=False)
 
@@ -114,7 +116,9 @@ def train_shadownet(dataset_dir, weights_path=None):
     lr_scalar = tf.summary.scalar(name='Learning_Rate', tensor=learning_rate)
 
     train_summary_op_merge = tf.summary.merge(inputs=[train_cost_scalar, train_accuracy_scalar,
-                                                      train_seq_scalar, lr_scalar])
+                                                      train_seq_scalar, lr_scalar,
+                                                      tf_summary['conv1'], tf_summary['conv2'],
+                                                      tf_summary['conv3']])
     test_summary_op_merge = tf.summary.merge(inputs=[val_cost_scalar, val_accuracy_scalar,
                                                      val_seq_scalar])
 
@@ -167,9 +171,11 @@ def train_shadownet(dataset_dir, weights_path=None):
         threads = tf.train.start_queue_runners(sess=sess, coord=coord)
 
         for epoch in range(train_epochs):
+            inputdata_value = sess.run(inputdata)
             _, c, seq_distance, preds, gt_labels = sess.run(
                 [optimizer, cost, sequence_dist, decoded, input_labels],
-                feed_dict={phase_tensor: 'train'})
+                feed_dict={phase_tensor: 'train',
+                           input_tensor: inputdata_value})
 
             # calculate the precision
             preds = decoder.sparse_tensor_to_str(preds[0])
@@ -199,7 +205,8 @@ def train_shadownet(dataset_dir, weights_path=None):
 
             train_summary = sess.run(train_summary_op_merge,
                                      feed_dict={accuracy_tensor: accuracy,
-                                                phase_tensor: 'train'})
+                                                phase_tensor: 'train',
+                                                input_tensor: inputdata_value})
             summary_writer.add_summary(summary=train_summary, global_step=epoch)
 
             if epoch % config.cfg.TRAIN.DISPLAY_STEP == 0:
@@ -208,10 +215,11 @@ def train_shadownet(dataset_dir, weights_path=None):
                     epoch + 1, c, seq_distance, accuracy))
 
             if epoch % config.cfg.TRAIN.VAL_STEP == 0:
-
+                inputdata_value = sess.run(inputdata_val)
                 val_c, val_seq, val_preds, val_gt_labels = sess.run([
-                    cost_val, sequence_dist_val, decoded_val, input_labels_val],
-                    feed_dict={phase_tensor: 'test'})
+                    cost, sequence_dist, decoded, input_labels_val],
+                    feed_dict={phase_tensor: 'test',
+                               input_tensor: inputdata_value})
 
                 preds_val = decoder.sparse_tensor_to_str(val_preds[0])
                 gt_labels_val = decoder.sparse_tensor_to_str(val_gt_labels)
@@ -240,8 +248,9 @@ def train_shadownet(dataset_dir, weights_path=None):
                 accuracy_val = np.mean(np.array(accuracy_val).astype(np.float32), axis=0)
 
                 test_summary = sess.run(test_summary_op_merge,
-                                        feed_dict={accuracy_tensor: accuracy,
-                                                   phase_tensor: 'test'})
+                                        feed_dict={accuracy_tensor: accuracy_val,
+                                                   phase_tensor: 'test',
+                                                   input_tensor: inputdata_value})
                 summary_writer.add_summary(summary=test_summary, global_step=epoch)
 
                 logger.info('Epoch: {:d} val_cost= {:9f} val_seq_distance= {:9f} val_accuracy= {:9f}'.format(

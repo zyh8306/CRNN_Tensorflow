@@ -56,7 +56,8 @@ def test_shadownet(dataset_dir, weights_path, is_vis=False, is_recursive=True):
     images_sh = tf.cast(x=images_sh, dtype=tf.float32)
 
     # build shadownet
-    net = crnn_model.ShadowNet(phase='Test', hidden_nums=256, layers_nums=2, seq_length=15,
+    phase_tensor = tf.placeholder(dtype=tf.string, shape=None, name='phase')
+    net = crnn_model.ShadowNet(phase=phase_tensor, hidden_nums=256, layers_nums=2, seq_length=15,
                                num_classes=config.cfg.TRAIN.CLASSES_NUMS, rnn_cell_type='lstm')
 
     with tf.variable_scope('shadow'):
@@ -68,6 +69,7 @@ def test_shadownet(dataset_dir, weights_path, is_vis=False, is_recursive=True):
     sess_config = tf.ConfigProto()
     sess_config.gpu_options.per_process_gpu_memory_fraction = config.cfg.TRAIN.GPU_MEMORY_FRACTION
     sess_config.gpu_options.allow_growth = config.cfg.TRAIN.TF_ALLOW_GROWTH
+    sess_config.gpu_options.allocator_type = 'BFC'
 
     # config tf saver
     saver = tf.train.Saver()
@@ -91,7 +93,8 @@ def test_shadownet(dataset_dir, weights_path, is_vis=False, is_recursive=True):
 
         print('Start predicting ......')
         if not is_recursive:
-            predictions, images, labels, imagenames = sess.run([decoded, images_sh, labels_sh, imagenames_sh])
+            predictions, images, labels, imagenames = sess.run([decoded, images_sh, labels_sh, imagenames_sh],
+                                                               feed_dict={phase_tensor: "test"})
             imagenames = np.reshape(imagenames, newshape=imagenames.shape[0])
             imagenames = [tmp.decode('utf-8') for tmp in imagenames]
             preds_res = decoder.sparse_tensor_to_str(predictions[0])
@@ -118,7 +121,8 @@ def test_shadownet(dataset_dir, weights_path, is_vis=False, is_recursive=True):
         else:
             accuracy = []
             for epoch in range(loops_nums):
-                predictions, images, labels, imagenames = sess.run([decoded, images_sh, labels_sh, imagenames_sh])
+                predictions, images, labels, imagenames = sess.run([decoded, images_sh, labels_sh, imagenames_sh],
+                                                                   feed_dict={phase_tensor: 'test'})
                 imagenames = np.reshape(imagenames, newshape=imagenames.shape[0])
                 imagenames = [tmp.decode('utf-8') for tmp in imagenames]
                 preds_res = decoder.sparse_tensor_to_str(predictions[0])
