@@ -99,3 +99,16 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# 模型文件
+/model
+
+# 日志文件
+/logs
+
+# tensorboard文件
+/tboard
+
+# 数据文件
+/data
+
