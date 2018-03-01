@@ -47,21 +47,23 @@ def train_shadownet(dataset_dir, weights_path=None):
     :param weights_path:
     :return:
     """
-    input_tensor = tf.placeholder(dtype=tf.float32, shape=[128, 32, 100, 3], name='input_tensor')
+    input_tensor = tf.placeholder(dtype=tf.float32, shape=[config.cfg.TRAIN.BATCH_SIZE, 32, 100, 3],
+                                  name='input_tensor')
 
     # decode the tf records to get the training data
     decoder = data_utils.TextFeatureIO().reader
     images, labels, imagenames = decoder.read_features(dataset_dir, num_epochs=None,
                                                        flag='Train')
-    images_val, labels_val, imagenames_val = decoder.read_features(dataset_dir, num_epochs=None,
-                                                                   flag='Validation')
+    # images_val, labels_val, imagenames_val = decoder.read_features(dataset_dir, num_epochs=None,
+    #                                                                flag='Validation')
     inputdata, input_labels, input_imagenames = tf.train.shuffle_batch(
-        tensors=[images, labels, imagenames], batch_size=128, capacity=1000 + 2 * 128,
-        min_after_dequeue=100, num_threads=1)
+        tensors=[images, labels, imagenames], batch_size=config.cfg.TRAIN.BATCH_SIZE,
+        capacity=1000 + 2 * config.cfg.TRAIN.BATCH_SIZE, min_after_dequeue=100, num_threads=1)
 
-    inputdata_val, input_labels_val, input_imagenames_val = tf.train.shuffle_batch(
-        tensors=[images_val, labels_val, imagenames_val], batch_size=128, capacity=1000 + 2 * 128,
-        min_after_dequeue=100, num_threads=1)
+    # inputdata_val, input_labels_val, input_imagenames_val = tf.train.shuffle_batch(
+    #     tensors=[images_val, labels_val, imagenames_val], batch_size=config.TRAIN.BATCH_SIZE,
+    #     capacity=1000 + 2 * config.TRAIN.BATCH_SIZE,
+    #     min_after_dequeue=100, num_threads=1)
 
     inputdata = tf.cast(x=inputdata, dtype=tf.float32)
     phase_tensor = tf.placeholder(dtype=tf.string, shape=None, name='phase')
@@ -72,11 +74,14 @@ def train_shadownet(dataset_dir, weights_path=None):
                                      num_classes=config.cfg.TRAIN.CLASSES_NUMS, rnn_cell_type='lstm')
 
     with tf.variable_scope('shadow', reuse=False):
-        net_out, tensor_dict = shadownet.build_shadownet(inputdata=input_tensor)
+        net_out, tensor_dict = shadownet.build_shadownet(inputdata=inputdata)
 
-    cost = tf.reduce_mean(tf.nn.ctc_loss(labels=input_labels, inputs=net_out, sequence_length=15*np.ones(128)))
+    cost = tf.reduce_mean(tf.nn.ctc_loss(labels=input_labels, inputs=net_out,
+                                         sequence_length=15*np.ones(config.cfg.TRAIN.BATCH_SIZE)))
 
-    decoded, log_prob = tf.nn.ctc_beam_search_decoder(net_out, 15*np.ones(128), merge_repeated=False)
+    decoded, log_prob = tf.nn.ctc_beam_search_decoder(net_out,
+                                                      15*np.ones(config.cfg.TRAIN.BATCH_SIZE),
+                                                      merge_repeated=False)
 
     sequence_dist = tf.reduce_mean(tf.edit_distance(tf.cast(decoded[0], tf.int32), input_labels))
 
@@ -94,7 +99,7 @@ def train_shadownet(dataset_dir, weights_path=None):
         #     loss=cost, global_step=global_step)
 
     # Set tf summary
-    tboard_save_path = 'tboard/shadownet/car_plate'
+    tboard_save_path = 'tboard/shadownet/chinese_two'
     if not ops.exists(tboard_save_path):
         os.makedirs(tboard_save_path)
 
@@ -115,7 +120,7 @@ def train_shadownet(dataset_dir, weights_path=None):
     weights_tensor_dict = dict()
     for vv in tf.trainable_variables():
         if 'conv' in vv.name:
-            weights_tensor_dict[vv.name] = vv
+            weights_tensor_dict[vv.name[:-2]] = vv
     train_weights_hist_dict = visualizor.merge_weights_hist(
         weights_tensor_dict=weights_tensor_dict, scope='weights_histogram', is_merge=False)
 
@@ -123,21 +128,21 @@ def train_shadownet(dataset_dir, weights_path=None):
                                 train_conv1_image, train_conv2_image, train_conv3_image]
     for _, weights_hist in train_weights_hist_dict.items():
         train_summary_merge_list.append(weights_hist)
+    train_summary_op_merge = tf.summary.merge(inputs=train_summary_merge_list)
 
     # validation过程summary
-    val_cost_scalar = tf.summary.scalar(name='val_cost', tensor=cost)
-    val_seq_scalar = tf.summary.scalar(name='val_seq_dist', tensor=sequence_dist)
-    val_accuracy_scalar = tf.summary.scalar(name='val_accuracy', tensor=accuracy_tensor)
+    # val_cost_scalar = tf.summary.scalar(name='val_cost', tensor=cost)
+    # val_seq_scalar = tf.summary.scalar(name='val_seq_dist', tensor=sequence_dist)
+    # val_accuracy_scalar = tf.summary.scalar(name='val_accuracy', tensor=accuracy_tensor)
 
-    train_summary_op_merge = tf.summary.merge(inputs=train_summary_merge_list)
-    test_summary_op_merge = tf.summary.merge(inputs=[val_cost_scalar, val_accuracy_scalar,
-                                                     val_seq_scalar])
+    # test_summary_op_merge = tf.summary.merge(inputs=[val_cost_scalar, val_accuracy_scalar,
+    #                                                  val_seq_scalar])
 
     # Set saver configuration
     restore_variable_list = [tmp for tmp in tf.trainable_variables() if 'conv' in tmp.name.split('/')[2]
                              or 'Batch' in tmp.name.split('/')[2]]
     saver = tf.train.Saver()
-    model_save_dir = 'model/shadownet/car_plate'
+    model_save_dir = 'model/shadownet/chinese_two'
     if not ops.exists(model_save_dir):
         os.makedirs(model_save_dir)
     train_start_time = time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime(time.time()))
@@ -183,6 +188,7 @@ def train_shadownet(dataset_dir, weights_path=None):
 
         for epoch in range(train_epochs):
             inputdata_value = sess.run(inputdata)
+            inputdata_value = inputdata_value / 255
             _, c, seq_distance, preds, gt_labels = sess.run(
                 [optimizer, cost, sequence_dist, decoded, input_labels],
                 feed_dict={phase_tensor: 'train',
@@ -225,47 +231,47 @@ def train_shadownet(dataset_dir, weights_path=None):
                 logger.info('Epoch: {:d} cost= {:9f} seq distance= {:9f} train accuracy= {:9f}'.format(
                     epoch + 1, c, seq_distance, accuracy))
 
-            if epoch % config.cfg.TRAIN.VAL_STEP == 0:
-                inputdata_value = sess.run(inputdata_val)
-                val_c, val_seq, val_preds, val_gt_labels = sess.run([
-                    cost, sequence_dist, decoded, input_labels_val],
-                    feed_dict={phase_tensor: 'test',
-                               input_tensor: inputdata_value})
-
-                preds_val = decoder.sparse_tensor_to_str(val_preds[0])
-                gt_labels_val = decoder.sparse_tensor_to_str(val_gt_labels)
-
-                accuracy_val = []
-
-                for index, gt_label in enumerate(gt_labels_val):
-                    pred = preds_val[index]
-                    totol_count = len(gt_label)
-                    correct_count = 0
-                    try:
-                        for i, tmp in enumerate(gt_label):
-                            if tmp == pred[i]:
-                                correct_count += 1
-                    except IndexError:
-                        continue
-                    finally:
-                        try:
-                            accuracy_val.append(correct_count / totol_count)
-                        except ZeroDivisionError:
-                            if len(pred) == 0:
-                                accuracy_val.append(1)
-                            else:
-                                accuracy_val.append(0)
-
-                accuracy_val = np.mean(np.array(accuracy_val).astype(np.float32), axis=0)
-
-                test_summary = sess.run(test_summary_op_merge,
-                                        feed_dict={accuracy_tensor: accuracy_val,
-                                                   phase_tensor: 'test',
-                                                   input_tensor: inputdata_value})
-                summary_writer.add_summary(summary=test_summary, global_step=epoch)
-
-                logger.info('Epoch: {:d} val_cost= {:9f} val_seq_distance= {:9f} val_accuracy= {:9f}'.format(
-                    epoch + 1, val_c, val_seq, accuracy_val))
+            # if epoch % config.cfg.TRAIN.VAL_STEP == 0:
+            #     inputdata_value = sess.run(inputdata_val)
+            #     val_c, val_seq, val_preds, val_gt_labels = sess.run([
+            #         cost, sequence_dist, decoded, input_labels_val],
+            #         feed_dict={phase_tensor: 'test',
+            #                    input_tensor: inputdata_value})
+            #
+            #     preds_val = decoder.sparse_tensor_to_str(val_preds[0])
+            #     gt_labels_val = decoder.sparse_tensor_to_str(val_gt_labels)
+            #
+            #     accuracy_val = []
+            #
+            #     for index, gt_label in enumerate(gt_labels_val):
+            #         pred = preds_val[index]
+            #         totol_count = len(gt_label)
+            #         correct_count = 0
+            #         try:
+            #             for i, tmp in enumerate(gt_label):
+            #                 if tmp == pred[i]:
+            #                     correct_count += 1
+            #         except IndexError:
+            #             continue
+            #         finally:
+            #             try:
+            #                 accuracy_val.append(correct_count / totol_count)
+            #             except ZeroDivisionError:
+            #                 if len(pred) == 0:
+            #                     accuracy_val.append(1)
+            #                 else:
+            #                     accuracy_val.append(0)
+            #
+            #     accuracy_val = np.mean(np.array(accuracy_val).astype(np.float32), axis=0)
+            #
+            #     test_summary = sess.run(test_summary_op_merge,
+            #                             feed_dict={accuracy_tensor: accuracy_val,
+            #                                        phase_tensor: 'test',
+            #                                        input_tensor: inputdata_value})
+            #     summary_writer.add_summary(summary=test_summary, global_step=epoch)
+            #
+            #     logger.info('Epoch: {:d} val_cost= {:9f} val_seq_distance= {:9f} val_accuracy= {:9f}'.format(
+            #         epoch + 1, val_c, val_seq, accuracy_val))
 
             if epoch % 2000 == 0:
                 saver.save(sess=sess, save_path=model_save_path, global_step=epoch)
