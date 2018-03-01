@@ -298,6 +298,7 @@ class CNNBaseModel(metaclass=ABCMeta):
 
         :param inputdata:
         :param is_training:
+        :param name:
         :return:
         """
         def f1():

@@ -11,6 +11,7 @@ Implement the crnn model mentioned in
 Recognition and Its Application to Scene Text Recognition" paper
 """
 import tensorflow as tf
+import tensorflow.contrib.slim as slim
 from tensorflow.contrib import rnn
 
 from crnn_model import cnn_basenet
@@ -203,16 +204,17 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
                 rnn_reshaped = tf.reshape(stack_lstm_layer, [-1, hidden_nums])
 
                 var_w = tf.Variable(tf.truncated_normal([hidden_nums, self._num_classes],
-                                                        stddev=0.1),
-                                    name="w")
+                                                        stddev=0.1), name="w")
 
                 # Doing the affine projection
-                logits = tf.matmul(rnn_reshaped, var_w)
+                # logits = tf.matmul(rnn_reshaped, var_w)
+                logits = slim.fully_connected(inputs=rnn_reshaped, num_outputs=self._num_classes,
+                                              activation_fn=None)
 
                 logits = tf.reshape(logits, [batch_s, -1, self._num_classes])
 
-                raw_pred = tf.argmax(tf.nn.softmax(logits),
-                                     axis=2, name='raw_prediction')
+                # raw_pred = tf.argmax(tf.nn.softmax(logits),
+                #                      axis=2, name='raw_prediction')
 
                 # Swap batch and batch axis
                 rnn_out = tf.transpose(logits, (1, 0, 2),
@@ -257,18 +259,20 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
                                     name="w")
 
                 # Doing the affine projection
-                logits = tf.matmul(rnn_reshaped, var_w)
+                # logits = tf.matmul(rnn_reshaped, var_w)
+                logits = slim.fully_connected(inputs=rnn_reshaped, num_outputs=self._num_classes,
+                                              activation_fn=None)
 
                 logits = tf.reshape(logits, [batch_s, -1, self._num_classes])
 
-                raw_pred = tf.argmax(tf.nn.softmax(logits),
-                                     axis=2, name='raw_prediction')
+                # raw_pred = tf.argmax(tf.nn.softmax(logits),
+                #                      axis=2, name='raw_prediction')
 
                 # Swap batch and batch axis
                 rnn_out = tf.transpose(logits, (1, 0, 2),
                                        name='transpose_time_major')  # [width, batch, n_classes]
 
-        return rnn_out, raw_pred
+        return rnn_out
 
     def build_shadownet(self, inputdata):
         """
@@ -284,7 +288,7 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
             sequence = self._map_to_sequence(inputdata=cnn_out)
 
             # third apply the sequence label stage
-            net_out, _ = self._sequence_label(inputdata=sequence)
+            net_out = self._sequence_label(inputdata=sequence)
 
         return net_out, tensor_dict
 
