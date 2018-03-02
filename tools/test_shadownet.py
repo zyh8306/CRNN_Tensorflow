@@ -48,26 +48,28 @@ def test_shadownet(dataset_dir, weights_path, is_vis=False, is_recursive=True):
     if not is_recursive:
         images_sh, labels_sh, imagenames_sh = tf.train.shuffle_batch(tensors=[images_t, labels_t, imagenames_t],
                                                                      batch_size=32, capacity=1000+32*2,
-                                                                     min_after_dequeue=2, num_threads=4)
+                                                                     min_after_dequeue=100, num_threads=2)
     else:
         images_sh, labels_sh, imagenames_sh = tf.train.batch(tensors=[images_t, labels_t, imagenames_t],
-                                                             batch_size=32, capacity=1000 + 32 * 2, num_threads=4)
+                                                             batch_size=32, capacity=1000 + 32 * 2, num_threads=2)
 
     images_sh = tf.cast(x=images_sh, dtype=tf.float32)
 
     # build shadownet
-    net = crnn_model.ShadowNet(phase='Test', hidden_nums=256, layers_nums=2, seq_length=15,
+    phase_tensor = tf.constant('test', tf.string)
+    net = crnn_model.ShadowNet(phase=phase_tensor, hidden_nums=256, layers_nums=2, seq_length=15,
                                num_classes=config.cfg.TRAIN.CLASSES_NUMS, rnn_cell_type='lstm')
 
     with tf.variable_scope('shadow'):
-        net_out = net.build_shadownet(inputdata=images_sh)
+        net_out, tensor_dict = net.build_shadownet(inputdata=images_sh)
 
     decoded, _ = tf.nn.ctc_beam_search_decoder(net_out, 15 * np.ones(32), merge_repeated=False)
 
     # config tf session
-    sess_config = tf.ConfigProto()
+    sess_config = tf.ConfigProto(device_count={'GPU': 0})
     sess_config.gpu_options.per_process_gpu_memory_fraction = config.cfg.TRAIN.GPU_MEMORY_FRACTION
     sess_config.gpu_options.allow_growth = config.cfg.TRAIN.TF_ALLOW_GROWTH
+    sess_config.gpu_options.allocator_type = 'BFC'
 
     # config tf saver
     saver = tf.train.Saver()

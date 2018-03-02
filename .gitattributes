@@ -1,0 +1,7 @@
+model/shadownet/chinese_two_five_merge/checkpoint filter=lfs diff=lfs merge=lfs -text
+model/shadownet/chinese_two_five_merge/shadownet_2018-03-02-14-53-59.ckpt-4000.data-00000-of-00001 filter=lfs diff=lfs merge=lfs -text
+model/shadownet/chinese_two_five_merge/shadownet_2018-03-02-14-53-59.ckpt-4000.index filter=lfs diff=lfs merge=lfs -text
+model/shadownet/chinese_two_five_merge/shadownet_2018-03-02-14-53-59.ckpt-4000.meta filter=lfs diff=lfs merge=lfs -text
+model/shadownet/chinese_two_five_merge/shadownet_2018-03-02-14-53-59.ckpt-6000.data-00000-of-00001 filter=lfs diff=lfs merge=lfs -text
+model/shadownet/chinese_two_five_merge/shadownet_2018-03-02-14-53-59.ckpt-6000.index filter=lfs diff=lfs merge=lfs -text
+model/shadownet/chinese_two_five_merge/shadownet_2018-03-02-14-53-59.ckpt-6000.meta filter=lfs diff=lfs merge=lfs -text

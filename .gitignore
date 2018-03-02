@@ -106,8 +106,5 @@ ENV/
 # 日志文件
 /logs/
 
-# 模型文件
-/model/
-
 # tensorboard文件
 /tboard/

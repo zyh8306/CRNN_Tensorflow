@@ -47,8 +47,8 @@ def train_shadownet(dataset_dir, weights_path=None):
     :param weights_path:
     :return:
     """
-    input_tensor = tf.placeholder(dtype=tf.float32, shape=[config.cfg.TRAIN.BATCH_SIZE, 32, 100, 3],
-                                  name='input_tensor')
+    # input_tensor = tf.placeholder(dtype=tf.float32, shape=[config.cfg.TRAIN.BATCH_SIZE, 32, 100, 3],
+    #                               name='input_tensor')
 
     # decode the tf records to get the training data
     decoder = data_utils.TextFeatureIO().reader
@@ -99,7 +99,7 @@ def train_shadownet(dataset_dir, weights_path=None):
         #     loss=cost, global_step=global_step)
 
     # Set tf summary
-    tboard_save_path = 'tboard/shadownet/chinese_two'
+    tboard_save_path = 'tboard/shadownet/chinese_two_five_merge'
     if not ops.exists(tboard_save_path):
         os.makedirs(tboard_save_path)
 
@@ -139,10 +139,9 @@ def train_shadownet(dataset_dir, weights_path=None):
     #                                                  val_seq_scalar])
 
     # Set saver configuration
-    restore_variable_list = [tmp for tmp in tf.trainable_variables() if 'conv' in tmp.name.split('/')[2]
-                             or 'Batch' in tmp.name.split('/')[2]]
+    restore_variable_list = [tmp.name for tmp in tf.trainable_variables()]
     saver = tf.train.Saver()
-    model_save_dir = 'model/shadownet/chinese_two'
+    model_save_dir = 'model/shadownet/chinese_two_five_merge'
     if not ops.exists(model_save_dir):
         os.makedirs(model_save_dir)
     train_start_time = time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime(time.time()))
@@ -173,26 +172,21 @@ def train_shadownet(dataset_dir, weights_path=None):
             init = tf.global_variables_initializer()
             sess.run(init)
         else:
-            # if restore_from_cnn_subnet_work:
-            #     logger.info('Restore model from cnn subnetwork {:s}'.format(weights_path))
-            #     init = tf.global_variables_initializer()
-            #     sess.run(init)
-            #     restore_saver = tf.train.Saver(var_list=restore_variable_list)
-            #     restore_saver.restore(sess=sess, save_path=weights_path)
-            # else:
-                logger.info('Restore model from last crnn check point{:s}'.format(weights_path))
-                saver.restore(sess=sess, save_path=weights_path)
+            # logger.info('Restore model from last crnn check point{:s}'.format(weights_path))
+            # init = tf.global_variables_initializer()
+            # sess.run(init)
+            # restore_saver = tf.train.Saver(var_list=restore_variable_list)
+            # restore_saver.restore(sess=sess, save_path=weights_path)
+            logger.info('Restore model from last crnn check point{:s}'.format(weights_path))
+            saver.restore(sess=sess, save_path=weights_path)
 
         coord = tf.train.Coordinator()
         threads = tf.train.start_queue_runners(sess=sess, coord=coord)
 
         for epoch in range(train_epochs):
-            inputdata_value = sess.run(inputdata)
-            inputdata_value = inputdata_value / 255
             _, c, seq_distance, preds, gt_labels = sess.run(
                 [optimizer, cost, sequence_dist, decoded, input_labels],
-                feed_dict={phase_tensor: 'train',
-                           input_tensor: inputdata_value})
+                feed_dict={phase_tensor: 'train'})
 
             # calculate the precision
             preds = decoder.sparse_tensor_to_str(preds[0])
@@ -222,8 +216,7 @@ def train_shadownet(dataset_dir, weights_path=None):
 
             train_summary = sess.run(train_summary_op_merge,
                                      feed_dict={accuracy_tensor: accuracy,
-                                                phase_tensor: 'train',
-                                                input_tensor: inputdata_value})
+                                                phase_tensor: 'train'})
             summary_writer.add_summary(summary=train_summary, global_step=epoch)
 
             if epoch % config.cfg.TRAIN.DISPLAY_STEP == 0:

@@ -54,20 +54,22 @@ def recognize(image_path, weights_path, is_vis=True):
 
     inputdata = tf.placeholder(dtype=tf.float32, shape=[1, 32, 100, 3], name='input')
 
-    net = crnn_model.ShadowNet(phase='Test', hidden_nums=256, layers_nums=2, seq_length=15,
+    phase_tensor = tf.constant('test', tf.string)
+    net = crnn_model.ShadowNet(phase=phase_tensor, hidden_nums=256, layers_nums=2, seq_length=15,
                                num_classes=config.cfg.TRAIN.CLASSES_NUMS, rnn_cell_type='lstm')
 
     with tf.variable_scope('shadow'):
-        net_out = net.build_shadownet(inputdata=inputdata)
+        net_out, tensor_dict = net.build_shadownet(inputdata=inputdata)
 
     decodes, _ = tf.nn.ctc_beam_search_decoder(inputs=net_out, sequence_length=15*np.ones(1), merge_repeated=False)
 
     decoder = data_utils.TextFeatureIO()
 
     # config tf session
-    sess_config = tf.ConfigProto()
+    sess_config = tf.ConfigProto(device_count={'GPU': 0})
     sess_config.gpu_options.per_process_gpu_memory_fraction = config.cfg.TRAIN.GPU_MEMORY_FRACTION
     sess_config.gpu_options.allow_growth = config.cfg.TRAIN.TF_ALLOW_GROWTH
+    sess_config.gpu_options.allocator_type = 'BFC'
 
     # config tf saver
     saver = tf.train.Saver()
