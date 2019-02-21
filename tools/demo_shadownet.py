@@ -53,13 +53,13 @@ def recognize(image_path: str, weights_path: str, is_vis: bool=True, num_classes
 
     image = cv2.imread(image_path, cv2.IMREAD_COLOR)
     image = cv2.resize(image, tuple(config.cfg.ARCH.INPUT_SIZE))
-    image = np.expand_dims(image, axis=0).astype(np.float32)
+    image = np.expand_dims(image, axis=0).astype(np.float32) #增加第一个维度，变成了(1,32,100,3),1就是expand_dims的功劳
 
-    w, h = config.cfg.ARCH.INPUT_SIZE
+    w, h = config.cfg.ARCH.INPUT_SIZE #100，32
     inputdata = tf.placeholder(dtype=tf.float32, shape=[1, h, w, 3], name='input')
 
     codec = data_utils.TextFeatureIO()
-    num_classes = len(codec.reader.char_dict) + 1 if num_classes == 0 else num_classes
+    num_classes = len(codec.reader.char_dict) + 1 if num_classes == 0 else num_classes#这个是在读词表，37个类别，没想清楚？？？为何是37个，26个字母+空格不是37个，噢，对了，还有数字0-9
 
     net = crnn_model.ShadowNet(phase='Test',
                                hidden_nums=config.cfg.ARCH.HIDDEN_UNITS,
@@ -87,7 +87,7 @@ def recognize(image_path: str, weights_path: str, is_vis: bool=True, num_classes
         saver.restore(sess=sess, save_path=weights_path)
 
         preds = sess.run(decodes, feed_dict={inputdata: image})
-
+        #将结果，从张量变成字符串数组，session.run(arg)arg是啥类型，就ruturn啥类型
         preds = codec.writer.sparse_tensor_to_str(preds[0])
 
         logger.info('Predict image {:s} label {:s}'.format(ops.split(image_path)[1], preds[0]))

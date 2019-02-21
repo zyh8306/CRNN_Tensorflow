@@ -10,7 +10,10 @@ The base convolution neural networks mainly implement some useful cnn functions
 """
 import tensorflow as tf
 import numpy as np
-from abc import ABCMeta
+from abc import ABCMeta 
+#https://docs.python.org/zh-cn/3/library/abc.html  抽象基类 (ABC) 的组件
+#Python本身不提供抽象类和接口机制，要想实现抽象类，可以借助abc模块。ABC是Abstract Base Class的缩写。
+#http://yansu.org/2013/06/09/learn-python-abc-module.html
 
 
 class CNNBaseModel(metaclass=ABCMeta):
@@ -20,6 +23,7 @@ class CNNBaseModel(metaclass=ABCMeta):
     def __init__(self):
         pass
 
+    # 这个方法定义一个卷基层
     @staticmethod
     def conv2d(inputdata, out_channel, kernel_size, padding='SAME', stride=1, w_init=None, b_init=None,
                nl=tf.identity, split=1, use_bias=True, data_format='NHWC', name=None):
@@ -28,8 +32,8 @@ class CNNBaseModel(metaclass=ABCMeta):
         :param name: op name
         :param inputdata: A 4D tensorflow tensor which ust have known number of channels, but can have other
         unknown dimensions.
-        :param out_channel: number of output channel.
-        :param kernel_size: int so only support square kernel convolution
+        :param out_channel: number of output channel. #输出的channel，其实就是对应多少个核
+        :param kernel_size: int so only support square kernel convolution，如果是一个数，会自动变成 数x数，比如3=> 3x3
         :param padding: 'VALID' or 'SAME'
         :param stride: int so only support square stride
         :param w_init: initializer for convolution weights
@@ -43,6 +47,8 @@ class CNNBaseModel(metaclass=ABCMeta):
         with tf.variable_scope(name):
             in_shape = inputdata.get_shape().as_list()
             channel_axis = 3 if data_format == 'NHWC' else 1
+            # in_channel，看，输入的channel数，是根据输入数据自动得到的，定义卷积核的输入channel是基于输入数据的
+            # 这个规则，下面会详细介绍
             in_channel = in_shape[channel_axis]
             assert in_channel is not None, "[Conv2D] Input cannot have unknown channel!"
             assert in_channel % split == 0
@@ -51,6 +57,12 @@ class CNNBaseModel(metaclass=ABCMeta):
             padding = padding.upper()
 
             if isinstance(kernel_size, list):
+                # [3,3,input Channel,output channel]
+                # 这里有个细节，这个卷积核的输入channel必须是上一个tensor的channel数
+                # 比如输入是 [200W,300H,256C]的数据，那么卷积核就得是[3W,3H,256C]，这样才可以和之前的数据匹配上，卷积一次产生一个点
+                # 所以，一个卷积核产生一张feature map，这个时候，就需要定义卷积核的数量，也就是这里的out_channel，
+                # 比如，我定义卷积核数量（out_channel)是512，那么[200W,300H,256C]的输入和512个[3W,3H,256C]卷积核卷积后，
+                # 就得到了[200W,300H,512C]的结果啦。卷积核就是我们要学的参数。
                 filter_shape = [kernel_size[0], kernel_size[1]] + [in_channel / split, out_channel]
             else:
                 filter_shape = [kernel_size, kernel_size] + [in_channel / split, out_channel]
@@ -66,20 +78,23 @@ class CNNBaseModel(metaclass=ABCMeta):
                 b_init = tf.constant_initializer()
 
             w = tf.get_variable('W', filter_shape, initializer=w_init)
-            b = None
+            b = None  #filter_shape:3,3,3,64 => (kernel_size,kernel_size,in_channel, out_channel),//out_channel其实就是隐藏层的神经元个数啊
 
-            if use_bias:
+            if use_bias: # 注意这里还有bias，个数是一个卷积核对一个b，默认是有的
                 b = tf.get_variable('b', [out_channel], initializer=b_init)
 
             if split == 1:
+                #定义一个conv2d的卷积层出来了，这个conv就是卷积核算出的结果了
                 conv = tf.nn.conv2d(inputdata, w, strides, padding, data_format=data_format)
             else:
+                #split是Alexnet用的，Alexnet是分叉的，我们默认不是
                 inputs = tf.split(inputdata, split, channel_axis)
                 kernels = tf.split(w, split, 3)
                 outputs = [tf.nn.conv2d(i, k, strides, padding, data_format=data_format)
                            for i, k in zip(inputs, kernels)]
                 conv = tf.concat(outputs, channel_axis)
 
+            #加上偏置bias
             ret = nl(tf.nn.bias_add(conv, b, data_format=data_format) if use_bias else conv, name=name)
 
         return ret

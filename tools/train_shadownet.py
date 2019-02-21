@@ -48,24 +48,57 @@ def train_shadownet(dataset_dir, weights_path=None, num_threads=4):
     """
     # decode the tf records to get the training data
     decoder = data_utils.TextFeatureIO().reader
+    #使用的是tensorflow的tfrecords格式，预加载文件形式，直接load到内存，速度快
     images, labels, imagenames = decoder.read_features(ops.join(dataset_dir, 'train_feature.tfrecords'),
                                                        num_epochs=None)
     inputdata, input_labels, input_imagenames = tf.train.shuffle_batch(
-        tensors=[images, labels, imagenames], batch_size=config.cfg.TRAIN.BATCH_SIZE,
-        capacity=1000 + 2*config.cfg.TRAIN.BATCH_SIZE, min_after_dequeue=100, num_threads=num_threads)
+        tensors=[images, labels, imagenames],
+        batch_size=config.cfg.TRAIN.BATCH_SIZE,
+        capacity=1000 + 2*config.cfg.TRAIN.BATCH_SIZE, #？？？？啥意思
+        min_after_dequeue=100,
+        num_threads=num_threads)
 
-    inputdata = tf.cast(x=inputdata, dtype=tf.float32)
+    inputdata = tf.cast(x=inputdata, dtype=tf.float32)#tf.cast：用于改变某个张量的数据类型
 
     # initialise the net model
     shadownet = crnn_model.ShadowNet(phase='Train',
-                                     hidden_nums=config.cfg.ARCH.HIDDEN_UNITS,
-                                     layers_nums=config.cfg.ARCH.HIDDEN_LAYERS,
-                                     num_classes=len(decoder.char_dict)+1)
+                                     hidden_nums=config.cfg.ARCH.HIDDEN_UNITS, # 256
+                                     layers_nums=config.cfg.ARCH.HIDDEN_LAYERS,# 2层
+                                     num_classes=len(decoder.char_dict)+1) # 为何+1
 
     with tf.variable_scope('shadow', reuse=False):
         net_out = shadownet.build_shadownet(inputdata=inputdata)
+    # net_out是啥，[W, N * H, Cls]
+    # [width, batch, n_classes]，是一个包含各个字符的概率表
+    # TF的ctc_loss:http://ilovin.me/2017-04-23/tensorflow-lstm-ctc-input-output/
+    '''
+    net_out: 
+            输入（训练）数据，是一个三维float型的数据结构[max_time_step , batch_size , num_classes]
 
-    cost = tf.reduce_mean(tf.nn.ctc_loss(labels=input_labels, inputs=net_out,
+    labels:
+            标签序列,是一个稀疏矩阵SparseTensor,由3项组成：http://ilovin.me/2017-04-23/tensorflow-lstm-ctc-input-output/
+               * indices: 二维int64的矩阵，代表非0的坐标点
+               * values: 二维tensor，代表indice位置的数据值
+               * dense_shape: 一维，代表稀疏矩阵的大小
+            比如有3幅图，分别是123,4567,123456789那么
+            indecs = [[0, 0], [0, 1], [0, 2], 
+                      [1, 0], [1, 1], [1, 2], [1, 3],
+                      [3, 0], [3, 1], [3, 2], [3, 3], [3, 4], [3, 5], [3, 6], [3, 7], [3, 8]]
+            values = [1, 2, 3, 
+                      4, 5, 6, 7, 
+                      1, 2, 3, 4, 5, 6, 7, 8, 9]
+            dense_shape = [3, 9]
+            代表dense
+            tensor:
+            [[1, 2, 3, 0, 0, 0, 0, 0, 0]
+             [4, 5, 6, 7, 0, 0, 0, 0, 0]
+             [1, 2, 3, 4, 5, 6, 7, 8, 9]]
+    '''
+    # CTC的loss，实际上是p(l|x)，l是要探测的字符串，x就是Bi-LSTM输出的x序列
+    # 其实就是各个可能的PI的似然概率的和，这个求最大的过程涉及到前向和后向算法了，可以参见CRNN的CTC原理部分
+
+    cost = tf.reduce_mean(tf.nn.ctc_loss(labels=input_labels,
+                                         inputs=net_out,
                                          sequence_length=config.cfg.ARCH.SEQ_LENGTH*np.ones(config.cfg.TRAIN.BATCH_SIZE)))
 
     decoded, log_prob = tf.nn.ctc_beam_search_decoder(net_out,

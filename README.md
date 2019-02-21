@@ -1,3 +1,5 @@
+我Fork了这个版本，主要目的是为加上注释，呵呵。
+
 # CRNN_Tensorflow
 Use tensorflow to implement a Deep Neural Network for scene text recognition mainly based on the paper "An End-to-End Trainable Neural Network for Image-based Sequence Recognition and Its Application to Scene Text Recognition".You can refer to their paper for details http://arxiv.org/abs/1507.05717. Thanks for the author [Baoguang Shi](https://github.com/bgshih).  
 This model consists of a CNN stage, RNN stage and CTC loss for scene text recognition task.
