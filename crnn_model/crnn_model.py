@@ -90,7 +90,7 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
         :return:
 
           |
-        Conv1  -->  W*H*64          #卷积后，得到的维度
+        Conv1  -->  H*W*64          #卷积后，得到的维度
         Relu1
         Pool1       H/2 * W/2 * 64  #池化后得到的维度
           |
@@ -158,7 +158,7 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
         """
         shape = inputdata.get_shape().as_list()
         assert shape[1] == 1  # H of the feature map must equal to 1
-        # 数据本身是 [N,H,W,512],删掉后，就变成了[N * H,W,512]了么？？？
+        # 数据本身是 [N,H,W,512],删掉后，就变成了[N,W,512]了么？？？
         # 不对啊，这块，H结果是1维度，才可以squeeze啊，这不可能啊，H不可能维度是1啊？！
         # tf.squeeze()：把是1的维度压缩掉，如果不指定axis，压缩掉所有是1的维度；如果指定axis，压缩掉指定的axis。
         return self.squeeze(inputdata=inputdata, axis=1)
@@ -167,7 +167,7 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
 
     # 这个是往LSTM里面灌
     # 输入：
-    #       我理解是 [N*H , W , 512]
+    #       我理解是 [N , W , 512]
     # 输出：
     #       应该是概率矩阵把
     def __sequence_label(self, inputdata: tf.Tensor) -> Tuple[tf.Tensor, tf.Tensor]:

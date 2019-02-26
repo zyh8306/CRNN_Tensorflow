@@ -49,8 +49,9 @@ def train_shadownet(dataset_dir, weights_path=None, num_threads=4):
     # decode the tf records to get the training data
     decoder = data_utils.TextFeatureIO().reader
     #使用的是tensorflow的tfrecords格式，预加载文件形式，直接load到内存，速度快
-    images, labels, imagenames = decoder.read_features(ops.join(dataset_dir, 'train_feature.tfrecords'),
-                                                       num_epochs=None)
+    images, labels, imagenames = decoder.read_features(
+        ops.join(dataset_dir, 'train_feature.tfrecords'),
+        num_epochs=None)
     inputdata, input_labels, input_imagenames = tf.train.shuffle_batch(
         tensors=[images, labels, imagenames],
         batch_size=config.cfg.TRAIN.BATCH_SIZE,
@@ -84,7 +85,7 @@ def train_shadownet(dataset_dir, weights_path=None, num_threads=4):
             indecs = [[0, 0], [0, 1], [0, 2], 
                       [1, 0], [1, 1], [1, 2], [1, 3],
                       [3, 0], [3, 1], [3, 2], [3, 3], [3, 4], [3, 5], [3, 6], [3, 7], [3, 8]]
-            values = [1, 2, 3, 
+            values = [1, 2, 3 
                       4, 5, 6, 7, 
                       1, 2, 3, 4, 5, 6, 7, 8, 9]
             dense_shape = [3, 9]
@@ -96,27 +97,32 @@ def train_shadownet(dataset_dir, weights_path=None, num_threads=4):
     '''
     # CTC的loss，实际上是p(l|x)，l是要探测的字符串，x就是Bi-LSTM输出的x序列
     # 其实就是各个可能的PI的似然概率的和，这个求最大的过程涉及到前向和后向算法了，可以参见CRNN的CTC原理部分
-
+    # 对！对！对！损失函数就是p(l|x)，似然概率之和，使丫最大化。：https://blog.csdn.net/luodongri/article/details/77005948
     cost = tf.reduce_mean(tf.nn.ctc_loss(labels=input_labels,
                                          inputs=net_out,
                                          sequence_length=config.cfg.ARCH.SEQ_LENGTH*np.ones(config.cfg.TRAIN.BATCH_SIZE)))
 
+    # 这步是在干嘛？是说，你LSTM算出每个时间片的字符分布，然后我用它来做Inference，也就是前向计算
+    # 得到一个最大可能的序列，比如"我爱北京天安门"，然后下一步算编辑距离，和标签对比
     decoded, log_prob = tf.nn.ctc_beam_search_decoder(net_out,
                                                       config.cfg.ARCH.SEQ_LENGTH*np.ones(config.cfg.TRAIN.BATCH_SIZE),
                                                       merge_repeated=False)
-
+    # 看，这就是我上面说的编辑距离的差，最小化丫呢
     sequence_dist = tf.reduce_mean(tf.edit_distance(tf.cast(decoded[0], tf.int32), input_labels))
 
     global_step = tf.Variable(0, name='global_step', trainable=False)
 
     starter_learning_rate = config.cfg.TRAIN.LEARNING_RATE
-    learning_rate = tf.train.exponential_decay(starter_learning_rate, global_step,
-                                               config.cfg.TRAIN.LR_DECAY_STEPS, config.cfg.TRAIN.LR_DECAY_RATE,
+    learning_rate = tf.train.exponential_decay(starter_learning_rate,
+                                               global_step,
+                                               config.cfg.TRAIN.LR_DECAY_STEPS,
+                                               config.cfg.TRAIN.LR_DECAY_RATE,
                                                staircase=True)
     update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
 
     with tf.control_dependencies(update_ops):
-        optimizer = tf.train.AdadeltaOptimizer(learning_rate=learning_rate).minimize(loss=cost, global_step=global_step)
+        optimizer = tf.train.AdadeltaOptimizer(learning_rate=learning_rate)\
+            .minimize(loss=cost, global_step=global_step) #<--- 这个loss是CTC的似然概率值
 
     # Set tf summary
     tboard_save_path = 'tboard/shadownet'
@@ -124,7 +130,7 @@ def train_shadownet(dataset_dir, weights_path=None, num_threads=4):
         os.makedirs(tboard_save_path)
     tf.summary.scalar(name='Cost', tensor=cost)
     tf.summary.scalar(name='Learning_Rate', tensor=learning_rate)
-    tf.summary.scalar(name='Seq_Dist', tensor=sequence_dist)
+    tf.summary.scalar(name='Seq_Dist', tensor=sequence_dist)# 这个只是看错的有多离谱，并没有当做损失函数，CTC loss才是核心
     merge_summary_op = tf.summary.merge_all()
 
     # Set saver configuration
