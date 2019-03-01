@@ -10,7 +10,6 @@ Train shadow net script
 """
 import os
 import tensorflow as tf
-import os.path as ops
 import time
 import numpy as np
 import argparse
@@ -25,7 +24,6 @@ logger = log_utils.init_logger()
 
 def init_args():
     """
-
     :return:
     """
     parser = argparse.ArgumentParser()
@@ -38,34 +36,214 @@ def init_args():
     return parser.parse_args()
 
 
-def train_shadownet(dataset_dir, weights_path=None, num_threads=4):
-    """
+def get_charset():
+    charset = open('char_std_5990.txt', 'r', encoding='utf-8').readlines()
+    charset = [ch.strip('\n') for ch in charset]
+    nclass = len(charset)
+    return charset,nclass
 
-    :param dataset_dir:
-    :param weights_path:
-    :param num_threads: Number of threads to use in tf.train.shuffle_batch
-    :return:
-    """
-    # decode the tf records to get the training data
+
+def get_file_list(dir):
+    from os import listdir
+    from os.path import isfile, join
+    file_names = ["data/train_set/"+f for f in listdir(dir) if isfile(join(dir, f))]
+    # "data/train_set"
+    return file_names
+
+
+def read_labeled_image_list(image_list_file):
+    f = open(image_list_file, 'r')
+    filenames = []
+    labels = []
+    for line in f:
+        filename, label = line[:-1].split(' ')
+        filenames.append(filename)
+        labels.append(label)
+    return filenames, labels
+
+
+def read_images_from_disk(input_queue,characters):
+
+    image_content = tf.read_file(input_queue[0])
+    example = tf.image.decode_png(image_content, channels=3)
+    logger.debug("原始图像shape：%r", example.get_shape().as_list())
+    example = tf.image.resize_images(example, config.cfg.ARCH.INPUT_SIZE, method=0)
+    logger.debug("Resized图像shape：%r", example.get_shape().as_list())
+    labels = input_queue[1]
+
+    return example, labels
+
+
+# labels是所有的标签的数组['我爱北京','我爱天安门',...,'他说的法定']
+# characters:词表
+def convert_to_id(labels,characters):
+
+    _lables = []
+    for one in labels:
+        # print(one)
+        one = one.replace('；', ';') # ;和；不分，在词表里只有一个;
+        _lables.append( [characters.index(l) for l in one] )
+    return _lables
+
+# 原文：https://blog.csdn.net/he_wen_jie/article/details/80586345
+# 入参：
+# sequence
+# [
+#   [123,44,22],
+#   [23,44,55,4445,334,453],
+#   ..
+# ]
+def to_sparse_tensor(sequences, dtype=np.int32):
+    indices = [] # 位置,哪些位置上非0
+    values = [] # 具体的值
+
+    for n, seq in enumerate(sequences): # sequences是一个二维list
+        indices.extend(zip([n]*len(seq), range(len(seq)))) # 生成所有值的坐标，不管是不是0，都存下来
+        values.extend(seq)
+
+    indices = np.asarray(indices, dtype=np.int32)
+    values = np.asarray(values, dtype=dtype)
+    shape = np.asarray([len(sequences),np.asarray(indices).max(0)[1]+1],
+                       dtype=np.int32) # shape的行就是seqs的个数，列就是最长的那个seq的长度
+    logger.debug("labels被转化的sparse的tensor的shape:%r", shape)
+    return tf.SparseTensor(indices, values, shape)
+
+
+def expand_array(data):
+    max = 0
+    for one in data:
+        if len(one)>max:
+            max = len(one)
+
+    for one in data:
+        one.extend( [0] * (max - len(one)) )
+
+    return data
+
+def _to_sparse_tensor(dense):
+    zero = tf.constant(0, dtype=tf.int32)
+    where = tf.not_equal(dense, zero)
+    indices = tf.where(where)
+    values = tf.gather_nd(dense, indices)
+    sparse = tf.SparseTensor(indices, values, dense.shape)
+    return sparse
+    #labels_tensor = to_sparse_tensor(labels)  # 把label从id数组，变成张量
+
+
+def train_shadownet(dataset_dir, weights_path=None, num_threads=4):
+
+    #为了兼容下面的代码，先留着
     decoder = data_utils.TextFeatureIO().reader
-    #使用的是tensorflow的tfrecords格式，预加载文件形式，直接load到内存，速度快
-    images, labels, imagenames = decoder.read_features(
-        ops.join(dataset_dir, 'train_feature.tfrecords'),
-        num_epochs=None)
-    inputdata, input_labels, input_imagenames = tf.train.shuffle_batch(
-        tensors=[images, labels, imagenames],
+
+    # 2.26 piginzoo 之前的tfrecord方式，不爽，改了
+    # """
+    # :param dataset_dir:
+    # :param weights_path:
+    # :param num_threads: Number of threads to use in tf.train.shuffle_batch
+    # :return:
+    # """
+    # # decode the tf records to get the training data
+    # decoder = data_utils.TextFeatureIO().reader
+    # #使用的是tensorflow的tfrecords格式，预加载文件形式，直接load到内存，速度快
+    # images, labels, imagenames = decoder.read_features(
+    #     ops.join(dataset_dir, 'train_feature.tfrecords'),
+    #     num_epochs=None)
+    #
+    # # shuffle_batch:该方法可以对输入的tensors生成对应的每个batch大小为batch_size的队列
+    # # 他返回的是张量：返回列表或者字典，类型为tensor，形状数量与tensors_list中元素大小一致
+    # inputdata, input_labels, input_imagenames = tf.train.shuffle_batch(
+    #     tensors=[images, labels, imagenames],
+    #     batch_size=config.cfg.TRAIN.BATCH_SIZE,
+    #     capacity=1000 + 2*config.cfg.TRAIN.BATCH_SIZE, #？？？？啥意思
+    #     min_after_dequeue=100,
+    #     num_threads=num_threads)
+
+    characters, num_classes = get_charset()
+
+    # 修改了他的加载，讨厌TFRecord方式，直接用文件方式加载
+    # 参考：https://saicoco.github.io/tf3/
+    # 参考：https://stackoverflow.com/questions/34340489/tensorflow-read-images-with-labels
+
+    image_file_names, labels = read_labeled_image_list("data/train.txt")
+    # logger.debug("读出")
+    # logger.debug("image_file_names")
+    # logger.debug(image_file_names)
+    # logger.debug("lables")
+    # logger.debug(labels)
+
+    # # 返回一个队列，同时一个绑定该队列的QueueRunner会被加入到graph 的QueueRunner中
+    # filename_queue = tf.train.string_input_producer(file_list)
+    # reader = tf.TextLineReader()
+    # image_file_names, labels = reader.read(filename_queue)
+    # logger.debug("image_file_names, labels")
+    # logger.debug(image_file_names)
+    # logger.debug(labels)
+
+    image_file_names_tensor = tf.convert_to_tensor(image_file_names, dtype=tf.string)
+    labels = convert_to_id(labels, characters)
+
+    labels = expand_array(labels)
+    labels_tensor = tf.convert_to_tensor(labels, dtype=tf.int32)
+
+    # 我尝试了多种思路：
+    # 1.作者原来的思路：
+    #   原来的是把label+image，一口气都写入TFRecord，这样就是相当于绑定了2者，然后，用tf.train.string_input_producer，产生epochs
+    #   就是把文件重复读几次，不过我怀疑，他也是一次性载入，担心内存。。。（不过，怀疑归怀疑，怎么验证呢）
+    #   然后用tf.parse_single_example还原到内存里，然后调用tf.train.shuffle_batch形成批次，
+    #   tf.train.shuffle_batch里面明显有个queue，应该就是存放tffeature的，这个时候我理解又成了一条一条的，
+    #   和我之前认为加载了整个文件相矛盾，所以，我更愿意相信，他是一条条加载的，这样节省内存。
+    # 2. 可以我偏不，我不喜欢先写成一个大文件，然后再读，于是，我尝试自己来做。
+    #   啥叫自己来做，就是自己来控制批次，其实，我们主要就是干两件事，一个是控制epochs，一个是控制batch
+    #   我看到一种做法是遍历，for epochs; for batch {...}，也就是在{}里面去做sess.run，通过feed_dict把这个批次传入
+    #   这样做没都做一次梯度下降，简单易懂，挺好的。没用到啥tf.train.shuffle_batch，也没用到tf.train.start_queue_runners/tf.train.Coordinator().
+    #   可是，我要就着作者之前的代码，用tf.train.Coordinator()+tf.train.start_queue_runners()+tf.train.shuffle_batch()的方式来干。
+    #   然后，就No作No逮了，我遇到了一系列问题：
+    #       - 要用slice_input_producer加载文件和标签了，生成多个epochs了，不能用之前string_input_producer的方式来生成epochs了，
+    #         string_是用来生成单个文件名的队列的，我现在的要的是整个image_files+labels(所有的）生成多个epochs
+    #       - 我要转成Tensorflow的tf.nn.ctc_loss输入所需要的SparseTensor:labels
+    #   可是，问题出现了，就是在slice_input_producer的时候就卡住了，我先做了labels=>SparseTensor的转化，
+    #   然后调用slice_input_producer的时候报错：
+    #   TypeError: Failed to convert object of type <class 'tensorflow.python.framework.sparse_tensor.SparseTensor'> to Tensor.
+    #   我的解决办法是，
+    #
+    #
+    #
+    #   另外，这种的方法，我还有一个顾虑，因为即使可以这样做，每一次都要做一个image_names+labels的tensor转化，
+    #   转化的时候，实际上是把这些数据，保存到了Graph里，也就是内存里，如果是100万+的数据，这个量也很大了，这也是个潜在的问题，
+    #   不知道TFRecord的方式是如何避免了这个问题，他真的能做到只加载部分的数据么？唉，还是喜欢那种简单直白的方式。
+    #   吐槽一下：张量的方式真蛋疼，只定义操作，不涉及数据，数据都是后期绑定的。简单的方法是靠feed_dict，复杂的就是靠start_queue_runners()+Coordinator了
+    #
+
+    # https://stackoverflow.com/questions/48201725/converting-tensor-to-a-sparsetensor-for-ctc-loss
+
+
+    # 我办法用string_input_producer，因为它只能用来来支持一维的文件名，往往是用来加载文件名队列的
+    # 我的需求是，既有文件名，又有label，所以，只能用slice_input_producer，他支持list，
+    # 这样，我就可以把label+image的组合，做一个加载了，加载多少次当然是由num_epochs来决定的
+    input_queue = tf.train.slice_input_producer([image_file_names_tensor, labels_tensor],
+                                                num_epochs=config.cfg.TRAIN.EPOCHS,
+                                                shuffle=True)
+
+    images, labels = read_images_from_disk(input_queue,characters)
+    labels = _to_sparse_tensor(labels)
+
+    images, labels = tf.train.shuffle_batch(
+        tensors=[images, labels],
         batch_size=config.cfg.TRAIN.BATCH_SIZE,
-        capacity=1000 + 2*config.cfg.TRAIN.BATCH_SIZE, #？？？？啥意思
+        capacity=1000 + 2 * config.cfg.TRAIN.BATCH_SIZE,  # ？？？？啥意思
         min_after_dequeue=100,
         num_threads=num_threads)
 
-    inputdata = tf.cast(x=inputdata, dtype=tf.float32)#tf.cast：用于改变某个张量的数据类型
+    # 这块，把批次给转给inputdata了，直接就进入图的构建了
+    # 并没有一个类似于传统feed_dict的绑定过程
+    inputdata = tf.cast(x=images, dtype=tf.float32) # tf.cast：用于改变某个张量的数据类型
+
 
     # initialise the net model
     shadownet = crnn_model.ShadowNet(phase='Train',
                                      hidden_nums=config.cfg.ARCH.HIDDEN_UNITS, # 256
                                      layers_nums=config.cfg.ARCH.HIDDEN_LAYERS,# 2层
-                                     num_classes=len(decoder.char_dict)+1) # 为何+1
+                                     num_classes=num_classes)
 
     with tf.variable_scope('shadow', reuse=False):
         net_out = shadownet.build_shadownet(inputdata=inputdata)
@@ -78,7 +256,7 @@ def train_shadownet(dataset_dir, weights_path=None, num_threads=4):
 
     labels:
             标签序列,是一个稀疏矩阵SparseTensor,由3项组成：http://ilovin.me/2017-04-23/tensorflow-lstm-ctc-input-output/
-               * indices: 二维int64的矩阵，代表非0的坐标点
+               * indices: 二维int32的矩阵，代表非0的坐标点
                * values: 二维tensor，代表indice位置的数据值
                * dense_shape: 一维，代表稀疏矩阵的大小
             比如有3幅图，分别是123,4567,123456789那么
@@ -98,22 +276,31 @@ def train_shadownet(dataset_dir, weights_path=None, num_threads=4):
     # CTC的loss，实际上是p(l|x)，l是要探测的字符串，x就是Bi-LSTM输出的x序列
     # 其实就是各个可能的PI的似然概率的和，这个求最大的过程涉及到前向和后向算法了，可以参见CRNN的CTC原理部分
     # 对！对！对！损失函数就是p(l|x)，似然概率之和，使丫最大化。：https://blog.csdn.net/luodongri/article/details/77005948
-    cost = tf.reduce_mean(tf.nn.ctc_loss(labels=input_labels,
+    cost = tf.reduce_mean(tf.nn.ctc_loss(labels=labels,
                                          inputs=net_out,
                                          sequence_length=config.cfg.ARCH.SEQ_LENGTH*np.ones(config.cfg.TRAIN.BATCH_SIZE)))
 
     # 这步是在干嘛？是说，你LSTM算出每个时间片的字符分布，然后我用它来做Inference，也就是前向计算
     # 得到一个最大可能的序列，比如"我爱北京天安门"，然后下一步算编辑距离，和标签对比
+    # ？？？ B变化，也就是去掉空格和重复的过程在这里面做了么？
+    # 答：没有做，原因是：merge_repeated=False
+    # 原因：摘自tf.nn.ctc_beam_search_decoder()
+    #       If `merge_repeated` is `True`, merge repeated classes in the output beams.
+    #       This means that if consecutive entries in a beam are the same,
+    #       only the first of these is emitted.  That is, when the sequence is
+    #       `A B B * B * B` (where '*' is the blank label), the return value is:
+    #          * `A B` if `merge_repeated = True`.
+    #          * `A B B B` if `merge_repeated = False`.
+    #
     decoded, log_prob = tf.nn.ctc_beam_search_decoder(net_out,
                                                       config.cfg.ARCH.SEQ_LENGTH*np.ones(config.cfg.TRAIN.BATCH_SIZE),
                                                       merge_repeated=False)
     # 看，这就是我上面说的编辑距离的差，最小化丫呢
-    sequence_dist = tf.reduce_mean(tf.edit_distance(tf.cast(decoded[0], tf.int32), input_labels))
+    sequence_dist = tf.reduce_mean(tf.edit_distance(tf.cast(decoded[0], tf.int32), labels))
 
     global_step = tf.Variable(0, name='global_step', trainable=False)
 
-    starter_learning_rate = config.cfg.TRAIN.LEARNING_RATE
-    learning_rate = tf.train.exponential_decay(starter_learning_rate,
+    learning_rate = tf.train.exponential_decay(config.cfg.TRAIN.LEARNING_RATE,
                                                global_step,
                                                config.cfg.TRAIN.LR_DECAY_STEPS,
                                                config.cfg.TRAIN.LR_DECAY_RATE,
@@ -126,7 +313,7 @@ def train_shadownet(dataset_dir, weights_path=None, num_threads=4):
 
     # Set tf summary
     tboard_save_path = 'tboard/shadownet'
-    if not ops.exists(tboard_save_path):
+    if not os.path.exists(tboard_save_path):
         os.makedirs(tboard_save_path)
     tf.summary.scalar(name='Cost', tensor=cost)
     tf.summary.scalar(name='Learning_Rate', tensor=learning_rate)
@@ -136,11 +323,11 @@ def train_shadownet(dataset_dir, weights_path=None, num_threads=4):
     # Set saver configuration
     saver = tf.train.Saver()
     model_save_dir = 'model/shadownet'
-    if not ops.exists(model_save_dir):
+    if not os.path.exists(model_save_dir):
         os.makedirs(model_save_dir)
     train_start_time = time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime(time.time()))
     model_name = 'shadownet_{:s}.ckpt'.format(str(train_start_time))
-    model_save_path = ops.join(model_save_dir, model_name)
+    model_save_path = os.path.join(model_save_dir, model_name)
 
     # Set sess configuration
     sess_config = tf.ConfigProto()
@@ -156,24 +343,33 @@ def train_shadownet(dataset_dir, weights_path=None, num_threads=4):
     train_epochs = config.cfg.TRAIN.EPOCHS
 
     with sess.as_default():
+
+        sess.run(tf.local_variables_initializer())
         if weights_path is None:
-            logger.info('Training from scratch')
+            logger.info('从头开始训练，不加载旧模型')
             init = tf.global_variables_initializer()
             sess.run(init)
         else:
-            logger.info('Restore model from {:s}'.format(weights_path))
+            logger.info('从文件{:s}恢复模型，继续训练'.format(weights_path))
             saver.restore(sess=sess, save_path=weights_path)
 
-        coord = tf.train.Coordinator()
+        coord = tf.train.Coordinator() # 创建一个协调器：http://wiki.jikexueyuan.com/project/tensorflow-zh/how_tos/threading_and_queues.html
         threads = tf.train.start_queue_runners(sess=sess, coord=coord)
+        # 哦，协调器，不用关系数据的批量获取，他只是一个线程和Queue操作模型，数据的获取动作是由shuffle_batch来搞定的
+        # 只不过搞定这事是在不同线程和队列里完成的
 
         for epoch in range(train_epochs):
+            # session.run(): 第一个参数fetches: The fetches argument may be a single graph element,
+            # or an arbitrarily nested list, tuple, namedtuple, dict,
+            # or OrderedDict containing graph elements at its leaves.
             _, c, seq_distance, preds, gt_labels, summary = sess.run(
-                [optimizer, cost, sequence_dist, decoded, input_labels, merge_summary_op])
+                [optimizer, cost, sequence_dist, decoded, labels, merge_summary_op])
+            # labels<----标签张量，应该是分批次的把？
 
             # calculate the precision
-            preds = decoder.sparse_tensor_to_str(preds[0])
-            gt_labels = decoder.sparse_tensor_to_str(gt_labels)
+            # logger.debug("预测出来的结果为：%r",preds[0])
+            preds = decoder.sparse_tensor_to_str(preds[0],characters)
+            gt_labels = decoder.sparse_tensor_to_str(gt_labels,characters)
 
             accuracy = []
 
@@ -216,7 +412,7 @@ if __name__ == '__main__':
     # init args
     args = init_args()
 
-    if not ops.exists(args.dataset_dir):
+    if not os.path.exists(args.dataset_dir):
         raise ValueError('{:s} doesn\'t exist'.format(args.dataset_dir))
 
     train_shadownet(args.dataset_dir, args.weights_path, args.num_threads)

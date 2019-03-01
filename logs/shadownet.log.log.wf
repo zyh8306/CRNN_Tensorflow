@@ -1,6 +1,0 @@
-WARNING: 01-28 16:33:04: tf_logging.py:125 * 4320752448 From /Users/piginzoo/workspace/opensource/CRNN_Tensorflow/crnn_model/crnn_model.py:123: BasicLSTMCell.__init__ (from tensorflow.python.ops.rnn_cell_impl) is deprecated and will be removed in a future version.
-Instructions for updating:
-This class is deprecated, please use tf.nn.rnn_cell.LSTMCell, which supports all the feature this cell currently has. Please replace the existing code with tf.nn.rnn_cell.LSTMCell(name='basic_lstm_cell').
-WARNING: 01-28 18:20:37: tf_logging.py:125 * 4320752448 From /Users/piginzoo/workspace/opensource/CRNN_Tensorflow/crnn_model/crnn_model.py:123: BasicLSTMCell.__init__ (from tensorflow.python.ops.rnn_cell_impl) is deprecated and will be removed in a future version.
-Instructions for updating:
-This class is deprecated, please use tf.nn.rnn_cell.LSTMCell, which supports all the feature this cell currently has. Please replace the existing code with tf.nn.rnn_cell.LSTMCell(name='basic_lstm_cell').

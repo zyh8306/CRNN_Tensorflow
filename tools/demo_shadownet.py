@@ -52,6 +52,7 @@ def recognize(image_path: str, weights_path: str, is_vis: bool=True, num_classes
     """
 
     image = cv2.imread(image_path, cv2.IMREAD_COLOR)
+
     image = cv2.resize(image, tuple(config.cfg.ARCH.INPUT_SIZE))
     image = np.expand_dims(image, axis=0).astype(np.float32) #增加第一个维度，变成了(1,32,100,3),1就是expand_dims的功劳
 

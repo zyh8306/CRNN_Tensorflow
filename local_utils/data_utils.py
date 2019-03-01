@@ -17,8 +17,9 @@ import os.path as ops
 import sys
 
 from global_configuration import config
-from local_utils import establish_char_dict
+from local_utils import establish_char_dict,log_utils
 
+logger = log_utils.init_logger()
 
 class FeatureIO(object):
     """
@@ -132,25 +133,49 @@ class FeatureIO(object):
             lengths.append(len(label))
         return encoded_labels, lengths
 
-    def sparse_tensor_to_str(self, sparse_tensor: tf.SparseTensor) -> List[str]:
+    # 把返回的稀硫tensor，转化成对应的字符List
+    '''
+        标签序列,是一个稀疏矩阵SparseTensor,由3项组成：http://ilovin.me/2017-04-23/tensorflow-lstm-ctc-input-output/
+        * indices: 二维int32的矩阵，代表非0的坐标点
+        * values: 二维tensor，代表indice位置的数据值
+        * dense_shape: 一维，代表稀疏矩阵的大小
+        比如有3幅图，分别是123,4567,123456789那么
+        indecs = [[0, 0], [0, 1], [0, 2], 
+              [1, 0], [1, 1], [1, 2], [1, 3],
+              [3, 0], [3, 1], [3, 2], [3, 3], [3, 4], [3, 5], [3, 6], [3, 7], [3, 8]]
+        values = [1, 2, 3 
+              4, 5, 6, 7, 
+              1, 2, 3, 4, 5, 6, 7, 8, 9]
+        dense_shape = [3, 9]
+        代表dense
+        tensor:
+        [[1, 2, 3, 0, 0, 0, 0, 0, 0]
+        [4, 5, 6, 7, 0, 0, 0, 0, 0]
+        [1, 2, 3, 4, 5, 6, 7, 8, 9]]
+    '''
+    def sparse_tensor_to_str(self, sparse_tensor: tf.SparseTensor,characters) -> List[str]:
         """
         :param sparse_tensor: prediction or ground truth label
         :return: String value of the sparse tensor
         """
         indices = sparse_tensor.indices
         values = sparse_tensor.values
-        values = np.array([self.__ord_map[str(tmp)] for tmp in values])
+        values = np.array([characters[id] for id in values])
         dense_shape = sparse_tensor.dense_shape
 
-        number_lists = np.ones(dense_shape, dtype=values.dtype)
-        str_lists = []
+        # 先初始化一个2维矩阵，用['\n']来填充，因为这个字符不会出现在结果里面，可以当做特殊字符来处理
+        # number_lists，实际上是一个dense向量
+        number_lists = np.array([['\n'] * dense_shape[1]] * dense_shape[0], dtype=values.dtype)
         res = []
+
+        #先把values，也就是有的值，拷贝到dense向量number_lists中
         for i, index in enumerate(indices):
             number_lists[index[0], index[1]] = values[i]
-        for number_list in number_lists:
-            str_lists.append([self.int_to_char(val) for val in number_list])
-        for str_list in str_lists:
-            res.append(''.join(c for c in str_list if c != '*'))
+
+        # 遍历这个dense的  number_list的每一行，变成一个字符数组
+        for one_row in number_lists:
+            res.append(''.join(c for c in one_row if c != '\n'))
+
         return res
 
 
@@ -181,8 +206,8 @@ class TextFeatureWriter(FeatureIO):
         with tf.python_io.TFRecordWriter(tfrecords_path) as writer:
             for index, image in enumerate(images):
                 features = tf.train.Features(feature={
-                    'labels': self.int64_feature(labels[index]),
-                    'images': self.bytes_feature(image),
+                    'labels': self.int64_feature(labels[index]),#"xxx"
+                    'images': self.bytes_feature(image),        #byte[]
                     'imagenames': self.bytes_feature(imagenames[index])
                 })
                 example = tf.train.Example(features=features)

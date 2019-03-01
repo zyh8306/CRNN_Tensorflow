@@ -80,7 +80,9 @@ def write_tfrecords(dataset: TextDataset, name: str, save_dir: str, char_maps_di
         ord_map_dict_path = os.path.join("data/char_dict", "ord_map.json")
 
     feature_io = TextFeatureIO(char_dict_path, ord_map_dict_path)
-    feature_io.writer.write_features(tfrecords_path=tfrecord_path, labels=labels, images=images,
+    feature_io.writer.write_features(tfrecords_path=tfrecord_path,
+                                     labels=labels,
+                                     images=images,
                                      imagenames=imagenames)
 
 
@@ -94,10 +96,13 @@ if __name__ == '__main__':
 
     print('Initializing the dataset provider... ', end='', flush=True)
 
-    provider = data_provider.TextDataProvider(dataset_dir=args.dataset_dir, annotation_name=args.annotation_file,
+    provider = data_provider.TextDataProvider(dataset_dir=args.dataset_dir,
+                                              annotation_name=args.annotation_file,
                                               validation_set=args.validation_split > 0,
-                                              validation_split=args.validation_split, shuffle='every_epoch',
-                                              normalization=args.normalization, input_size=config.cfg.ARCH.INPUT_SIZE)
+                                              validation_split=args.validation_split,
+                                              shuffle='every_epoch',
+                                              normalization=args.normalization,
+                                              input_size=config.cfg.ARCH.INPUT_SIZE)
     print('done.')
 
     write_tfrecords(provider.train, "train", args.save_dir, args.char_maps)

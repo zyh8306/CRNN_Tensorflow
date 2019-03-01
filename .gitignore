@@ -7,6 +7,15 @@ logs/
 # C extensions
 *.so
 
+data/train
+data/test
+data/validate
+data/valid
+
+model/
+logs/
+tboard/
+
 # Distribution / packaging
 .Python
 env/

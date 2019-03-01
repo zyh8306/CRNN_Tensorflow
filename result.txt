@@ -1,0 +1,5688 @@
+截取内容[6-181462]，8
+background: paper3.png
+612 426
+width, height: 224,35
+font_color： [69, 59, 63]
+data_generator/font/STKAITI.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[224,35]
+调整后[185,29]
+文件名：10val/0.png 
+--------------------
+[0/500]
+截取内容[用品、饰品、化妆品]，9
+background: paper4.png
+338 292
+width, height: 252,35
+font_color： [118, 121, 117]
+data_generator/font/STZHONGS.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119ce3e48>
+调整前[252,35]
+调整后[201,28]
+文件名：10val/1.png 
+--------------------
+截取内容[责任公司郝长春199]，10
+background: paper1.png
+448 234
+width, height: 280,35
+font_color： [136, 142, 140]
+data_generator/font/simfang.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[280,35]
+调整后[280,35]
+文件名：10val/2.png 
+--------------------
+截取内容[册、在业）2014]，9
+background: paper2.png
+364 250
+width, height: 252,35
+font_color： [130, 131, 129]
+data_generator/font/STHUPO.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[252,35]
+调整后[230,32]
+文件名：10val/3.png 
+--------------------
+截取内容[人投资或控股)苗木花]，10
+background: paper1.png
+448 234
+width, height: 280,35
+font_color： [20, 23, 24]
+data_generator/font/simhei.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[280,35]
+调整后[208,26]
+文件名：10val/4.png 
+--------------------
+截取内容[政管理局二七分局吊销]，10
+background: paper3.png
+612 426
+width, height: 280,35
+font_color： [6, 6, 7]
+data_generator/font/STZHONGS.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5128>
+调整前[280,35]
+调整后[272,34]
+文件名：10val/5.png 
+--------------------
+截取内容[、在业）2012-0]，10
+background: paper1.png
+448 234
+width, height: 280,35
+font_color： [47, 55, 49]
+data_generator/font/fzdhj.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf52b0>
+调整前[280,35]
+调整后[264,33]
+文件名：10val/6.png 
+--------------------
+截取内容[公司杨朝林1998-05]，12
+background: paper1.png
+448 234
+width, height: 336,35
+font_color： [100, 105, 107]
+data_generator/font/SIMYOU.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5438>
+调整前[336,35]
+调整后[259,27]
+文件名：10val/7.png 
+--------------------
+截取内容[999481]，6
+background: paper3.png
+612 426
+width, height: 168,35
+font_color： [74, 74, 74]
+data_generator/font/simsun.ttc
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[168,35]
+调整后[153,32]
+文件名：10val/8.png 
+--------------------
+截取内容[批准的内容开]，6
+background: paper3.png
+612 426
+width, height: 168,35
+font_color： [34, 40, 43]
+data_generator/font/hyqhj.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[168,35]
+调整后[153,32]
+文件名：10val/9.png 
+--------------------
+截取内容[或控股)组]，5
+background: paper3.png
+612 426
+width, height: 140,35
+font_color： [33, 36, 31]
+data_generator/font/FZLTCHJW.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[140,35]
+调整后[124,31]
+文件名：10val/10.png 
+--------------------
+截取内容[销售五金交电、化]，8
+background: paper2.png
+364 250
+width, height: 224,35
+font_color： [6, 9, 0]
+data_generator/font/simsun.ttc
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[224,35]
+调整后[192,30]
+文件名：10val/11.png 
+--------------------
+截取内容[非法人)耐火砖、耐火材]，11
+background: paper5.png
+448 234
+width, height: 308,35
+font_color： [112, 105, 112]
+data_generator/font/msyhbd.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[308,35]
+调整后[237,27]
+文件名：10val/12.png 
+--------------------
+截取内容[乡新湾村西宁市湟中县工商]，12
+background: paper1.png
+448 234
+width, height: 336,35
+font_color： [147, 140, 143]
+data_generator/font/STKAITI.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[336,35]
+调整后[288,30]
+文件名：10val/13.png 
+--------------------
+截取内容[-01-05199]，9
+background: paper5.png
+448 234
+width, height: 252,35
+font_color： [74, 74, 73]
+data_generator/font/simkai.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[252,35]
+调整后[244,34]
+文件名：10val/14.png 
+--------------------
+截取内容[北京市夏秋实服务中]，9
+background: paper2.png
+364 250
+width, height: 252,35
+font_color： [11, 6, 2]
+data_generator/font/msyh.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[252,35]
+调整后[230,32]
+文件名：10val/15.png 
+--------------------
+截取内容[0002147710安徽]，12
+background: paper5.png
+448 234
+width, height: 336,35
+font_color： [45, 45, 45]
+data_generator/font/STHUPO.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[336,35]
+调整后[297,31]
+文件名：10val/16.png 
+--------------------
+截取内容[、阀门、泵、自动化设]，10
+background: paper1.png
+448 234
+width, height: 280,35
+font_color： [57, 58, 52]
+data_generator/font/simfang.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5cf8>
+调整前[280,35]
+调整后[256,32]
+文件名：10val/17.png 
+--------------------
+截取内容[9342401110]，10
+background: paper3.png
+612 426
+width, height: 280,35
+font_color： [34, 34, 29]
+data_generator/font/SIMLI.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5cc0>
+调整前[280,35]
+调整后[248,31]
+文件名：10val/18.png 
+--------------------
+截取内容[61998-04-273]，12
+background: paper4.png
+338 292
+width, height: 336,35
+font_color： [54, 61, 57]
+data_generator/font/fzhtj.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[336,35]
+调整后[316,33]
+文件名：10val/19.png 
+--------------------
+截取内容[市汽车运输总]，6
+background: paper2.png
+364 250
+width, height: 168,35
+font_color： [111, 115, 113]
+data_generator/font/yahei_mono.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[168,35]
+调整后[139,29]
+文件名：10val/20.png 
+--------------------
+截取内容[6北京大地之音音频]，9
+background: paper1.png
+448 234
+width, height: 252,35
+font_color： [22, 27, 27]
+data_generator/font/STKAITI.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[252,35]
+调整后[252,35]
+文件名：10val/21.png 
+--------------------
+截取内容[11-2592520黄山]，12
+background: paper2.png
+364 250
+width, height: 336,35
+font_color： [60, 55, 58]
+data_generator/font/STXINGKA.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[336,35]
+调整后[326,34]
+文件名：10val/22.png 
+--------------------
+截取内容[西城分局18]，6
+background: paper4.png
+338 292
+width, height: 168,35
+font_color： [65, 66, 69]
+data_generator/font/fzltxh.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[168,35]
+调整后[158,33]
+文件名：10val/23.png 
+--------------------
+截取内容[2007-0]，6
+background: paper4.png
+338 292
+width, height: 168,35
+font_color： [99, 101, 102]
+data_generator/font/fzltxh.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[168,35]
+调整后[153,32]
+文件名：10val/24.png 
+--------------------
+截取内容[理、发布国内及外]，8
+background: paper1.png
+448 234
+width, height: 224,35
+font_color： [109, 118, 109]
+data_generator/font/STXINGKA.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[224,35]
+调整后[179,28]
+文件名：10val/25.png 
+--------------------
+截取内容[出）、承办展览展示]，9
+background: paper5.png
+448 234
+width, height: 252,35
+font_color： [23, 18, 19]
+data_generator/font/FZYTK.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[252,35]
+调整后[237,33]
+文件名：10val/26.png 
+--------------------
+截取内容[京创世铭软件]，6
+background: paper4.png
+338 292
+width, height: 168,35
+font_color： [34, 28, 30]
+data_generator/font/simfang.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[168,35]
+调整后[124,26]
+文件名：10val/27.png 
+--------------------
+截取内容[027326安徽神州传媒]，12
+background: paper1.png
+448 234
+width, height: 336,35
+font_color： [56, 57, 63]
+data_generator/font/STKAITI.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[336,35]
+调整后[268,28]
+文件名：10val/28.png 
+--------------------
+截取内容[股)建筑钢模、]，7
+background: paper3.png
+612 426
+width, height: 196,35
+font_color： [83, 79, 82]
+data_generator/font/simsun.ttc
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119ce3f98>
+调整前[196,35]
+调整后[145,26]
+文件名：10val/29.png 
+--------------------
+截取内容[08-01-0]，7
+background: paper4.png
+338 292
+width, height: 196,35
+font_color： [75, 77, 79]
+data_generator/font/simfang.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[196,35]
+调整后[184,33]
+文件名：10val/30.png 
+--------------------
+截取内容[册、在业）2005-]，10
+background: paper5.png
+448 234
+width, height: 280,35
+font_color： [115, 118, 115]
+data_generator/font/STZHONGS.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[280,35]
+调整后[224,28]
+文件名：10val/31.png 
+--------------------
+截取内容[划；广告策划；平面]，9
+background: paper2.png
+364 250
+width, height: 252,35
+font_color： [133, 135, 129]
+data_generator/font/STFANGSO.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[252,35]
+调整后[187,26]
+文件名：10val/32.png 
+--------------------
+截取内容[002635042]，9
+background: paper2.png
+364 250
+width, height: 252,35
+font_color： [135, 133, 134]
+data_generator/font/SIMLI.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5320>
+调整前[252,35]
+调整后[201,28]
+文件名：10val/33.png 
+--------------------
+截取内容[批准并经工商行政管理]，10
+background: paper4.png
+338 292
+width, height: 280,35
+font_color： [26, 26, 29]
+data_generator/font/simkai.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5358>
+调整前[280,35]
+调整后[248,31]
+文件名：10val/34.png 
+--------------------
+截取内容[存续存续（在营、开业、在]，12
+background: paper3.png
+612 426
+width, height: 336,35
+font_color： [101, 100, 96]
+data_generator/font/SIMLI.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[336,35]
+调整后[336,35]
+文件名：10val/35.png 
+--------------------
+截取内容[调设备、汽车配件、百货、]，12
+background: paper3.png
+612 426
+width, height: 336,35
+font_color： [145, 149, 148]
+data_generator/font/FZLTCHJW.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[336,35]
+调整后[307,32]
+文件名：10val/36.png 
+--------------------
+截取内容[发；人才培训；组织]，9
+background: paper1.png
+448 234
+width, height: 252,35
+font_color： [20, 24, 27]
+data_generator/font/simhei.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[252,35]
+调整后[187,26]
+文件名：10val/37.png 
+--------------------
+截取内容[04-27293]，8
+background: paper4.png
+338 292
+width, height: 224,35
+font_color： [32, 32, 25]
+data_generator/font/STXINGKA.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[224,35]
+调整后[166,26]
+文件名：10val/38.png 
+--------------------
+截取内容[机修理，百货、五]，8
+background: paper1.png
+448 234
+width, height: 224,35
+font_color： [27, 32, 28]
+data_generator/font/STLITI.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[224,35]
+调整后[224,35]
+文件名：10val/39.png 
+--------------------
+截取内容[综合楼（宜官路2]，8
+background: paper5.png
+448 234
+width, height: 224,35
+font_color： [46, 53, 47]
+data_generator/font/STKAITI.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[224,35]
+调整后[179,28]
+文件名：10val/40.png 
+--------------------
+截取内容[未注销1998-06-1]，12
+background: paper2.png
+364 250
+width, height: 336,35
+font_color： [146, 139, 141]
+data_generator/font/华文细黑.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[336,35]
+调整后[278,29]
+文件名：10val/41.png 
+--------------------
+截取内容[i1996-09]，8
+background: paper3.png
+612 426
+width, height: 224,35
+font_color： [148, 141, 145]
+data_generator/font/STLITI.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[224,35]
+调整后[166,26]
+文件名：10val/42.png 
+--------------------
+截取内容[-07110108]，9
+background: paper1.png
+448 234
+width, height: 252,35
+font_color： [33, 30, 27]
+data_generator/font/fzltxh.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[252,35]
+调整后[216,30]
+文件名：10val/43.png 
+--------------------
+截取内容[技术服务、技术咨询、信息]，12
+background: paper4.png
+338 292
+width, height: 336,35
+font_color： [151, 151, 157]
+data_generator/font/yahei_mono.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[336,35]
+调整后[307,32]
+文件名：10val/44.png 
+--------------------
+截取内容[育幼胡同22号西城]，9
+background: paper4.png
+338 292
+width, height: 252,35
+font_color： [154, 151, 150]
+data_generator/font/STZHONGS.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5cf8>
+调整前[252,35]
+调整后[252,35]
+文件名：10val/45.png 
+--------------------
+截取内容[营活动。beij]，8
+background: paper3.png
+612 426
+width, height: 224,35
+font_color： [99, 99, 101]
+data_generator/font/fzmmt.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[224,35]
+调整后[192,30]
+文件名：10val/46.png 
+--------------------
+截取内容[中介除外）；会议]，8
+background: paper5.png
+448 234
+width, height: 224,35
+font_color： [33, 34, 36]
+data_generator/font/simhei.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf9668>
+调整前[224,35]
+调整后[192,30]
+文件名：10val/47.png 
+--------------------
+截取内容[2660北京旭昌源商]，10
+background: paper5.png
+448 234
+width, height: 280,35
+font_color： [127, 131, 126]
+data_generator/font/Songti SC Regular.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[280,35]
+调整后[264,33]
+文件名：10val/48.png 
+--------------------
+截取内容[艺茶苑范晓吾2000]，10
+background: paper4.png
+338 292
+width, height: 280,35
+font_color： [39, 38, 38]
+data_generator/font/华文细黑.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[280,35]
+调整后[264,33]
+文件名：10val/49.png 
+--------------------
+截取内容[04-13有限责]，8
+background: paper5.png
+448 234
+width, height: 224,35
+font_color： [74, 70, 74]
+data_generator/font/simhei.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[224,35]
+调整后[204,32]
+文件名：10val/50.png 
+--------------------
+截取内容[51186210]，8
+background: paper1.png
+448 234
+width, height: 224,35
+font_color： [26, 22, 20]
+data_generator/font/SIMLI.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[224,35]
+调整后[204,32]
+文件名：10val/51.png 
+--------------------
+截取内容[京市朝阳区]，5
+background: paper5.png
+448 234
+width, height: 140,35
+font_color： [26, 25, 23]
+data_generator/font/fzmmt.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[140,35]
+调整后[112,28]
+文件名：10val/52.png 
+--------------------
+截取内容[nhui3]，5
+background: paper1.png
+448 234
+width, height: 140,35
+font_color： [57, 57, 60]
+data_generator/font/STSONG.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf90b8>
+调整前[140,35]
+调整后[140,35]
+文件名：10val/53.png 
+--------------------
+截取内容[椒县敬梓路12]，7
+background: paper4.png
+338 292
+width, height: 196,35
+font_color： [66, 69, 69]
+data_generator/font/FZYTK.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[196,35]
+调整后[151,27]
+文件名：10val/54.png 
+--------------------
+截取内容[包河区美菱大道]，7
+background: paper4.png
+338 292
+width, height: 196,35
+font_color： [45, 44, 37]
+data_generator/font/STKAITI.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[196,35]
+调整后[156,28]
+文件名：10val/55.png 
+--------------------
+截取内容[省房集团有限]，6
+background: paper5.png
+448 234
+width, height: 168,35
+font_color： [137, 141, 137]
+data_generator/font/simkai.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[168,35]
+调整后[148,31]
+文件名：10val/56.png 
+--------------------
+截取内容[品零售。anhui20]，11
+background: paper1.png
+448 234
+width, height: 308,35
+font_color： [40, 47, 46]
+data_generator/font/fzltxh.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[308,35]
+调整后[272,31]
+文件名：10val/57.png 
+--------------------
+截取内容[69100郑州市二七区]，11
+background: paper3.png
+612 426
+width, height: 308,35
+font_color： [19, 19, 18]
+data_generator/font/SIMLI.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[308,35]
+调整后[228,26]
+文件名：10val/58.png 
+--------------------
+截取内容[00041]，5
+background: paper2.png
+364 250
+width, height: 140,35
+font_color： [96, 102, 104]
+data_generator/font/SIMLI.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[140,35]
+调整后[116,29]
+文件名：10val/59.png 
+--------------------
+截取内容[销，未注销2]，6
+background: paper1.png
+448 234
+width, height: 168,35
+font_color： [51, 46, 52]
+data_generator/font/fzltxh.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5438>
+调整前[168,35]
+调整后[139,29]
+文件名：10val/60.png 
+--------------------
+截取内容[管理局吊销，未注销吊]，10
+background: paper4.png
+338 292
+width, height: 280,35
+font_color： [38, 41, 42]
+data_generator/font/msyh.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[280,35]
+调整后[256,32]
+文件名：10val/61.png 
+--------------------
+截取内容[有限公司程见山2005]，11
+background: paper2.png
+364 250
+width, height: 308,35
+font_color： [24, 20, 29]
+data_generator/font/yahei_mono.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[308,35]
+调整后[246,28]
+文件名：10val/62.png 
+--------------------
+截取内容[汽车运输有限责任公司彭]，11
+background: paper4.png
+338 292
+width, height: 308,35
+font_color： [54, 50, 57]
+data_generator/font/STXIHEI.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[308,35]
+调整后[255,29]
+文件名：10val/63.png 
+--------------------
+截取内容[材、办公用机械、钟表、]，11
+background: paper2.png
+364 250
+width, height: 308,35
+font_color： [112, 116, 116]
+data_generator/font/SIMLI.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[308,35]
+调整后[237,27]
+文件名：10val/64.png 
+--------------------
+截取内容[鞍山市雨山区]，6
+background: paper2.png
+364 250
+width, height: 168,35
+font_color： [155, 154, 146]
+data_generator/font/fzdhj.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[168,35]
+调整后[129,27]
+文件名：10val/65.png 
+--------------------
+截取内容[习用具、电教设备、教具]，11
+background: paper5.png
+448 234
+width, height: 308,35
+font_color： [31, 29, 25]
+data_generator/font/STLITI.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[308,35]
+调整后[237,27]
+文件名：10val/66.png 
+--------------------
+截取内容[ui2004-]，7
+background: paper1.png
+448 234
+width, height: 196,35
+font_color： [33, 33, 27]
+data_generator/font/华文细黑.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[196,35]
+调整后[184,33]
+文件名：10val/67.png 
+--------------------
+截取内容[10北京市东]，6
+background: paper4.png
+338 292
+width, height: 168,35
+font_color： [31, 25, 29]
+data_generator/font/STHUPO.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[168,35]
+调整后[148,31]
+文件名：10val/68.png 
+--------------------
+截取内容[资或控股)beijing]，12
+background: paper4.png
+338 292
+width, height: 336,35
+font_color： [15, 21, 15]
+data_generator/font/yahei_mono.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5ac8>
+需要旋转
+调整前[336,35]
+调整后[249,26]
+文件名：10val/69.png 
+--------------------
+截取内容[040号500安徽]，9
+background: paper5.png
+448 234
+width, height: 252,35
+font_color： [145, 143, 138]
+data_generator/font/FZSTK.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[252,35]
+调整后[237,33]
+文件名：10val/70.png 
+--------------------
+截取内容[业有限公司张涛1989]，11
+background: paper4.png
+338 292
+width, height: 308,35
+font_color： [34, 36, 32]
+data_generator/font/msyhbd.ttc
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5ac8>
+需要旋转
+调整前[308,35]
+调整后[299,34]
+文件名：10val/71.png 
+--------------------
+截取内容[务；信息咨询（中介]，9
+background: paper4.png
+338 292
+width, height: 252,35
+font_color： [13, 7, 11]
+data_generator/font/FZLTCHJW.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5ac8>
+调整前[252,35]
+调整后[194,27]
+文件名：10val/72.png 
+--------------------
+截取内容[厦）芜湖市工商]，7
+background: paper2.png
+364 250
+width, height: 196,35
+font_color： [117, 120, 121]
+data_generator/font/fzltxh.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5eb8>
+需要旋转
+调整前[196,35]
+调整后[168,30]
+文件名：10val/73.png 
+--------------------
+截取内容[西安市雁塔区]，6
+background: paper2.png
+364 250
+width, height: 168,35
+font_color： [82, 79, 86]
+data_generator/font/yahei_mono.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf90b8>
+调整前[168,35]
+调整后[139,29]
+文件名：10val/74.png 
+--------------------
+截取内容[徽省亳州市谯]，6
+background: paper3.png
+612 426
+width, height: 168,35
+font_color： [112, 103, 103]
+data_generator/font/STFANGSO.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[168,35]
+调整后[168,35]
+文件名：10val/75.png 
+--------------------
+截取内容[位(非法人)橡塑制品]，10
+background: paper3.png
+612 426
+width, height: 280,35
+font_color： [142, 147, 143]
+data_generator/font/yahei_mono.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf9710>
+需要旋转
+调整前[280,35]
+调整后[208,26]
+文件名：10val/76.png 
+--------------------
+截取内容[187号608室安]，9
+background: paper4.png
+338 292
+width, height: 252,35
+font_color： [12, 8, 9]
+data_generator/font/simkai.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[252,35]
+调整后[223,31]
+文件名：10val/77.png 
+--------------------
+截取内容[有制（股份合作]，7
+background: paper5.png
+448 234
+width, height: 196,35
+font_color： [113, 106, 113]
+data_generator/font/msyh.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[196,35]
+调整后[173,31]
+文件名：10val/78.png 
+--------------------
+截取内容[39198北京市中环]，10
+background: paper1.png
+448 234
+width, height: 280,35
+font_color： [119, 117, 120]
+data_generator/font/SIMLI.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[280,35]
+调整后[216,27]
+文件名：10val/79.png 
+--------------------
+截取内容[20北京市]，5
+background: paper3.png
+612 426
+width, height: 140,35
+font_color： [110, 114, 112]
+data_generator/font/simsun.ttc
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[140,35]
+调整后[108,27]
+文件名：10val/80.png 
+--------------------
+截取内容[管理局存续存续（在营、开]，12
+background: paper1.png
+448 234
+width, height: 336,35
+font_color： [77, 73, 76]
+data_generator/font/msyh.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[336,35]
+调整后[249,26]
+文件名：10val/81.png 
+--------------------
+截取内容[限责任公司袁传新2002]，12
+background: paper4.png
+338 292
+width, height: 336,35
+font_color： [76, 75, 73]
+data_generator/font/STKAITI.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[336,35]
+调整后[288,30]
+文件名：10val/82.png 
+--------------------
+截取内容[027-09-1820]，11
+background: paper2.png
+364 250
+width, height: 308,35
+font_color： [70, 66, 71]
+data_generator/font/Songti SC Regular.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[308,35]
+调整后[272,31]
+文件名：10val/83.png 
+--------------------
+截取内容[塑钢异型材、塑钢门窗及]，11
+background: paper2.png
+364 250
+width, height: 308,35
+font_color： [30, 30, 25]
+data_generator/font/SIMLI.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119ce3ef0>
+需要旋转
+调整前[308,35]
+调整后[228,26]
+文件名：10val/84.png 
+--------------------
+截取内容[高岳镇徐西村石灰窑许]，10
+background: paper1.png
+448 234
+width, height: 280,35
+font_color： [4, 2, 7]
+data_generator/font/STSONG.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[280,35]
+调整后[280,35]
+文件名：10val/85.png 
+--------------------
+截取内容[营项目：无。一]，7
+background: paper4.png
+338 292
+width, height: 196,35
+font_color： [75, 77, 73]
+data_generator/font/FZYTK.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5080>
+需要旋转
+调整前[196,35]
+调整后[179,32]
+文件名：10val/86.png 
+--------------------
+截取内容[连锁店梅晓]，5
+background: paper5.png
+448 234
+width, height: 140,35
+font_color： [149, 147, 149]
+data_generator/font/fzltxh.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[140,35]
+调整后[132,33]
+文件名：10val/87.png 
+--------------------
+截取内容[15国营北京市]，7
+background: paper4.png
+338 292
+width, height: 196,35
+font_color： [116, 109, 117]
+data_generator/font/SIMYOU.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[196,35]
+调整后[196,35]
+文件名：10val/88.png 
+--------------------
+截取内容[责任公司(台港澳与境]，10
+background: paper5.png
+448 234
+width, height: 280,35
+font_color： [46, 44, 47]
+data_generator/font/SIMYOU.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[280,35]
+调整后[240,30]
+文件名：10val/89.png 
+--------------------
+截取内容[公司程裕宽2003-06]，12
+background: paper3.png
+612 426
+width, height: 336,35
+font_color： [109, 110, 108]
+data_generator/font/msyhbd.ttc
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5710>
+调整前[336,35]
+调整后[259,27]
+文件名：10val/90.png 
+--------------------
+截取内容[集贸市场2栋16]，8
+background: paper3.png
+612 426
+width, height: 224,35
+font_color： [110, 113, 107]
+data_generator/font/FZLTCHJW.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[224,35]
+调整后[198,31]
+文件名：10val/91.png 
+--------------------
+截取内容[550安徽省安庆市孝]，10
+background: paper3.png
+612 426
+width, height: 280,35
+font_color： [18, 22, 21]
+data_generator/font/STHUPO.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[280,35]
+调整后[272,34]
+文件名：10val/92.png 
+--------------------
+截取内容[业、在册、在业]，7
+background: paper4.png
+338 292
+width, height: 196,35
+font_color： [84, 88, 90]
+data_generator/font/fzdhj.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[196,35]
+调整后[184,33]
+文件名：10val/93.png 
+--------------------
+截取内容[631649]，6
+background: paper5.png
+448 234
+width, height: 168,35
+font_color： [27, 25, 25]
+data_generator/font/STLITI.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[168,35]
+调整后[134,28]
+文件名：10val/94.png 
+--------------------
+截取内容[;"">登记业]，7
+background: paper3.png
+612 426
+width, height: 196,35
+font_color： [37, 31, 34]
+data_generator/font/fzmmt.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[196,35]
+调整后[151,27]
+文件名：10val/95.png 
+--------------------
+截取内容[9950北京市海淀区中关]，12
+background: paper3.png
+612 426
+width, height: 336,35
+font_color： [59, 60, 52]
+data_generator/font/msyh.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5978>
+调整前[336,35]
+调整后[278,29]
+文件名：10val/96.png 
+--------------------
+截取内容[g2007-11]，8
+background: paper3.png
+612 426
+width, height: 224,35
+font_color： [86, 89, 88]
+data_generator/font/STHUPO.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[224,35]
+调整后[166,26]
+文件名：10val/97.png 
+--------------------
+截取内容[止的，不得经营；法律、]，11
+background: paper2.png
+364 250
+width, height: 308,35
+font_color： [92, 102, 94]
+data_generator/font/msyhbd.ttc
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[308,35]
+调整后[299,34]
+文件名：10val/98.png 
+--------------------
+截取内容[工产品、Ⅰ类医疗器材、金]，12
+background: paper1.png
+448 234
+width, height: 336,35
+font_color： [154, 155, 147]
+data_generator/font/STZHONGS.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[336,35]
+调整后[259,27]
+文件名：10val/99.png 
+--------------------
+截取内容[、法规和国]，5
+background: paper5.png
+448 234
+width, height: 140,35
+font_color： [47, 48, 49]
+data_generator/font/simfang.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[140,35]
+调整后[128,32]
+文件名：10val/100.png 
+--------------------
+截取内容[销，未注销1999-0]，11
+background: paper1.png
+448 234
+width, height: 308,35
+font_color： [134, 143, 141]
+data_generator/font/FZLTCHJW.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[308,35]
+调整后[299,34]
+文件名：10val/101.png 
+--------------------
+截取内容[-101998-06]，10
+background: paper5.png
+448 234
+width, height: 280,35
+font_color： [124, 124, 125]
+data_generator/font/STXIHEI.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf92e8>
+调整前[280,35]
+调整后[264,33]
+文件名：10val/102.png 
+--------------------
+截取内容[销，未注销200]，8
+background: paper3.png
+612 426
+width, height: 224,35
+font_color： [38, 37, 35]
+data_generator/font/STLITI.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[224,35]
+调整后[224,35]
+文件名：10val/103.png 
+--------------------
+截取内容[工，金属材料，医]，8
+background: paper4.png
+338 292
+width, height: 224,35
+font_color： [43, 52, 44]
+data_generator/font/STZHONGS.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[224,35]
+调整后[217,34]
+文件名：10val/104.png 
+--------------------
+截取内容[1-1334]，6
+background: paper1.png
+448 234
+width, height: 168,35
+font_color： [129, 126, 125]
+data_generator/font/SIMLI.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[168,35]
+调整后[144,30]
+文件名：10val/105.png 
+--------------------
+截取内容[an2019-09-18]，12
+background: paper5.png
+448 234
+width, height: 336,35
+font_color： [41, 40, 41]
+data_generator/font/STSONG.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf9358>
+调整前[336,35]
+调整后[288,30]
+文件名：10val/106.png 
+--------------------
+截取内容[制造；喷砂机配件、磨料]，11
+background: paper2.png
+364 250
+width, height: 308,35
+font_color： [103, 104, 100]
+data_generator/font/STXINWEI.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[308,35]
+调整后[308,35]
+文件名：10val/107.png 
+--------------------
+截取内容[181998-10-]，10
+background: paper3.png
+612 426
+width, height: 280,35
+font_color： [112, 106, 108]
+data_generator/font/simkai.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[280,35]
+调整后[248,31]
+文件名：10val/108.png 
+--------------------
+截取内容[吊销，未注销吊销]，8
+background: paper5.png
+448 234
+width, height: 224,35
+font_color： [51, 52, 46]
+data_generator/font/MSYH.TTC
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[224,35]
+调整后[166,26]
+文件名：10val/109.png 
+--------------------
+截取内容[34734]，5
+background: paper1.png
+448 234
+width, height: 140,35
+font_color： [116, 119, 121]
+data_generator/font/SIMYOU.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[140,35]
+调整后[104,26]
+文件名：10val/110.png 
+--------------------
+截取内容[肥宛玉制衣有]，6
+background: paper4.png
+338 292
+width, height: 168,35
+font_color： [110, 110, 111]
+data_generator/font/FZLTCHJW.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[168,35]
+调整后[168,35]
+文件名：10val/111.png 
+--------------------
+截取内容[6-013415001]，11
+background: paper1.png
+448 234
+width, height: 308,35
+font_color： [93, 93, 94]
+data_generator/font/fzhtj.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119ce3f98>
+调整前[308,35]
+调整后[228,26]
+文件名：10val/112.png 
+--------------------
+截取内容[管局存续存续（在营、开业]，12
+background: paper4.png
+338 292
+width, height: 336,35
+font_color： [112, 116, 117]
+data_generator/font/simhei.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[336,35]
+调整后[336,35]
+文件名：10val/113.png 
+--------------------
+截取内容[8集体所有制中]，7
+background: paper1.png
+448 234
+width, height: 196,35
+font_color： [107, 102, 111]
+data_generator/font/simhei.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[196,35]
+调整后[156,28]
+文件名：10val/114.png 
+--------------------
+截取内容[品、土特产、糖、烟（]，10
+background: paper1.png
+448 234
+width, height: 280,35
+font_color： [18, 25, 21]
+data_generator/font/msyhbd.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5278>
+调整前[280,35]
+调整后[240,30]
+文件名：10val/115.png 
+--------------------
+截取内容[0542055淮南市晟]，11
+background: paper4.png
+338 292
+width, height: 308,35
+font_color： [155, 151, 146]
+data_generator/font/STFANGSO.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[308,35]
+调整后[290,33]
+文件名：10val/116.png 
+--------------------
+截取内容[2011-12-1]，9
+background: paper1.png
+448 234
+width, height: 252,35
+font_color： [129, 133, 123]
+data_generator/font/msyhbd.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[252,35]
+调整后[208,29]
+文件名：10val/117.png 
+--------------------
+截取内容[24-06-242]，9
+background: paper3.png
+612 426
+width, height: 252,35
+font_color： [21, 27, 30]
+data_generator/font/MSYH.TTC
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[252,35]
+调整后[244,34]
+文件名：10val/118.png 
+--------------------
+截取内容[在营、开业、在册]，8
+background: paper4.png
+338 292
+width, height: 224,35
+font_color： [87, 81, 80]
+data_generator/font/STXIHEI.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[224,35]
+调整后[172,27]
+文件名：10val/119.png 
+--------------------
+截取内容[马志勇2011-10-]，11
+background: paper3.png
+612 426
+width, height: 308,35
+font_color： [131, 131, 133]
+data_generator/font/STHUPO.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[308,35]
+调整后[299,34]
+文件名：10val/120.png 
+--------------------
+截取内容[04-05-24有限责任]，12
+background: paper2.png
+364 250
+width, height: 336,35
+font_color： [3, 9, 10]
+data_generator/font/STLITI.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[336,35]
+调整后[307,32]
+文件名：10val/121.png 
+--------------------
+截取内容[化工产品（不含]，7
+background: paper2.png
+364 250
+width, height: 196,35
+font_color： [143, 143, 136]
+data_generator/font/fzltxh.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[196,35]
+调整后[168,30]
+文件名：10val/122.png 
+--------------------
+截取内容[999-0]，5
+background: paper5.png
+448 234
+width, height: 140,35
+font_color： [59, 59, 51]
+data_generator/font/FZSTK.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[140,35]
+调整后[104,26]
+文件名：10val/123.png 
+--------------------
+截取内容[0安徽省安庆市]，7
+background: paper5.png
+448 234
+width, height: 196,35
+font_color： [74, 69, 70]
+data_generator/font/SIMYOU.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[196,35]
+调整后[162,29]
+文件名：10val/124.png 
+--------------------
+截取内容[让。beijing202]，12
+background: paper4.png
+338 292
+width, height: 336,35
+font_color： [13, 17, 17]
+data_generator/font/yahei_mono.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5cf8>
+调整前[336,35]
+调整后[259,27]
+文件名：10val/125.png 
+--------------------
+截取内容[4号14781]，7
+background: paper2.png
+364 250
+width, height: 196,35
+font_color： [114, 121, 119]
+data_generator/font/STXINGKA.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[196,35]
+调整后[162,29]
+文件名：10val/126.png 
+--------------------
+截取内容[关村西宁市湟]，6
+background: paper1.png
+448 234
+width, height: 168,35
+font_color： [71, 71, 64]
+data_generator/font/fzltxh.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[168,35]
+调整后[139,29]
+文件名：10val/127.png 
+--------------------
+截取内容[091149界首市飞]，10
+background: paper2.png
+364 250
+width, height: 280,35
+font_color： [59, 56, 58]
+data_generator/font/fzhtj.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[280,35]
+调整后[208,26]
+文件名：10val/128.png 
+--------------------
+截取内容[40100000166]，11
+background: paper4.png
+338 292
+width, height: 308,35
+font_color： [15, 12, 13]
+data_generator/font/hyqhj.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf9898>
+调整前[308,35]
+调整后[246,28]
+文件名：10val/129.png 
+--------------------
+截取内容[品生产许可证》有效期]，10
+background: paper3.png
+612 426
+width, height: 280,35
+font_color： [99, 97, 93]
+data_generator/font/STLITI.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf92b0>
+需要旋转
+调整前[280,35]
+调整后[280,35]
+文件名：10val/130.png 
+--------------------
+截取内容[市创天物业管理有限公司陆]，12
+background: paper4.png
+338 292
+width, height: 336,35
+font_color： [46, 54, 51]
+data_generator/font/STXIHEI.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf9588>
+需要旋转
+调整前[336,35]
+调整后[278,29]
+文件名：10val/131.png 
+--------------------
+截取内容[朝阳区红庙第三小学朝阳]，11
+background: paper1.png
+448 234
+width, height: 308,35
+font_color： [143, 144, 143]
+data_generator/font/STLITI.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[308,35]
+调整后[228,26]
+文件名：10val/132.png 
+--------------------
+截取内容[92371]，5
+background: paper2.png
+364 250
+width, height: 140,35
+font_color： [35, 34, 39]
+data_generator/font/华文细黑.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[140,35]
+调整后[128,32]
+文件名：10val/133.png 
+--------------------
+截取内容[任公司(自然人投资或]，10
+background: paper3.png
+612 426
+width, height: 280,35
+font_color： [70, 78, 76]
+data_generator/font/simsun.ttc
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf95f8>
+需要旋转
+调整前[280,35]
+调整后[232,29]
+文件名：10val/134.png 
+--------------------
+截取内容[计工程部朱磊个体工]，9
+background: paper3.png
+612 426
+width, height: 252,35
+font_color： [128, 128, 128]
+data_generator/font/yahei_mono.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[252,35]
+调整后[216,30]
+文件名：10val/135.png 
+--------------------
+截取内容[未注销2013-1]，9
+background: paper1.png
+448 234
+width, height: 252,35
+font_color： [55, 50, 57]
+data_generator/font/STKAITI.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf9630>
+调整前[252,35]
+调整后[244,34]
+文件名：10val/136.png 
+--------------------
+截取内容[003-11-0]，8
+background: paper2.png
+364 250
+width, height: 224,35
+font_color： [84, 84, 81]
+data_generator/font/STXINGKA.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[224,35]
+调整后[204,32]
+文件名：10val/137.png 
+--------------------
+截取内容[电子计算机及配件。法律、]，12
+background: paper2.png
+364 250
+width, height: 336,35
+font_color： [24, 25, 30]
+data_generator/font/STLITI.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[336,35]
+调整后[278,29]
+文件名：10val/138.png 
+--------------------
+截取内容[住宅)海淀分局开业存续（]，12
+background: paper4.png
+338 292
+width, height: 336,35
+font_color： [19, 12, 16]
+data_generator/font/FZYTK.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[336,35]
+调整后[326,34]
+文件名：10val/139.png 
+--------------------
+截取内容[注销2011-11-0]，11
+background: paper1.png
+448 234
+width, height: 308,35
+font_color： [121, 118, 122]
+data_generator/font/华文细黑.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119ce3ef0>
+调整前[308,35]
+调整后[281,32]
+文件名：10val/140.png 
+--------------------
+截取内容[五金、烟花爆竹零售。]，10
+background: paper3.png
+612 426
+width, height: 280,35
+font_color： [136, 138, 133]
+data_generator/font/STHUPO.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[280,35]
+调整后[264,33]
+文件名：10val/141.png 
+--------------------
+截取内容[59827.6]，7
+background: paper3.png
+612 426
+width, height: 196,35
+font_color： [117, 124, 116]
+data_generator/font/STKAITI.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[196,35]
+调整后[196,35]
+文件名：10val/142.png 
+--------------------
+截取内容[照明器材安装、维]，8
+background: paper2.png
+364 250
+width, height: 224,35
+font_color： [34, 41, 43]
+data_generator/font/STKAITI.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[224,35]
+调整后[198,31]
+文件名：10val/143.png 
+--------------------
+截取内容[自然人投资或控股)计算]，11
+background: paper2.png
+364 250
+width, height: 308,35
+font_color： [56, 51, 59]
+data_generator/font/SIMLI.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[308,35]
+调整后[264,30]
+文件名：10val/144.png 
+--------------------
+截取内容[或控股)宠物]，6
+background: paper1.png
+448 234
+width, height: 168,35
+font_color： [70, 70, 77]
+data_generator/font/fzdhj.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[168,35]
+调整后[134,28]
+文件名：10val/145.png 
+--------------------
+截取内容[、装饰工程]，5
+background: paper5.png
+448 234
+width, height: 140,35
+font_color： [1, 3, 3]
+data_generator/font/STXINGKA.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf51d0>
+调整前[140,35]
+调整后[132,33]
+文件名：10val/146.png 
+--------------------
+截取内容[97-07]，5
+background: paper5.png
+448 234
+width, height: 140,35
+font_color： [124, 123, 126]
+data_generator/font/FZYTK.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[140,35]
+调整后[136,34]
+文件名：10val/147.png 
+--------------------
+截取内容[学西侧淮北市工商行政]，10
+background: paper2.png
+364 250
+width, height: 280,35
+font_color： [120, 113, 121]
+data_generator/font/FZSTK.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[280,35]
+调整后[280,35]
+文件名：10val/148.png 
+--------------------
+截取内容[8120荥阳市]，7
+background: paper3.png
+612 426
+width, height: 196,35
+font_color： [72, 74, 80]
+data_generator/font/STXINGKA.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[196,35]
+调整后[179,32]
+文件名：10val/149.png 
+--------------------
+截取内容[发、生产计算]，6
+background: paper3.png
+612 426
+width, height: 168,35
+font_color： [131, 124, 128]
+data_generator/font/hyqhj.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[168,35]
+调整后[134,28]
+文件名：10val/150.png 
+--------------------
+截取内容[231074100安]，10
+background: paper2.png
+364 250
+width, height: 280,35
+font_color： [146, 149, 148]
+data_generator/font/Songti SC Regular.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[280,35]
+调整后[248,31]
+文件名：10val/151.png 
+--------------------
+截取内容[号福州金融街万达广场]，10
+background: paper4.png
+338 292
+width, height: 280,35
+font_color： [115, 115, 115]
+data_generator/font/STZHONGS.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[280,35]
+调整后[224,28]
+文件名：10val/152.png 
+--------------------
+截取内容[hui201]，6
+background: paper1.png
+448 234
+width, height: 168,35
+font_color： [38, 31, 40]
+data_generator/font/simsun.ttc
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[168,35]
+调整后[158,33]
+文件名：10val/153.png 
+--------------------
+截取内容[限责任公司(自然]，8
+background: paper3.png
+612 426
+width, height: 224,35
+font_color： [72, 76, 66]
+data_generator/font/yahei_mono.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5c88>
+需要旋转
+调整前[224,35]
+调整后[217,34]
+文件名：10val/154.png 
+--------------------
+截取内容[秀芬"厨房设备安装,维]，11
+background: paper3.png
+612 426
+width, height: 308,35
+font_color： [36, 33, 35]
+data_generator/font/simhei.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[308,35]
+调整后[281,32]
+文件名：10val/155.png 
+--------------------
+截取内容[局吊销，未注销吊销，未注]，12
+background: paper1.png
+448 234
+width, height: 336,35
+font_color： [98, 98, 98]
+data_generator/font/hyqhj.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[336,35]
+调整后[336,35]
+文件名：10val/156.png 
+--------------------
+截取内容[管理局吊销]，5
+background: paper4.png
+338 292
+width, height: 140,35
+font_color： [105, 98, 98]
+data_generator/font/hyqhj.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[140,35]
+调整后[140,35]
+文件名：10val/157.png 
+--------------------
+截取内容[律、法规禁止的，不得经营]，12
+background: paper4.png
+338 292
+width, height: 336,35
+font_color： [41, 33, 40]
+data_generator/font/simfang.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[336,35]
+调整后[249,26]
+文件名：10val/158.png 
+--------------------
+截取内容[可证经营）。anhui]，11
+background: paper3.png
+612 426
+width, height: 308,35
+font_color： [11, 3, 6]
+data_generator/font/simkai.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[308,35]
+调整后[281,32]
+文件名：10val/159.png 
+--------------------
+截取内容[用品、卫生材料]，7
+background: paper4.png
+338 292
+width, height: 196,35
+font_color： [12, 11, 11]
+data_generator/font/MSYH.TTC
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf92b0>
+需要旋转
+调整前[196,35]
+调整后[156,28]
+文件名：10val/160.png 
+--------------------
+截取内容[号8单元2号郑州市工商]，11
+background: paper2.png
+364 250
+width, height: 308,35
+font_color： [122, 126, 128]
+data_generator/font/simhei.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[308,35]
+调整后[264,30]
+文件名：10val/161.png 
+--------------------
+截取内容[限责任公司(自然人]，9
+background: paper5.png
+448 234
+width, height: 252,35
+font_color： [68, 69, 64]
+data_generator/font/FZLTCHJW.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[252,35]
+调整后[216,30]
+文件名：10val/162.png 
+--------------------
+截取内容[号郑州市工商行政管理]，10
+background: paper4.png
+338 292
+width, height: 280,35
+font_color： [76, 82, 77]
+data_generator/font/Songti SC Regular.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[280,35]
+调整后[248,31]
+文件名：10val/163.png 
+--------------------
+截取内容[有限公司西城]，6
+background: paper3.png
+612 426
+width, height: 168,35
+font_color： [153, 151, 157]
+data_generator/font/fzhtj.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[168,35]
+调整后[129,27]
+文件名：10val/164.png 
+--------------------
+截取内容[发(药品经营]，6
+background: paper1.png
+448 234
+width, height: 168,35
+font_color： [125, 126, 128]
+data_generator/font/msyhbd.ttc
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[168,35]
+调整后[134,28]
+文件名：10val/165.png 
+--------------------
+截取内容[995-0]，5
+background: paper2.png
+364 250
+width, height: 140,35
+font_color： [66, 69, 65]
+data_generator/font/simkai.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf9a90>
+需要旋转
+调整前[140,35]
+调整后[136,34]
+文件名：10val/166.png 
+--------------------
+截取内容[日用百货、医疗器械、保健]，12
+background: paper3.png
+612 426
+width, height: 336,35
+font_color： [72, 72, 74]
+data_generator/font/fzhtj.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[336,35]
+调整后[288,30]
+文件名：10val/167.png 
+--------------------
+截取内容[08670]，5
+background: paper5.png
+448 234
+width, height: 140,35
+font_color： [114, 119, 119]
+data_generator/font/FZLTCHJW.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[140,35]
+调整后[132,33]
+文件名：10val/168.png 
+--------------------
+截取内容[县金马水产（集团）有限]，11
+background: paper2.png
+364 250
+width, height: 308,35
+font_color： [27, 22, 26]
+data_generator/font/Songti SC Regular.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[308,35]
+调整后[290,33]
+文件名：10val/169.png 
+--------------------
+截取内容[64421.]，6
+background: paper1.png
+448 234
+width, height: 168,35
+font_color： [62, 64, 65]
+data_generator/font/SIMLI.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf56d8>
+调整前[168,35]
+调整后[134,28]
+文件名：10val/170.png 
+--------------------
+截取内容[或控股)制造、销售]，9
+background: paper1.png
+448 234
+width, height: 252,35
+font_color： [8, 6, 7]
+data_generator/font/STHUPO.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[252,35]
+调整后[252,35]
+文件名：10val/171.png 
+--------------------
+截取内容[和代理各类商品]，7
+background: paper5.png
+448 234
+width, height: 196,35
+font_color： [120, 119, 118]
+data_generator/font/simsun.ttc
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf50b8>
+调整前[196,35]
+调整后[196,35]
+文件名：10val/172.png 
+--------------------
+截取内容[用百货、针织服装、仪]，10
+background: paper4.png
+338 292
+width, height: 280,35
+font_color： [73, 80, 74]
+data_generator/font/SIMYOU.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[280,35]
+调整后[208,26]
+文件名：10val/173.png 
+--------------------
+截取内容[局存续存续（在营、]，9
+background: paper5.png
+448 234
+width, height: 252,35
+font_color： [59, 61, 54]
+data_generator/font/fzltxh.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[252,35]
+调整后[244,34]
+文件名：10val/174.png 
+--------------------
+截取内容[制家具生产、带]，7
+background: paper5.png
+448 234
+width, height: 196,35
+font_color： [82, 80, 78]
+data_generator/font/STHUPO.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[196,35]
+调整后[190,34]
+文件名：10val/175.png 
+--------------------
+截取内容[工商行政管理局吊销]，9
+background: paper2.png
+364 250
+width, height: 252,35
+font_color： [101, 109, 109]
+data_generator/font/STLITI.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[252,35]
+调整后[230,32]
+文件名：10val/176.png 
+--------------------
+截取内容[市宣武区太平街19]，9
+background: paper3.png
+612 426
+width, height: 252,35
+font_color： [114, 117, 123]
+data_generator/font/MSYH.TTC
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[252,35]
+调整后[223,31]
+文件名：10val/177.png 
+--------------------
+截取内容[筑材料、装饰材]，7
+background: paper1.png
+448 234
+width, height: 196,35
+font_color： [150, 150, 154]
+data_generator/font/simhei.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[196,35]
+调整后[173,31]
+文件名：10val/178.png 
+--------------------
+截取内容[置业有限公]，5
+background: paper4.png
+338 292
+width, height: 140,35
+font_color： [88, 90, 87]
+data_generator/font/Songti SC Regular.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[140,35]
+调整后[132,33]
+文件名：10val/179.png 
+--------------------
+截取内容[户一般经营项]，6
+background: paper2.png
+364 250
+width, height: 168,35
+font_color： [92, 95, 93]
+data_generator/font/华文细黑.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5a90>
+调整前[168,35]
+调整后[153,32]
+文件名：10val/180.png 
+--------------------
+截取内容[、在业）19930]，9
+background: paper2.png
+364 250
+width, height: 252,35
+font_color： [31, 35, 30]
+data_generator/font/STXINWEI.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[252,35]
+调整后[208,29]
+文件名：10val/181.png 
+--------------------
+截取内容[-09-024101]，10
+background: paper5.png
+448 234
+width, height: 280,35
+font_color： [79, 71, 73]
+data_generator/font/fzdhj.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[280,35]
+调整后[240,30]
+文件名：10val/182.png 
+--------------------
+截取内容[量技术监督管理]，7
+background: paper5.png
+448 234
+width, height: 196,35
+font_color： [36, 33, 31]
+data_generator/font/hyqhj.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf59b0>
+需要旋转
+调整前[196,35]
+调整后[179,32]
+文件名：10val/183.png 
+--------------------
+截取内容[，未注销吊]，5
+background: paper2.png
+364 250
+width, height: 140,35
+font_color： [128, 132, 132]
+data_generator/font/MSYH.TTC
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[140,35]
+调整后[132,33]
+文件名：10val/184.png 
+--------------------
+截取内容[jing2]，5
+background: paper3.png
+612 426
+width, height: 140,35
+font_color： [25, 25, 24]
+data_generator/font/simkai.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[140,35]
+调整后[120,30]
+文件名：10val/185.png 
+--------------------
+截取内容[收。anhui199]，10
+background: paper4.png
+338 292
+width, height: 280,35
+font_color： [80, 72, 73]
+data_generator/font/simkai.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[280,35]
+调整后[280,35]
+文件名：10val/186.png 
+--------------------
+截取内容[营。anhu]，6
+background: paper4.png
+338 292
+width, height: 168,35
+font_color： [81, 79, 78]
+data_generator/font/fzdhj.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf9390>
+调整前[168,35]
+调整后[163,34]
+文件名：10val/187.png 
+--------------------
+截取内容[。anhui2032-1]，12
+background: paper3.png
+612 426
+width, height: 336,35
+font_color： [63, 64, 61]
+data_generator/font/fzmmt.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[336,35]
+调整后[268,28]
+文件名：10val/188.png 
+--------------------
+截取内容[1995-01-]，8
+background: paper1.png
+448 234
+width, height: 224,35
+font_color： [145, 143, 141]
+data_generator/font/fzdhj.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf9160>
+调整前[224,35]
+调整后[166,26]
+文件名：10val/189.png 
+--------------------
+截取内容[2002-03]，7
+background: paper2.png
+364 250
+width, height: 196,35
+font_color： [27, 29, 29]
+data_generator/font/yahei_mono.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[196,35]
+调整后[190,34]
+文件名：10val/190.png 
+--------------------
+截取内容[电线电缆、劳保用品]，9
+background: paper2.png
+364 250
+width, height: 252,35
+font_color： [92, 98, 97]
+data_generator/font/STXIHEI.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf9898>
+需要旋转
+调整前[252,35]
+调整后[223,31]
+文件名：10val/191.png 
+--------------------
+截取内容[、在业）2014-12]，11
+background: paper2.png
+364 250
+width, height: 308,35
+font_color： [91, 84, 87]
+data_generator/font/STSONG.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[308,35]
+调整后[264,30]
+文件名：10val/192.png 
+--------------------
+截取内容[北京东方贝塔科技发]，9
+background: paper1.png
+448 234
+width, height: 252,35
+font_color： [118, 123, 124]
+data_generator/font/yahei_mono.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[252,35]
+调整后[216,30]
+文件名：10val/193.png 
+--------------------
+截取内容[，经相关部门批准后]，9
+background: paper3.png
+612 426
+width, height: 252,35
+font_color： [94, 94, 93]
+data_generator/font/simhei.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[252,35]
+调整后[216,30]
+文件名：10val/194.png 
+--------------------
+截取内容[品销售。"anhui20]，12
+background: paper3.png
+612 426
+width, height: 336,35
+font_color： [125, 130, 127]
+data_generator/font/simfang.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[336,35]
+调整后[336,35]
+文件名：10val/195.png 
+--------------------
+截取内容[008-09-]，7
+background: paper2.png
+364 250
+width, height: 196,35
+font_color： [34, 32, 32]
+data_generator/font/fzhtj.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[196,35]
+调整后[190,34]
+文件名：10val/196.png 
+--------------------
+截取内容[未注销1997-08-0]，12
+background: paper2.png
+364 250
+width, height: 336,35
+font_color： [117, 121, 115]
+data_generator/font/SIMLI.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[336,35]
+调整后[307,32]
+文件名：10val/197.png 
+--------------------
+截取内容[化交流及汇展服务。]，9
+background: paper3.png
+612 426
+width, height: 252,35
+font_color： [63, 65, 59]
+data_generator/font/STXINGKA.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[252,35]
+调整后[194,27]
+文件名：10val/198.png 
+--------------------
+截取内容[04-08]，5
+background: paper4.png
+338 292
+width, height: 140,35
+font_color： [49, 48, 44]
+data_generator/font/STZHONGS.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[140,35]
+调整后[140,35]
+文件名：10val/199.png 
+--------------------
+截取内容[101021692411]，12
+background: paper2.png
+364 250
+width, height: 336,35
+font_color： [65, 69, 71]
+data_generator/font/hyqhj.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[336,35]
+调整后[278,29]
+文件名：10val/200.png 
+--------------------
+截取内容[beiji]，5
+background: paper1.png
+448 234
+width, height: 140,35
+font_color： [21, 24, 24]
+data_generator/font/SIMYOU.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[140,35]
+调整后[124,31]
+文件名：10val/201.png 
+--------------------
+截取内容[278号合肥市工商行政]，11
+background: paper5.png
+448 234
+width, height: 308,35
+font_color： [137, 134, 142]
+data_generator/font/msyh.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[308,35]
+调整后[299,34]
+文件名：10val/202.png 
+--------------------
+截取内容[ng2021-0]，8
+background: paper3.png
+612 426
+width, height: 224,35
+font_color： [41, 41, 42]
+data_generator/font/MSYH.TTC
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[224,35]
+调整后[192,30]
+文件名：10val/203.png 
+--------------------
+截取内容[行政管理局存续]，7
+background: paper1.png
+448 234
+width, height: 196,35
+font_color： [47, 41, 47]
+data_generator/font/msyhbd.ttc
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[196,35]
+调整后[151,27]
+文件名：10val/204.png 
+--------------------
+截取内容[企业经营或禁止进出]，9
+background: paper4.png
+338 292
+width, height: 252,35
+font_color： [45, 50, 44]
+data_generator/font/simsun.ttc
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5a58>
+调整前[252,35]
+调整后[252,35]
+文件名：10val/205.png 
+--------------------
+截取内容[0201514230安徽]，12
+background: paper1.png
+448 234
+width, height: 336,35
+font_color： [130, 130, 133]
+data_generator/font/simkai.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[336,35]
+调整后[336,35]
+文件名：10val/206.png 
+--------------------
+截取内容[8-12-]，5
+background: paper2.png
+364 250
+width, height: 140,35
+font_color： [37, 36, 36]
+data_generator/font/msyhbd.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[140,35]
+调整后[136,34]
+文件名：10val/207.png 
+--------------------
+截取内容[2000-]，5
+background: paper4.png
+338 292
+width, height: 140,35
+font_color： [44, 52, 53]
+data_generator/font/Songti SC Regular.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[140,35]
+调整后[140,35]
+文件名：10val/208.png 
+--------------------
+截取内容[兴路94号]，5
+background: paper1.png
+448 234
+width, height: 140,35
+font_color： [24, 24, 22]
+data_generator/font/STXIHEI.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[140,35]
+调整后[116,29]
+文件名：10val/209.png 
+--------------------
+截取内容[科技有限责任]，6
+background: paper5.png
+448 234
+width, height: 168,35
+font_color： [128, 126, 124]
+data_generator/font/STSONG.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[168,35]
+调整后[163,34]
+文件名：10val/210.png 
+--------------------
+截取内容[市兴旺装璜材料商行沈虎]，11
+background: paper3.png
+612 426
+width, height: 308,35
+font_color： [148, 152, 156]
+data_generator/font/fzltxh.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[308,35]
+调整后[308,35]
+文件名：10val/211.png 
+--------------------
+截取内容[徽省淮南市淮滨]，7
+background: paper2.png
+364 250
+width, height: 196,35
+font_color： [144, 146, 145]
+data_generator/font/STXINWEI.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[196,35]
+调整后[162,29]
+文件名：10val/212.png 
+--------------------
+截取内容[07-012]，6
+background: paper2.png
+364 250
+width, height: 168,35
+font_color： [131, 140, 134]
+data_generator/font/STXINGKA.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[168,35]
+调整后[153,32]
+文件名：10val/213.png 
+--------------------
+截取内容[动；电脑图]，5
+background: paper5.png
+448 234
+width, height: 140,35
+font_color： [114, 115, 119]
+data_generator/font/STHUPO.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[140,35]
+调整后[136,34]
+文件名：10val/214.png 
+--------------------
+截取内容[控股)酒、粮油及]，8
+background: paper1.png
+448 234
+width, height: 224,35
+font_color： [45, 46, 40]
+data_generator/font/Songti SC Regular.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[224,35]
+调整后[211,33]
+文件名：10val/215.png 
+--------------------
+截取内容[区校尉胡同5]，6
+background: paper3.png
+612 426
+width, height: 168,35
+font_color： [52, 59, 53]
+data_generator/font/FZSTK.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[168,35]
+调整后[153,32]
+文件名：10val/216.png 
+--------------------
+截取内容[有限公司分公]，6
+background: paper3.png
+612 426
+width, height: 168,35
+font_color： [121, 122, 114]
+data_generator/font/fzhtj.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[168,35]
+调整后[134,28]
+文件名：10val/217.png 
+--------------------
+截取内容[城区灯市口大街33]，9
+background: paper2.png
+364 250
+width, height: 252,35
+font_color： [10, 7, 5]
+data_generator/font/hyqhj.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[252,35]
+调整后[252,35]
+文件名：10val/218.png 
+--------------------
+截取内容[，经相关部]，5
+background: paper5.png
+448 234
+width, height: 140,35
+font_color： [80, 78, 82]
+data_generator/font/simhei.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[140,35]
+调整后[104,26]
+文件名：10val/219.png 
+--------------------
+截取内容[北京市恒天利新]，7
+background: paper1.png
+448 234
+width, height: 196,35
+font_color： [53, 62, 63]
+data_generator/font/STXINWEI.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf9550>
+需要旋转
+调整前[196,35]
+调整后[190,34]
+文件名：10val/220.png 
+--------------------
+截取内容[0-212]，5
+background: paper2.png
+364 250
+width, height: 140,35
+font_color： [90, 82, 90]
+data_generator/font/STKAITI.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf9dd8>
+需要旋转
+调整前[140,35]
+调整后[116,29]
+文件名：10val/221.png 
+--------------------
+截取内容[anhui34160]，10
+background: paper2.png
+364 250
+width, height: 280,35
+font_color： [76, 75, 73]
+data_generator/font/msyhbd.ttc
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf9ef0>
+需要旋转
+调整前[280,35]
+调整后[208,26]
+文件名：10val/222.png 
+--------------------
+截取内容[公司(台港澳与外国]，9
+background: paper1.png
+448 234
+width, height: 252,35
+font_color： [81, 83, 79]
+data_generator/font/FZSTK.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[252,35]
+调整后[223,31]
+文件名：10val/223.png 
+--------------------
+截取内容[2001-02-]，8
+background: paper5.png
+448 234
+width, height: 224,35
+font_color： [81, 87, 79]
+data_generator/font/msyhbd.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[224,35]
+调整后[166,26]
+文件名：10val/224.png 
+--------------------
+截取内容[工商户批发、零]，7
+background: paper2.png
+364 250
+width, height: 196,35
+font_color： [108, 114, 107]
+data_generator/font/msyhbd.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[196,35]
+调整后[168,30]
+文件名：10val/225.png 
+--------------------
+截取内容[合肥市元一时代花园]，9
+background: paper2.png
+364 250
+width, height: 252,35
+font_color： [4, 7, 3]
+data_generator/font/STZHONGS.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[252,35]
+调整后[237,33]
+文件名：10val/226.png 
+--------------------
+截取内容[亳州市工商行]，6
+background: paper1.png
+448 234
+width, height: 168,35
+font_color： [121, 127, 128]
+data_generator/font/msyhbd.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5278>
+需要旋转
+调整前[168,35]
+调整后[158,33]
+文件名：10val/227.png 
+--------------------
+截取内容[3-03201926]，10
+background: paper4.png
+338 292
+width, height: 280,35
+font_color： [152, 160, 151]
+data_generator/font/simkai.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[280,35]
+调整后[264,33]
+文件名：10val/228.png 
+--------------------
+截取内容[试剂（不含危险品]，8
+background: paper4.png
+338 292
+width, height: 224,35
+font_color： [114, 112, 108]
+data_generator/font/MSYH.TTC
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5668>
+调整前[224,35]
+调整后[185,29]
+文件名：10val/229.png 
+--------------------
+截取内容[＊＊anhui2000-]，12
+background: paper3.png
+612 426
+width, height: 336,35
+font_color： [74, 80, 74]
+data_generator/font/simkai.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5320>
+调整前[336,35]
+调整后[268,28]
+文件名：10val/230.png 
+--------------------
+截取内容[管理局在营（开业）企业]，11
+background: paper5.png
+448 234
+width, height: 308,35
+font_color： [104, 111, 111]
+data_generator/font/msyh.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[308,35]
+调整后[264,30]
+文件名：10val/231.png 
+--------------------
+截取内容[注销吊销，]，5
+background: paper1.png
+448 234
+width, height: 140,35
+font_color： [103, 102, 104]
+data_generator/font/msyh.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[140,35]
+调整后[136,34]
+文件名：10val/232.png 
+--------------------
+截取内容[334000010]，9
+background: paper3.png
+612 426
+width, height: 252,35
+font_color： [38, 44, 43]
+data_generator/font/STXINWEI.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[252,35]
+调整后[216,30]
+文件名：10val/233.png 
+--------------------
+截取内容[永强2003-07-07]，12
+background: paper1.png
+448 234
+width, height: 336,35
+font_color： [40, 33, 34]
+data_generator/font/msyh.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[336,35]
+调整后[336,35]
+文件名：10val/234.png 
+--------------------
+截取内容[300.0西]，6
+background: paper4.png
+338 292
+width, height: 168,35
+font_color： [140, 135, 130]
+data_generator/font/STXINGKA.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[168,35]
+调整后[163,34]
+文件名：10val/235.png 
+--------------------
+截取内容[矿.硫，铁矿]，6
+background: paper4.png
+338 292
+width, height: 168,35
+font_color： [116, 107, 107]
+data_generator/font/simsun.ttc
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5a90>
+调整前[168,35]
+调整后[144,30]
+文件名：10val/236.png 
+--------------------
+截取内容[4-06-26674]，10
+background: paper4.png
+338 292
+width, height: 280,35
+font_color： [134, 135, 132]
+data_generator/font/STZHONGS.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[280,35]
+调整后[256,32]
+文件名：10val/237.png 
+--------------------
+截取内容[公司(自然人投资或控股)]，12
+background: paper5.png
+448 234
+width, height: 336,35
+font_color： [97, 98, 105]
+data_generator/font/STSONG.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[336,35]
+调整后[297,31]
+文件名：10val/238.png 
+--------------------
+截取内容[室蚌埠市工商行政]，8
+background: paper2.png
+364 250
+width, height: 224,35
+font_color： [68, 67, 74]
+data_generator/font/simfang.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[224,35]
+调整后[185,29]
+文件名：10val/239.png 
+--------------------
+截取内容[路军分区西侧阜阳市工]，10
+background: paper1.png
+448 234
+width, height: 280,35
+font_color： [98, 98, 103]
+data_generator/font/FZLTCHJW.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[280,35]
+调整后[224,28]
+文件名：10val/240.png 
+--------------------
+截取内容[、劳保用品。anhui]，11
+background: paper5.png
+448 234
+width, height: 308,35
+font_color： [110, 114, 109]
+data_generator/font/华文细黑.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[308,35]
+调整后[281,32]
+文件名：10val/241.png 
+--------------------
+截取内容[燃气器具公司费广宏1]，10
+background: paper4.png
+338 292
+width, height: 280,35
+font_color： [92, 90, 86]
+data_generator/font/msyh.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[280,35]
+调整后[232,29]
+文件名：10val/242.png 
+--------------------
+截取内容[11-06-]，6
+background: paper4.png
+338 292
+width, height: 168,35
+font_color： [30, 21, 21]
+data_generator/font/FZYTK.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[168,35]
+调整后[144,30]
+文件名：10val/243.png 
+--------------------
+截取内容[1765当]，5
+background: paper2.png
+364 250
+width, height: 140,35
+font_color： [42, 37, 36]
+data_generator/font/STLITI.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[140,35]
+调整后[128,32]
+文件名：10val/244.png 
+--------------------
+截取内容[动（不含演出）；技术进]，11
+background: paper2.png
+364 250
+width, height: 308,35
+font_color： [130, 132, 135]
+data_generator/font/STXIHEI.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5ef0>
+需要旋转
+调整前[308,35]
+调整后[264,30]
+文件名：10val/245.png 
+--------------------
+截取内容[毕小叩个体工商户针织、内]，12
+background: paper5.png
+448 234
+width, height: 336,35
+font_color： [90, 88, 86]
+data_generator/font/fzhtj.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[336,35]
+调整后[297,31]
+文件名：10val/246.png 
+--------------------
+截取内容[公司赵新菊2014-1]，11
+background: paper5.png
+448 234
+width, height: 308,35
+font_color： [106, 109, 106]
+data_generator/font/simfang.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[308,35]
+调整后[272,31]
+文件名：10val/247.png 
+--------------------
+截取内容[241号巢湖市城北市场监]，12
+background: paper5.png
+448 234
+width, height: 336,35
+font_color： [67, 73, 75]
+data_generator/font/MSYH.TTC
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[336,35]
+调整后[297,31]
+文件名：10val/248.png 
+--------------------
+截取内容[2005-11-034]，11
+background: paper5.png
+448 234
+width, height: 308,35
+font_color： [124, 122, 120]
+data_generator/font/fzmmt.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[308,35]
+调整后[264,30]
+文件名：10val/249.png 
+--------------------
+截取内容[凭许可经营）]，6
+background: paper2.png
+364 250
+width, height: 168,35
+font_color： [44, 42, 46]
+data_generator/font/simhei.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[168,35]
+调整后[163,34]
+文件名：10val/250.png 
+--------------------
+截取内容[装饰工程（建筑幕墙工程除]，12
+background: paper1.png
+448 234
+width, height: 336,35
+font_color： [60, 57, 57]
+data_generator/font/华文细黑.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119ce3da0>
+调整前[336,35]
+调整后[316,33]
+文件名：10val/251.png 
+--------------------
+截取内容[4107714]，7
+background: paper3.png
+612 426
+width, height: 196,35
+font_color： [4, 3, 10]
+data_generator/font/STHUPO.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119ce3d68>
+调整前[196,35]
+调整后[179,32]
+文件名：10val/252.png 
+--------------------
+截取内容[注销吊销，未注销2002]，12
+background: paper3.png
+612 426
+width, height: 336,35
+font_color： [41, 49, 42]
+data_generator/font/simfang.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[336,35]
+调整后[336,35]
+文件名：10val/253.png 
+--------------------
+截取内容[具、非标准设]，6
+background: paper4.png
+338 292
+width, height: 168,35
+font_color： [118, 115, 116]
+data_generator/font/simsun.ttc
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[168,35]
+调整后[124,26]
+文件名：10val/254.png 
+--------------------
+截取内容[限责任公司(自然人]，9
+background: paper5.png
+448 234
+width, height: 252,35
+font_color： [68, 65, 72]
+data_generator/font/STKAITI.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[252,35]
+调整后[208,29]
+文件名：10val/255.png 
+--------------------
+截取内容[提供互联网上网服务]，9
+background: paper1.png
+448 234
+width, height: 252,35
+font_color： [129, 128, 125]
+data_generator/font/MSYH.TTC
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[252,35]
+调整后[252,35]
+文件名：10val/256.png 
+--------------------
+截取内容[50号芜湖市工商局]，9
+background: paper5.png
+448 234
+width, height: 252,35
+font_color： [10, 5, 9]
+data_generator/font/FZYTK.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf51d0>
+需要旋转
+调整前[252,35]
+调整后[223,31]
+文件名：10val/257.png 
+--------------------
+截取内容[司张博理200]，7
+background: paper4.png
+338 292
+width, height: 196,35
+font_color： [139, 140, 143]
+data_generator/font/fzdhj.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[196,35]
+调整后[156,28]
+文件名：10val/258.png 
+--------------------
+截取内容[95-06-281101]，12
+background: paper3.png
+612 426
+width, height: 336,35
+font_color： [139, 140, 143]
+data_generator/font/Songti SC Regular.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5908>
+调整前[336,35]
+调整后[336,35]
+文件名：10val/259.png 
+--------------------
+截取内容[册、在业）2014-0]，11
+background: paper1.png
+448 234
+width, height: 308,35
+font_color： [66, 65, 68]
+data_generator/font/simfang.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[308,35]
+调整后[255,29]
+文件名：10val/260.png 
+--------------------
+截取内容[。anhui34142]，11
+background: paper1.png
+448 234
+width, height: 308,35
+font_color： [24, 24, 31]
+data_generator/font/yahei_mono.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[308,35]
+调整后[308,35]
+文件名：10val/261.png 
+--------------------
+截取内容[安徽省合肥市长江西]，9
+background: paper1.png
+448 234
+width, height: 252,35
+font_color： [130, 135, 129]
+data_generator/font/fzltxh.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[252,35]
+调整后[201,28]
+文件名：10val/262.png 
+--------------------
+截取内容[，自主选择]，5
+background: paper2.png
+364 250
+width, height: 140,35
+font_color： [50, 50, 44]
+data_generator/font/hyqhj.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[140,35]
+调整后[140,35]
+文件名：10val/263.png 
+--------------------
+截取内容[i1980-01]，8
+background: paper1.png
+448 234
+width, height: 224,35
+font_color： [17, 16, 9]
+data_generator/font/STXINWEI.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[224,35]
+调整后[192,30]
+文件名：10val/264.png 
+--------------------
+截取内容[9.5安徽省淮]，7
+background: paper1.png
+448 234
+width, height: 196,35
+font_color： [148, 149, 145]
+data_generator/font/SIMLI.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[196,35]
+调整后[156,28]
+文件名：10val/265.png 
+--------------------
+截取内容[ing110106]，9
+background: paper3.png
+612 426
+width, height: 252,35
+font_color： [80, 70, 73]
+data_generator/font/fzmmt.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[252,35]
+调整后[194,27]
+文件名：10val/266.png 
+--------------------
+截取内容[法规、国务院决定规定应经]，12
+background: paper3.png
+612 426
+width, height: 336,35
+font_color： [75, 83, 80]
+data_generator/font/simkai.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf55c0>
+调整前[336,35]
+调整后[316,33]
+文件名：10val/267.png 
+--------------------
+截取内容[1安徽省安庆市岳西县]，10
+background: paper4.png
+338 292
+width, height: 280,35
+font_color： [92, 96, 100]
+data_generator/font/STSONG.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[280,35]
+调整后[280,35]
+文件名：10val/268.png 
+--------------------
+截取内容[102282]，6
+background: paper5.png
+448 234
+width, height: 168,35
+font_color： [85, 86, 85]
+data_generator/font/SIMYOU.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[168,35]
+调整后[134,28]
+文件名：10val/269.png 
+--------------------
+截取内容[百货。（依法须]，7
+background: paper5.png
+448 234
+width, height: 196,35
+font_color： [129, 135, 128]
+data_generator/font/fzdhj.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[196,35]
+调整后[173,31]
+文件名：10val/270.png 
+--------------------
+截取内容[斌1998-09-]，9
+background: paper1.png
+448 234
+width, height: 252,35
+font_color： [40, 46, 44]
+data_generator/font/simfang.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[252,35]
+调整后[187,26]
+文件名：10val/271.png 
+--------------------
+截取内容[维修：竹木、铁制]，8
+background: paper2.png
+364 250
+width, height: 224,35
+font_color： [137, 144, 137]
+data_generator/font/MSYH.TTC
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[224,35]
+调整后[198,31]
+文件名：10val/272.png 
+--------------------
+截取内容[-04-06]，6
+background: paper4.png
+338 292
+width, height: 168,35
+font_color： [99, 98, 101]
+data_generator/font/FZYTK.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[168,35]
+调整后[158,33]
+文件名：10val/273.png 
+--------------------
+截取内容[在业）2006]，7
+background: paper3.png
+612 426
+width, height: 196,35
+font_color： [125, 127, 118]
+data_generator/font/STSONG.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[196,35]
+调整后[190,34]
+文件名：10val/274.png 
+--------------------
+截取内容[0990918]，7
+background: paper2.png
+364 250
+width, height: 196,35
+font_color： [107, 110, 106]
+data_generator/font/msyh.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[196,35]
+调整后[162,29]
+文件名：10val/275.png 
+--------------------
+截取内容[5122756240北京]，12
+background: paper2.png
+364 250
+width, height: 336,35
+font_color： [80, 74, 78]
+data_generator/font/SIMYOU.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[336,35]
+调整后[278,29]
+文件名：10val/276.png 
+--------------------
+截取内容[182003-1]，8
+background: paper5.png
+448 234
+width, height: 224,35
+font_color： [51, 44, 51]
+data_generator/font/fzmmt.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[224,35]
+调整后[172,27]
+文件名：10val/277.png 
+--------------------
+截取内容[头沟区永定镇小园村1]，10
+background: paper5.png
+448 234
+width, height: 280,35
+font_color： [150, 147, 153]
+data_generator/font/fzhtj.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[280,35]
+调整后[256,32]
+文件名：10val/278.png 
+--------------------
+截取内容[审批的，自主选择]，8
+background: paper2.png
+364 250
+width, height: 224,35
+font_color： [18, 8, 9]
+data_generator/font/STHUPO.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cfa748>
+需要旋转
+调整前[224,35]
+调整后[192,30]
+文件名：10val/279.png 
+--------------------
+截取内容[2-272006-0]，10
+background: paper2.png
+364 250
+width, height: 280,35
+font_color： [91, 91, 90]
+data_generator/font/simhei.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119ce3fd0>
+调整前[280,35]
+调整后[272,34]
+文件名：10val/280.png 
+--------------------
+截取内容[娱乐，烟酒销售。anhu]，12
+background: paper1.png
+448 234
+width, height: 336,35
+font_color： [57, 57, 64]
+data_generator/font/FZSTK.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[336,35]
+调整后[307,32]
+文件名：10val/281.png 
+--------------------
+截取内容[nhui2015-10]，11
+background: paper5.png
+448 234
+width, height: 308,35
+font_color： [8, 8, 10]
+data_generator/font/华文细黑.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[308,35]
+调整后[290,33]
+文件名：10val/282.png 
+--------------------
+截取内容[食品，医用器具类]，8
+background: paper1.png
+448 234
+width, height: 224,35
+font_color： [117, 113, 114]
+data_generator/font/FZYTK.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[224,35]
+调整后[179,28]
+文件名：10val/283.png 
+--------------------
+截取内容[县市场监督]，5
+background: paper4.png
+338 292
+width, height: 140,35
+font_color： [33, 32, 39]
+data_generator/font/fzhtj.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[140,35]
+调整后[112,28]
+文件名：10val/284.png 
+--------------------
+截取内容[机、金属材料、机械设]，10
+background: paper1.png
+448 234
+width, height: 280,35
+font_color： [91, 83, 81]
+data_generator/font/fzdhj.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[280,35]
+调整后[272,34]
+文件名：10val/285.png 
+--------------------
+截取内容[。洗煤。sichuan]，11
+background: paper3.png
+612 426
+width, height: 308,35
+font_color： [97, 95, 98]
+data_generator/font/FZYTK.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[308,35]
+调整后[246,28]
+文件名：10val/286.png 
+--------------------
+截取内容[、生产用原材料及]，8
+background: paper3.png
+612 426
+width, height: 224,35
+font_color： [53, 53, 53]
+data_generator/font/msyhbd.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[224,35]
+调整后[172,27]
+文件名：10val/287.png 
+--------------------
+截取内容[自然人投资或控股)计算]，11
+background: paper1.png
+448 234
+width, height: 308,35
+font_color： [37, 34, 42]
+data_generator/font/STLITI.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[308,35]
+调整后[308,35]
+文件名：10val/288.png 
+--------------------
+截取内容[988-09-26340]，12
+background: paper2.png
+364 250
+width, height: 336,35
+font_color： [20, 12, 13]
+data_generator/font/simkai.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[336,35]
+调整后[297,31]
+文件名：10val/289.png 
+--------------------
+截取内容[051101030]，9
+background: paper2.png
+364 250
+width, height: 252,35
+font_color： [88, 93, 85]
+data_generator/font/fzdhj.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5cc0>
+需要旋转
+调整前[252,35]
+调整后[230,32]
+文件名：10val/290.png 
+--------------------
+截取内容[长城宾馆217室)]，9
+background: paper2.png
+364 250
+width, height: 252,35
+font_color： [78, 68, 70]
+data_generator/font/msyhbd.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[252,35]
+调整后[201,28]
+文件名：10val/291.png 
+--------------------
+截取内容[安徽省合肥市明光]，8
+background: paper1.png
+448 234
+width, height: 224,35
+font_color： [57, 56, 53]
+data_generator/font/STXINWEI.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5eb8>
+调整前[224,35]
+调整后[211,33]
+文件名：10val/292.png 
+--------------------
+截取内容[管理局吊销，未]，7
+background: paper5.png
+448 234
+width, height: 196,35
+font_color： [21, 12, 14]
+data_generator/font/STXINWEI.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[196,35]
+调整后[196,35]
+文件名：10val/293.png 
+--------------------
+截取内容[)化工产品（易燃液]，9
+background: paper1.png
+448 234
+width, height: 252,35
+font_color： [150, 154, 159]
+data_generator/font/fzdhj.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf54a8>
+需要旋转
+调整前[252,35]
+调整后[244,34]
+文件名：10val/294.png 
+--------------------
+截取内容[2003-09-10有限]，12
+background: paper5.png
+448 234
+width, height: 336,35
+font_color： [88, 87, 87]
+data_generator/font/simfang.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[336,35]
+调整后[249,26]
+文件名：10val/295.png 
+--------------------
+截取内容[售（法律、法规]，7
+background: paper3.png
+612 426
+width, height: 196,35
+font_color： [44, 43, 43]
+data_generator/font/STZHONGS.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf55c0>
+调整前[196,35]
+调整后[162,29]
+文件名：10val/296.png 
+--------------------
+截取内容[资质经营).an]，8
+background: paper5.png
+448 234
+width, height: 224,35
+font_color： [147, 155, 147]
+data_generator/font/simkai.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[224,35]
+调整后[185,29]
+文件名：10val/297.png 
+--------------------
+截取内容[、电缆天天村填充料、]，10
+background: paper2.png
+364 250
+width, height: 280,35
+font_color： [51, 46, 46]
+data_generator/font/STHUPO.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[280,35]
+调整后[264,33]
+文件名：10val/298.png 
+--------------------
+截取内容[器、机械用铜管铜材加工；]，12
+background: paper1.png
+448 234
+width, height: 336,35
+font_color： [8, 10, 9]
+data_generator/font/msyhbd.ttc
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[336,35]
+调整后[268,28]
+文件名：10val/299.png 
+--------------------
+截取内容[anhui1989-1]，11
+background: paper5.png
+448 234
+width, height: 308,35
+font_color： [160, 157, 157]
+data_generator/font/STXIHEI.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[308,35]
+调整后[290,33]
+文件名：10val/300.png 
+--------------------
+截取内容[合肥蓝天羽绒有限公]，9
+background: paper1.png
+448 234
+width, height: 252,35
+font_color： [128, 129, 120]
+data_generator/font/FZYTK.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[252,35]
+调整后[230,32]
+文件名：10val/301.png 
+--------------------
+截取内容[车销售，陆风品牌汽车销售]，12
+background: paper5.png
+448 234
+width, height: 336,35
+font_color： [133, 133, 131]
+data_generator/font/STXINGKA.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[336,35]
+调整后[326,34]
+文件名：10val/302.png 
+--------------------
+截取内容[01071]，5
+background: paper5.png
+448 234
+width, height: 140,35
+font_color： [147, 149, 150]
+data_generator/font/STLITI.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[140,35]
+调整后[124,31]
+文件名：10val/303.png 
+--------------------
+截取内容[安徽省美达]，5
+background: paper1.png
+448 234
+width, height: 140,35
+font_color： [93, 96, 100]
+data_generator/font/simkai.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[140,35]
+调整后[116,29]
+文件名：10val/304.png 
+--------------------
+截取内容[430银川市西夏区北京西]，12
+background: paper3.png
+612 426
+width, height: 336,35
+font_color： [147, 149, 155]
+data_generator/font/STSONG.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[336,35]
+调整后[336,35]
+文件名：10val/305.png 
+--------------------
+截取内容[ui2050-09]，9
+background: paper3.png
+612 426
+width, height: 252,35
+font_color： [14, 18, 15]
+data_generator/font/simfang.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[252,35]
+调整后[187,26]
+文件名：10val/306.png 
+--------------------
+截取内容[、渔具、建]，5
+background: paper1.png
+448 234
+width, height: 140,35
+font_color： [69, 78, 76]
+data_generator/font/yahei_mono.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x104934c88>
+需要旋转
+调整前[140,35]
+调整后[128,32]
+文件名：10val/307.png 
+--------------------
+截取内容[京中通明泰科贸有限公]，10
+background: paper2.png
+364 250
+width, height: 280,35
+font_color： [52, 49, 49]
+data_generator/font/STXIHEI.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[280,35]
+调整后[240,30]
+文件名：10val/308.png 
+--------------------
+截取内容[号安庆市工商行政管]，9
+background: paper4.png
+338 292
+width, height: 252,35
+font_color： [37, 34, 38]
+data_generator/font/FZLTCHJW.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[252,35]
+调整后[237,33]
+文件名：10val/309.png 
+--------------------
+截取内容[（以上涉及前置]，7
+background: paper5.png
+448 234
+width, height: 196,35
+font_color： [141, 136, 140]
+data_generator/font/STXIHEI.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[196,35]
+调整后[173,31]
+文件名：10val/310.png 
+--------------------
+截取内容[7-04-01]，7
+background: paper1.png
+448 234
+width, height: 196,35
+font_color： [139, 136, 140]
+data_generator/font/Songti SC Regular.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[196,35]
+调整后[173,31]
+文件名：10val/311.png 
+--------------------
+截取内容[限公司张力泉有限责任]，10
+background: paper1.png
+448 234
+width, height: 280,35
+font_color： [58, 60, 58]
+data_generator/font/simfang.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf54e0>
+调整前[280,35]
+调整后[232,29]
+文件名：10val/312.png 
+--------------------
+截取内容[、五金交电化]，6
+background: paper4.png
+338 292
+width, height: 168,35
+font_color： [32, 30, 27]
+data_generator/font/STZHONGS.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[168,35]
+调整后[129,27]
+文件名：10val/313.png 
+--------------------
+截取内容[8874北京瀚康商贸中]，11
+background: paper4.png
+338 292
+width, height: 308,35
+font_color： [132, 126, 132]
+data_generator/font/msyhbd.ttc
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf57b8>
+调整前[308,35]
+调整后[264,30]
+文件名：10val/314.png 
+--------------------
+截取内容[集体所有制（股]，7
+background: paper2.png
+364 250
+width, height: 196,35
+font_color： [118, 115, 121]
+data_generator/font/msyhbd.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[196,35]
+调整后[179,32]
+文件名：10val/315.png 
+--------------------
+截取内容[金牛区二环路北二]，8
+background: paper1.png
+448 234
+width, height: 224,35
+font_color： [113, 114, 107]
+data_generator/font/STZHONGS.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5240>
+调整前[224,35]
+调整后[166,26]
+文件名：10val/316.png 
+--------------------
+截取内容[京市工商行政管]，7
+background: paper3.png
+612 426
+width, height: 196,35
+font_color： [106, 109, 111]
+data_generator/font/simfang.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[196,35]
+调整后[190,34]
+文件名：10val/317.png 
+--------------------
+截取内容[研发销售；]，5
+background: paper4.png
+338 292
+width, height: 140,35
+font_color： [53, 50, 51]
+data_generator/font/STSONG.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[140,35]
+调整后[128,32]
+文件名：10val/318.png 
+--------------------
+截取内容[经营部曹平200]，8
+background: paper1.png
+448 234
+width, height: 224,35
+font_color： [96, 97, 89]
+data_generator/font/STHUPO.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[224,35]
+调整后[204,32]
+文件名：10val/319.png 
+--------------------
+截取内容[销，未注销2001]，9
+background: paper3.png
+612 426
+width, height: 252,35
+font_color： [126, 122, 127]
+data_generator/font/STXINGKA.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[252,35]
+调整后[244,34]
+文件名：10val/320.png 
+--------------------
+截取内容[未注销吊销，未]，7
+background: paper1.png
+448 234
+width, height: 196,35
+font_color： [34, 35, 39]
+data_generator/font/STZHONGS.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[196,35]
+调整后[145,26]
+文件名：10val/321.png 
+--------------------
+截取内容[塔区后芳炸]，5
+background: paper3.png
+612 426
+width, height: 140,35
+font_color： [66, 64, 61]
+data_generator/font/SIMYOU.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[140,35]
+调整后[104,26]
+文件名：10val/322.png 
+--------------------
+截取内容[00郑州市金水]，7
+background: paper4.png
+338 292
+width, height: 196,35
+font_color： [135, 128, 130]
+data_generator/font/Songti SC Regular.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[196,35]
+调整后[196,35]
+文件名：10val/323.png 
+--------------------
+截取内容[天祥文化艺术发展有限公司]，12
+background: paper1.png
+448 234
+width, height: 336,35
+font_color： [100, 100, 100]
+data_generator/font/FZYTK.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5a20>
+调整前[336,35]
+调整后[326,34]
+文件名：10val/324.png 
+--------------------
+截取内容[1-08有限责任]，8
+background: paper3.png
+612 426
+width, height: 224,35
+font_color： [141, 139, 142]
+data_generator/font/SIMLI.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[224,35]
+调整后[185,29]
+文件名：10val/325.png 
+--------------------
+截取内容[市工商行政管理局]，8
+background: paper4.png
+338 292
+width, height: 224,35
+font_color： [58, 59, 65]
+data_generator/font/STHUPO.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[224,35]
+调整后[166,26]
+文件名：10val/326.png 
+--------------------
+截取内容[12集体所]，5
+background: paper5.png
+448 234
+width, height: 140,35
+font_color： [18, 28, 19]
+data_generator/font/msyh.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[140,35]
+调整后[108,27]
+文件名：10val/327.png 
+--------------------
+截取内容[04集体经营单位(非法]，11
+background: paper1.png
+448 234
+width, height: 308,35
+font_color： [157, 152, 155]
+data_generator/font/Songti SC Regular.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cfa7b8>
+调整前[308,35]
+调整后[228,26]
+文件名：10val/328.png 
+--------------------
+截取内容[uangdon]，7
+background: paper4.png
+338 292
+width, height: 196,35
+font_color： [83, 90, 83]
+data_generator/font/msyhbd.ttc
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[196,35]
+调整后[151,27]
+文件名：10val/329.png 
+--------------------
+截取内容[宣城市古溪山岗安徽省]，10
+background: paper3.png
+612 426
+width, height: 280,35
+font_color： [34, 36, 31]
+data_generator/font/FZYTK.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cfa358>
+调整前[280,35]
+调整后[272,34]
+文件名：10val/330.png 
+--------------------
+截取内容[eijing19]，8
+background: paper1.png
+448 234
+width, height: 224,35
+font_color： [93, 89, 88]
+data_generator/font/simfang.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cfa320>
+需要旋转
+调整前[224,35]
+调整后[172,27]
+文件名：10val/331.png 
+--------------------
+截取内容[003-10-2]，8
+background: paper1.png
+448 234
+width, height: 224,35
+font_color： [45, 38, 43]
+data_generator/font/simkai.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[224,35]
+调整后[198,31]
+文件名：10val/332.png 
+--------------------
+截取内容[日】。（依法]，6
+background: paper1.png
+448 234
+width, height: 168,35
+font_color： [148, 156, 156]
+data_generator/font/STKAITI.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[168,35]
+调整后[163,34]
+文件名：10val/333.png 
+--------------------
+截取内容[-0310910利]，9
+background: paper1.png
+448 234
+width, height: 252,35
+font_color： [25, 22, 21]
+data_generator/font/STFANGSO.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[252,35]
+调整后[187,26]
+文件名：10val/334.png 
+--------------------
+截取内容[895北京思泰维龙]，9
+background: paper1.png
+448 234
+width, height: 252,35
+font_color： [8, 11, 6]
+data_generator/font/simfang.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[252,35]
+调整后[194,27]
+文件名：10val/335.png 
+--------------------
+截取内容[村118243北京国邦]，11
+background: paper5.png
+448 234
+width, height: 308,35
+font_color： [74, 67, 71]
+data_generator/font/simfang.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[308,35]
+调整后[272,31]
+文件名：10val/336.png 
+--------------------
+截取内容[119715北京大信]，10
+background: paper2.png
+364 250
+width, height: 280,35
+font_color： [74, 71, 78]
+data_generator/font/msyhbd.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[280,35]
+调整后[256,32]
+文件名：10val/337.png 
+--------------------
+截取内容[责任公司(自然人投资]，10
+background: paper2.png
+364 250
+width, height: 280,35
+font_color： [48, 49, 41]
+data_generator/font/fzhtj.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[280,35]
+调整后[216,27]
+文件名：10val/338.png 
+--------------------
+截取内容[所有制木制品]，6
+background: paper2.png
+364 250
+width, height: 168,35
+font_color： [10, 13, 7]
+data_generator/font/STLITI.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5518>
+调整前[168,35]
+调整后[163,34]
+文件名：10val/339.png 
+--------------------
+截取内容[951850合肥市瑶]，10
+background: paper2.png
+364 250
+width, height: 280,35
+font_color： [27, 34, 25]
+data_generator/font/msyhbd.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf55f8>
+需要旋转
+调整前[280,35]
+调整后[256,32]
+文件名：10val/340.png 
+--------------------
+截取内容[1号2号楼302海淀分]，11
+background: paper2.png
+364 250
+width, height: 308,35
+font_color： [114, 113, 111]
+data_generator/font/STXINGKA.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[308,35]
+调整后[308,35]
+文件名：10val/341.png 
+--------------------
+截取内容[008-02-22802]，12
+background: paper1.png
+448 234
+width, height: 336,35
+font_color： [41, 46, 37]
+data_generator/font/华文细黑.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[336,35]
+调整后[326,34]
+文件名：10val/342.png 
+--------------------
+截取内容[然人投资或控股)]，8
+background: paper5.png
+448 234
+width, height: 224,35
+font_color： [138, 136, 144]
+data_generator/font/华文细黑.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[224,35]
+调整后[179,28]
+文件名：10val/343.png 
+--------------------
+截取内容[、开业、在册、在]，8
+background: paper1.png
+448 234
+width, height: 224,35
+font_color： [41, 36, 39]
+data_generator/font/simhei.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[224,35]
+调整后[192,30]
+文件名：10val/344.png 
+--------------------
+截取内容[1989-06]，7
+background: paper5.png
+448 234
+width, height: 196,35
+font_color： [102, 102, 108]
+data_generator/font/fzhtj.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[196,35]
+调整后[173,31]
+文件名：10val/345.png 
+--------------------
+截取内容[须经批准的项目，经]，9
+background: paper3.png
+612 426
+width, height: 252,35
+font_color： [133, 133, 138]
+data_generator/font/yahei_mono.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[252,35]
+调整后[187,26]
+文件名：10val/346.png 
+--------------------
+截取内容[车公庄大街]，5
+background: paper2.png
+364 250
+width, height: 140,35
+font_color： [50, 55, 55]
+data_generator/font/STSONG.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5dd8>
+调整前[140,35]
+调整后[116,29]
+文件名：10val/347.png 
+--------------------
+截取内容[配套服务；投资信息咨询服]，12
+background: paper5.png
+448 234
+width, height: 336,35
+font_color： [112, 104, 104]
+data_generator/font/fzdhj.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[336,35]
+调整后[326,34]
+文件名：10val/348.png 
+--------------------
+截取内容[、零配件、原辅]，7
+background: paper5.png
+448 234
+width, height: 196,35
+font_color： [75, 82, 84]
+data_generator/font/STSONG.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[196,35]
+调整后[162,29]
+文件名：10val/349.png 
+--------------------
+截取内容[-13有限责]，6
+background: paper4.png
+338 292
+width, height: 168,35
+font_color： [86, 87, 78]
+data_generator/font/STKAITI.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[168,35]
+调整后[124,26]
+文件名：10val/350.png 
+--------------------
+截取内容[）吊销吊销]，5
+background: paper2.png
+364 250
+width, height: 140,35
+font_color： [26, 33, 26]
+data_generator/font/simkai.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5ac8>
+调整前[140,35]
+调整后[124,31]
+文件名：10val/351.png 
+--------------------
+截取内容[业、在册、在业]，7
+background: paper3.png
+612 426
+width, height: 196,35
+font_color： [31, 25, 25]
+data_generator/font/simsun.ttc
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[196,35]
+调整后[190,34]
+文件名：10val/352.png 
+--------------------
+截取内容[吊销，未注销2007-1]，12
+background: paper5.png
+448 234
+width, height: 336,35
+font_color： [27, 28, 31]
+data_generator/font/Songti SC Regular.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[336,35]
+调整后[326,34]
+文件名：10val/353.png 
+--------------------
+截取内容[兴制衣有限公司汤大]，9
+background: paper4.png
+338 292
+width, height: 252,35
+font_color： [45, 46, 41]
+data_generator/font/SIMYOU.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[252,35]
+调整后[216,30]
+文件名：10val/354.png 
+--------------------
+截取内容[制作、发布国内广告业务，]，12
+background: paper4.png
+338 292
+width, height: 336,35
+font_color： [53, 52, 46]
+data_generator/font/simfang.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[336,35]
+调整后[268,28]
+文件名：10val/355.png 
+--------------------
+截取内容[及制品、冶金材料、冶金炉]，12
+background: paper3.png
+612 426
+width, height: 336,35
+font_color： [92, 92, 92]
+data_generator/font/FZYTK.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[336,35]
+调整后[259,27]
+文件名：10val/356.png 
+--------------------
+截取内容[470北京市通县第一]，10
+background: paper5.png
+448 234
+width, height: 280,35
+font_color： [74, 78, 80]
+data_generator/font/msyhbd.ttc
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cfa0f0>
+调整前[280,35]
+调整后[224,28]
+文件名：10val/357.png 
+--------------------
+截取内容[6100001]，7
+background: paper2.png
+364 250
+width, height: 196,35
+font_color： [118, 118, 111]
+data_generator/font/SIMYOU.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[196,35]
+调整后[151,27]
+文件名：10val/358.png 
+--------------------
+截取内容[2006-]，5
+background: paper3.png
+612 426
+width, height: 140,35
+font_color： [96, 91, 91]
+data_generator/font/simfang.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[140,35]
+调整后[136,34]
+文件名：10val/359.png 
+--------------------
+截取内容[3房海淀分局吊销吊]，9
+background: paper4.png
+338 292
+width, height: 252,35
+font_color： [145, 140, 148]
+data_generator/font/simhei.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[252,35]
+调整后[187,26]
+文件名：10val/360.png 
+--------------------
+截取内容[2863282603]，10
+background: paper5.png
+448 234
+width, height: 280,35
+font_color： [80, 84, 82]
+data_generator/font/STLITI.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[280,35]
+调整后[272,34]
+文件名：10val/361.png 
+--------------------
+截取内容[品、汽车配件、日用百货销]，12
+background: paper5.png
+448 234
+width, height: 336,35
+font_color： [38, 37, 38]
+data_generator/font/STXINWEI.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[336,35]
+调整后[259,27]
+文件名：10val/362.png 
+--------------------
+截取内容[贸有限公司杨洋有限]，9
+background: paper2.png
+364 250
+width, height: 252,35
+font_color： [130, 131, 132]
+data_generator/font/fzltxh.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[252,35]
+调整后[194,27]
+文件名：10val/363.png 
+--------------------
+截取内容[品副食, 烟, 水产品,]，12
+background: paper4.png
+338 292
+width, height: 336,35
+font_color： [51, 42, 50]
+data_generator/font/STZHONGS.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[336,35]
+调整后[326,34]
+文件名：10val/364.png 
+--------------------
+截取内容[茄烟）的零售；保健食]，10
+background: paper2.png
+364 250
+width, height: 280,35
+font_color： [101, 101, 107]
+data_generator/font/Songti SC Regular.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119ce3fd0>
+调整前[280,35]
+调整后[224,28]
+文件名：10val/365.png 
+--------------------
+截取内容[市中意装饰发]，6
+background: paper5.png
+448 234
+width, height: 168,35
+font_color： [79, 80, 74]
+data_generator/font/simkai.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf52e8>
+需要旋转
+调整前[168,35]
+调整后[129,27]
+文件名：10val/366.png 
+--------------------
+截取内容[189合肥市津]，7
+background: paper5.png
+448 234
+width, height: 196,35
+font_color： [132, 127, 130]
+data_generator/font/FZYTK.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[196,35]
+调整后[190,34]
+文件名：10val/367.png 
+--------------------
+截取内容[-08-2]，5
+background: paper5.png
+448 234
+width, height: 140,35
+font_color： [129, 139, 132]
+data_generator/font/simsun.ttc
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[140,35]
+调整后[140,35]
+文件名：10val/368.png 
+--------------------
+截取内容[-10-09150546]，12
+background: paper2.png
+364 250
+width, height: 336,35
+font_color： [49, 56, 53]
+data_generator/font/FZLTCHJW.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf57b8>
+调整前[336,35]
+调整后[336,35]
+文件名：10val/369.png 
+--------------------
+截取内容[纵横广告有限公]，7
+background: paper5.png
+448 234
+width, height: 196,35
+font_color： [66, 62, 61]
+data_generator/font/simsun.ttc
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[196,35]
+调整后[168,30]
+文件名：10val/370.png 
+--------------------
+截取内容[9050芜湖腾达物资再生]，12
+background: paper5.png
+448 234
+width, height: 336,35
+font_color： [107, 103, 103]
+data_generator/font/STSONG.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[336,35]
+调整后[336,35]
+文件名：10val/371.png 
+--------------------
+截取内容[销售。anhui2]，9
+background: paper1.png
+448 234
+width, height: 252,35
+font_color： [150, 147, 147]
+data_generator/font/simhei.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5780>
+调整前[252,35]
+调整后[237,33]
+文件名：10val/372.png 
+--------------------
+截取内容[料、劳保用品、]，7
+background: paper2.png
+364 250
+width, height: 196,35
+font_color： [40, 39, 46]
+data_generator/font/msyhbd.ttc
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf54e0>
+调整前[196,35]
+调整后[179,32]
+文件名：10val/373.png 
+--------------------
+截取内容[行政管理局吊]，6
+background: paper3.png
+612 426
+width, height: 168,35
+font_color： [10, 6, 3]
+data_generator/font/华文细黑.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[168,35]
+调整后[148,31]
+文件名：10val/374.png 
+--------------------
+截取内容[、在业）2014-0]，10
+background: paper1.png
+448 234
+width, height: 280,35
+font_color： [39, 39, 41]
+data_generator/font/华文细黑.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[280,35]
+调整后[280,35]
+文件名：10val/375.png 
+--------------------
+截取内容[销180675]，7
+background: paper4.png
+338 292
+width, height: 196,35
+font_color： [110, 115, 118]
+data_generator/font/STLITI.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5e80>
+需要旋转
+调整前[196,35]
+调整后[173,31]
+文件名：10val/376.png 
+--------------------
+截取内容[春商贸经销部王德春20]，11
+background: paper4.png
+338 292
+width, height: 308,35
+font_color： [98, 103, 94]
+data_generator/font/STFANGSO.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[308,35]
+调整后[299,34]
+文件名：10val/377.png 
+--------------------
+截取内容[01226910]，8
+background: paper2.png
+364 250
+width, height: 224,35
+font_color： [142, 140, 140]
+data_generator/font/STFANGSO.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[224,35]
+调整后[224,35]
+文件名：10val/378.png 
+--------------------
+截取内容[作制矿砂、钢砂、钢]，9
+background: paper3.png
+612 426
+width, height: 252,35
+font_color： [50, 57, 49]
+data_generator/font/msyhbd.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[252,35]
+调整后[201,28]
+文件名：10val/379.png 
+--------------------
+截取内容[、销售消防]，5
+background: paper2.png
+364 250
+width, height: 140,35
+font_color： [111, 115, 109]
+data_generator/font/simhei.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf50f0>
+调整前[140,35]
+调整后[112,28]
+文件名：10val/380.png 
+--------------------
+截取内容[司(国有控股)为]，8
+background: paper2.png
+364 250
+width, height: 224,35
+font_color： [87, 86, 84]
+data_generator/font/STHUPO.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[224,35]
+调整后[217,34]
+文件名：10val/381.png 
+--------------------
+截取内容[氯甲甲醚、盐酸、]，8
+background: paper2.png
+364 250
+width, height: 224,35
+font_color： [79, 79, 85]
+data_generator/font/simkai.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[224,35]
+调整后[166,26]
+文件名：10val/382.png 
+--------------------
+截取内容[区段瑞化妆品店shan6]，12
+background: paper5.png
+448 234
+width, height: 336,35
+font_color： [62, 63, 71]
+data_generator/font/msyhbd.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[336,35]
+调整后[268,28]
+文件名：10val/383.png 
+--------------------
+截取内容[7成都市现代建工科]，9
+background: paper5.png
+448 234
+width, height: 252,35
+font_color： [85, 87, 92]
+data_generator/font/msyh.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cfa128>
+调整前[252,35]
+调整后[237,33]
+文件名：10val/384.png 
+--------------------
+截取内容[册、在业）142887北]，12
+background: paper4.png
+338 292
+width, height: 336,35
+font_color： [87, 87, 89]
+data_generator/font/STXINGKA.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[336,35]
+调整后[278,29]
+文件名：10val/385.png 
+--------------------
+截取内容[存续存续（在营、开业]，10
+background: paper3.png
+612 426
+width, height: 280,35
+font_color： [77, 78, 82]
+data_generator/font/fzltxh.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[280,35]
+调整后[248,31]
+文件名：10val/386.png 
+--------------------
+截取内容[）粮油机械]，5
+background: paper5.png
+448 234
+width, height: 140,35
+font_color： [144, 151, 146]
+data_generator/font/simhei.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[140,35]
+调整后[112,28]
+文件名：10val/387.png 
+--------------------
+截取内容[局开业存续（]，6
+background: paper2.png
+364 250
+width, height: 168,35
+font_color： [82, 78, 84]
+data_generator/font/STZHONGS.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[168,35]
+调整后[163,34]
+文件名：10val/388.png 
+--------------------
+截取内容[开业、在册、在业）201]，12
+background: paper1.png
+448 234
+width, height: 336,35
+font_color： [159, 157, 152]
+data_generator/font/STFANGSO.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[336,35]
+调整后[336,35]
+文件名：10val/389.png 
+--------------------
+截取内容[危险品）、塑料制品、橡]，11
+background: paper1.png
+448 234
+width, height: 308,35
+font_color： [148, 151, 151]
+data_generator/font/STZHONGS.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[308,35]
+调整后[246,28]
+文件名：10val/390.png 
+--------------------
+截取内容[控股)beijing2]，11
+background: paper3.png
+612 426
+width, height: 308,35
+font_color： [33, 36, 38]
+data_generator/font/STSONG.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119ce3cf8>
+需要旋转
+调整前[308,35]
+调整后[308,35]
+文件名：10val/391.png 
+--------------------
+截取内容[0210541]，7
+background: paper4.png
+338 292
+width, height: 196,35
+font_color： [90, 85, 88]
+data_generator/font/fzltxh.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[196,35]
+调整后[196,35]
+文件名：10val/392.png 
+--------------------
+截取内容[食品有限责任公司]，8
+background: paper3.png
+612 426
+width, height: 224,35
+font_color： [77, 76, 81]
+data_generator/font/simsun.ttc
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[224,35]
+调整后[224,35]
+文件名：10val/393.png 
+--------------------
+截取内容[科技研究、]，5
+background: paper5.png
+448 234
+width, height: 140,35
+font_color： [74, 68, 71]
+data_generator/font/SIMLI.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[140,35]
+调整后[124,31]
+文件名：10val/394.png 
+--------------------
+截取内容[讯器材、纸张销售。]，9
+background: paper1.png
+448 234
+width, height: 252,35
+font_color： [52, 52, 50]
+data_generator/font/FZYTK.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[252,35]
+调整后[187,26]
+文件名：10val/395.png 
+--------------------
+截取内容[公司分公司(国有控]，9
+background: paper4.png
+338 292
+width, height: 252,35
+font_color： [141, 143, 139]
+data_generator/font/yahei_mono.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[252,35]
+调整后[230,32]
+文件名：10val/396.png 
+--------------------
+截取内容[资或控股)]，5
+background: paper2.png
+364 250
+width, height: 140,35
+font_color： [81, 82, 79]
+data_generator/font/hyqhj.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[140,35]
+调整后[104,26]
+文件名：10val/397.png 
+--------------------
+截取内容[有限责任公]，5
+background: paper3.png
+612 426
+width, height: 140,35
+font_color： [12, 14, 15]
+data_generator/font/FZYTK.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[140,35]
+调整后[104,26]
+文件名：10val/398.png 
+--------------------
+截取内容[enan2015-09-]，12
+background: paper1.png
+448 234
+width, height: 336,35
+font_color： [120, 116, 120]
+data_generator/font/simsun.ttc
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[336,35]
+调整后[307,32]
+文件名：10val/399.png 
+--------------------
+截取内容[心张连弘2004-03]，11
+background: paper5.png
+448 234
+width, height: 308,35
+font_color： [108, 103, 111]
+data_generator/font/msyhbd.ttc
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[308,35]
+调整后[308,35]
+文件名：10val/400.png 
+--------------------
+截取内容[建筑机械有]，5
+background: paper1.png
+448 234
+width, height: 140,35
+font_color： [48, 42, 45]
+data_generator/font/msyhbd.ttc
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[140,35]
+调整后[116,29]
+文件名：10val/401.png 
+--------------------
+截取内容[法人)轴承、]，6
+background: paper2.png
+364 250
+width, height: 168,35
+font_color： [28, 26, 26]
+data_generator/font/fzhtj.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[168,35]
+调整后[144,30]
+文件名：10val/402.png 
+--------------------
+截取内容[-30110221]，9
+background: paper1.png
+448 234
+width, height: 252,35
+font_color： [122, 123, 127]
+data_generator/font/STHUPO.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[252,35]
+调整后[187,26]
+文件名：10val/403.png 
+--------------------
+截取内容[eijing20]，8
+background: paper2.png
+364 250
+width, height: 224,35
+font_color： [20, 12, 13]
+data_generator/font/msyhbd.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[224,35]
+调整后[179,28]
+文件名：10val/404.png 
+--------------------
+截取内容[外琉璃厂西街17号西城]，11
+background: paper5.png
+448 234
+width, height: 308,35
+font_color： [81, 83, 76]
+data_generator/font/STXINGKA.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[308,35]
+调整后[308,35]
+文件名：10val/405.png 
+--------------------
+截取内容[003-11]，6
+background: paper1.png
+448 234
+width, height: 168,35
+font_color： [57, 54, 59]
+data_generator/font/Songti SC Regular.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[168,35]
+调整后[134,28]
+文件名：10val/406.png 
+--------------------
+截取内容[72号西安市]，6
+background: paper2.png
+364 250
+width, height: 168,35
+font_color： [83, 76, 73]
+data_generator/font/SIMYOU.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[168,35]
+调整后[124,26]
+文件名：10val/407.png 
+--------------------
+截取内容[务公司机械]，5
+background: paper1.png
+448 234
+width, height: 140,35
+font_color： [114, 105, 109]
+data_generator/font/STSONG.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[140,35]
+调整后[132,33]
+文件名：10val/408.png 
+--------------------
+截取内容[弋江区马塘市场监]，8
+background: paper3.png
+612 426
+width, height: 224,35
+font_color： [18, 22, 24]
+data_generator/font/SIMYOU.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[224,35]
+调整后[166,26]
+文件名：10val/409.png 
+--------------------
+截取内容[设备、电子]，5
+background: paper2.png
+364 250
+width, height: 140,35
+font_color： [123, 129, 122]
+data_generator/font/STKAITI.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[140,35]
+调整后[128,32]
+文件名：10val/410.png 
+--------------------
+截取内容[88黄山市一家人商贸有]，11
+background: paper4.png
+338 292
+width, height: 308,35
+font_color： [107, 107, 109]
+data_generator/font/STZHONGS.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cfa208>
+调整前[308,35]
+调整后[281,32]
+文件名：10val/411.png 
+--------------------
+截取内容[徽品尚品药]，5
+background: paper3.png
+612 426
+width, height: 140,35
+font_color： [6, 15, 7]
+data_generator/font/STKAITI.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[140,35]
+调整后[108,27]
+文件名：10val/412.png 
+--------------------
+截取内容[04-04-07410]，11
+background: paper3.png
+612 426
+width, height: 308,35
+font_color： [45, 48, 47]
+data_generator/font/yahei_mono.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[308,35]
+调整后[255,29]
+文件名：10val/413.png 
+--------------------
+截取内容[-21有限责]，6
+background: paper5.png
+448 234
+width, height: 168,35
+font_color： [7, 8, 5]
+data_generator/font/msyh.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[168,35]
+调整后[134,28]
+文件名：10val/414.png 
+--------------------
+截取内容[未注销吊销，未注销200]，12
+background: paper3.png
+612 426
+width, height: 336,35
+font_color： [125, 129, 124]
+data_generator/font/msyhbd.ttc
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[336,35]
+调整后[259,27]
+文件名：10val/415.png 
+--------------------
+截取内容[795532铜陵县苏]，10
+background: paper2.png
+364 250
+width, height: 280,35
+font_color： [11, 7, 13]
+data_generator/font/STXINGKA.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[280,35]
+调整后[240,30]
+文件名：10val/416.png 
+--------------------
+截取内容[营、开业、在册、在业]，10
+background: paper2.png
+364 250
+width, height: 280,35
+font_color： [60, 61, 56]
+data_generator/font/STHUPO.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[280,35]
+调整后[240,30]
+文件名：10val/417.png 
+--------------------
+截取内容[土特产品（专项审批]，9
+background: paper2.png
+364 250
+width, height: 252,35
+font_color： [75, 79, 77]
+data_generator/font/STXINWEI.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[252,35]
+调整后[201,28]
+文件名：10val/418.png 
+--------------------
+截取内容[）(有效期限以]，7
+background: paper2.png
+364 250
+width, height: 196,35
+font_color： [118, 113, 110]
+data_generator/font/STSONG.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[196,35]
+调整后[179,32]
+文件名：10val/419.png 
+--------------------
+截取内容[用建筑安装工程、室内]，10
+background: paper3.png
+612 426
+width, height: 280,35
+font_color： [102, 104, 104]
+data_generator/font/FZSTK.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[280,35]
+调整后[240,30]
+文件名：10val/420.png 
+--------------------
+截取内容[66315安]，6
+background: paper5.png
+448 234
+width, height: 168,35
+font_color： [59, 57, 55]
+data_generator/font/fzltxh.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[168,35]
+调整后[124,26]
+文件名：10val/421.png 
+--------------------
+截取内容[场路南皋乡朝阳分]，8
+background: paper3.png
+612 426
+width, height: 224,35
+font_color： [24, 26, 25]
+data_generator/font/MSYH.TTC
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[224,35]
+调整后[185,29]
+文件名：10val/422.png 
+--------------------
+截取内容[10已吊销吊销96]，9
+background: paper3.png
+612 426
+width, height: 252,35
+font_color： [70, 71, 74]
+data_generator/font/MSYH.TTC
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[252,35]
+调整后[223,31]
+文件名：10val/423.png 
+--------------------
+截取内容[16550北京市丰台区蒲]，12
+background: paper3.png
+612 426
+width, height: 336,35
+font_color： [21, 20, 24]
+data_generator/font/simfang.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[336,35]
+调整后[336,35]
+文件名：10val/424.png 
+--------------------
+截取内容[胸腔心血管]，5
+background: paper3.png
+612 426
+width, height: 140,35
+font_color： [148, 147, 152]
+data_generator/font/STKAITI.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[140,35]
+调整后[124,31]
+文件名：10val/425.png 
+--------------------
+截取内容[i2021-11-16]，11
+background: paper1.png
+448 234
+width, height: 308,35
+font_color： [62, 56, 60]
+data_generator/font/fzltxh.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[308,35]
+调整后[308,35]
+文件名：10val/426.png 
+--------------------
+截取内容[69359郎溪县人]，9
+background: paper3.png
+612 426
+width, height: 252,35
+font_color： [51, 55, 55]
+data_generator/font/SIMYOU.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[252,35]
+调整后[244,34]
+文件名：10val/427.png 
+--------------------
+截取内容[售。anhui201]，10
+background: paper4.png
+338 292
+width, height: 280,35
+font_color： [2, 1, 6]
+data_generator/font/simsun.ttc
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[280,35]
+调整后[248,31]
+文件名：10val/428.png 
+--------------------
+截取内容[2007-]，5
+background: paper1.png
+448 234
+width, height: 140,35
+font_color： [87, 88, 82]
+data_generator/font/FZYTK.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5748>
+调整前[140,35]
+调整后[124,31]
+文件名：10val/429.png 
+--------------------
+截取内容[具生产销售办公用品用具销]，12
+background: paper5.png
+448 234
+width, height: 336,35
+font_color： [46, 51, 43]
+data_generator/font/simhei.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[336,35]
+调整后[259,27]
+文件名：10val/430.png 
+--------------------
+截取内容[188860西安市高新]，11
+background: paper5.png
+448 234
+width, height: 308,35
+font_color： [19, 20, 14]
+data_generator/font/FZLTCHJW.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[308,35]
+调整后[290,33]
+文件名：10val/431.png 
+--------------------
+截取内容[活动；组织文化艺术]，9
+background: paper5.png
+448 234
+width, height: 252,35
+font_color： [21, 12, 18]
+data_generator/font/fzltxh.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[252,35]
+调整后[208,29]
+文件名：10val/432.png 
+--------------------
+截取内容[001-10-2]，8
+background: paper4.png
+338 292
+width, height: 224,35
+font_color： [73, 65, 69]
+data_generator/font/simfang.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[224,35]
+调整后[204,32]
+文件名：10val/433.png 
+--------------------
+截取内容[007-02-149]，10
+background: paper1.png
+448 234
+width, height: 280,35
+font_color： [52, 50, 47]
+data_generator/font/simkai.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[280,35]
+调整后[240,30]
+文件名：10val/434.png 
+--------------------
+截取内容[发；五金机电、电线电缆、]，12
+background: paper3.png
+612 426
+width, height: 336,35
+font_color： [100, 104, 99]
+data_generator/font/STZHONGS.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cfa5c0>
+调整前[336,35]
+调整后[307,32]
+文件名：10val/435.png 
+--------------------
+截取内容[经审批的未]，5
+background: paper1.png
+448 234
+width, height: 140,35
+font_color： [23, 19, 17]
+data_generator/font/STXINGKA.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[140,35]
+调整后[120,30]
+文件名：10val/436.png 
+--------------------
+截取内容[工艺玻璃制品]，6
+background: paper4.png
+338 292
+width, height: 168,35
+font_color： [99, 97, 99]
+data_generator/font/MSYH.TTC
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[168,35]
+调整后[153,32]
+文件名：10val/437.png 
+--------------------
+截取内容[4-07340500]，10
+background: paper3.png
+612 426
+width, height: 280,35
+font_color： [102, 107, 111]
+data_generator/font/华文细黑.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[280,35]
+调整后[240,30]
+文件名：10val/438.png 
+--------------------
+截取内容[069-07]，6
+background: paper5.png
+448 234
+width, height: 168,35
+font_color： [148, 147, 155]
+data_generator/font/fzdhj.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[168,35]
+调整后[153,32]
+文件名：10val/439.png 
+--------------------
+截取内容[03-09-15]，8
+background: paper3.png
+612 426
+width, height: 224,35
+font_color： [103, 105, 105]
+data_generator/font/STXINWEI.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cfa630>
+调整前[224,35]
+调整后[211,33]
+文件名：10val/440.png 
+--------------------
+截取内容[政管理局吊销]，6
+background: paper2.png
+364 250
+width, height: 168,35
+font_color： [106, 104, 112]
+data_generator/font/STKAITI.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[168,35]
+调整后[158,33]
+文件名：10val/441.png 
+--------------------
+截取内容[材料、经济]，5
+background: paper5.png
+448 234
+width, height: 140,35
+font_color： [44, 50, 50]
+data_generator/font/msyh.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[140,35]
+调整后[128,32]
+文件名：10val/442.png 
+--------------------
+截取内容[外）。 器械]，6
+background: paper4.png
+338 292
+width, height: 168,35
+font_color： [38, 44, 43]
+data_generator/font/simkai.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cfa588>
+调整前[168,35]
+调整后[139,29]
+文件名：10val/443.png 
+--------------------
+截取内容[917-x]，5
+background: paper2.png
+364 250
+width, height: 140,35
+font_color： [29, 35, 30]
+data_generator/font/STXINWEI.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cfa240>
+调整前[140,35]
+调整后[132,33]
+文件名：10val/444.png 
+--------------------
+截取内容[、制冷空调设]，6
+background: paper2.png
+364 250
+width, height: 168,35
+font_color： [134, 124, 131]
+data_generator/font/simhei.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[168,35]
+调整后[134,28]
+文件名：10val/445.png 
+--------------------
+截取内容[i1993-0]，7
+background: paper4.png
+338 292
+width, height: 196,35
+font_color： [152, 150, 145]
+data_generator/font/SIMYOU.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[196,35]
+调整后[145,26]
+文件名：10val/446.png 
+--------------------
+截取内容[、工业电加热炉。 销售五]，12
+background: paper4.png
+338 292
+width, height: 336,35
+font_color： [24, 31, 25]
+data_generator/font/SIMLI.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[336,35]
+调整后[316,33]
+文件名：10val/447.png 
+--------------------
+截取内容[7-08-0863010]，12
+background: paper5.png
+448 234
+width, height: 336,35
+font_color： [79, 82, 83]
+data_generator/font/STXINGKA.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[336,35]
+调整后[336,35]
+文件名：10val/448.png 
+--------------------
+截取内容[已吊销吊销18365]，10
+background: paper4.png
+338 292
+width, height: 280,35
+font_color： [116, 125, 121]
+data_generator/font/STXIHEI.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[280,35]
+调整后[216,27]
+文件名：10val/449.png 
+--------------------
+截取内容[871已吊销吊销1875]，12
+background: paper1.png
+448 234
+width, height: 336,35
+font_color： [102, 104, 96]
+data_generator/font/华文细黑.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[336,35]
+调整后[316,33]
+文件名：10val/450.png 
+--------------------
+截取内容[分局1538]，6
+background: paper1.png
+448 234
+width, height: 168,35
+font_color： [21, 19, 25]
+data_generator/font/hyqhj.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[168,35]
+调整后[124,26]
+文件名：10val/451.png 
+--------------------
+截取内容[顺义分局开业存续（在]，10
+background: paper5.png
+448 234
+width, height: 280,35
+font_color： [55, 49, 55]
+data_generator/font/STZHONGS.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[280,35]
+调整后[280,35]
+文件名：10val/452.png 
+--------------------
+截取内容[）、装饰材料、化工产品（]，12
+background: paper3.png
+612 426
+width, height: 336,35
+font_color： [142, 141, 143]
+data_generator/font/fzhtj.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[336,35]
+调整后[326,34]
+文件名：10val/453.png 
+--------------------
+截取内容[2002-09]，7
+background: paper2.png
+364 250
+width, height: 196,35
+font_color： [89, 85, 84]
+data_generator/font/fzmmt.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[196,35]
+调整后[162,29]
+文件名：10val/454.png 
+--------------------
+截取内容[；劳务服务。b]，7
+background: paper4.png
+338 292
+width, height: 196,35
+font_color： [136, 139, 134]
+data_generator/font/SIMYOU.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5b00>
+调整前[196,35]
+调整后[190,34]
+文件名：10val/455.png 
+--------------------
+截取内容[15827]，5
+background: paper3.png
+612 426
+width, height: 140,35
+font_color： [140, 138, 136]
+data_generator/font/msyh.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[140,35]
+调整后[124,31]
+文件名：10val/456.png 
+--------------------
+截取内容[1北京华丰汇菱汽车保]，10
+background: paper5.png
+448 234
+width, height: 280,35
+font_color： [17, 23, 19]
+data_generator/font/simhei.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[280,35]
+调整后[248,31]
+文件名：10val/457.png 
+--------------------
+截取内容[四川省信德利环境装饰]，10
+background: paper3.png
+612 426
+width, height: 280,35
+font_color： [44, 46, 46]
+data_generator/font/STFANGSO.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5278>
+需要旋转
+调整前[280,35]
+调整后[272,34]
+文件名：10val/458.png 
+--------------------
+截取内容[8808北京吉百川广]，10
+background: paper2.png
+364 250
+width, height: 280,35
+font_color： [148, 148, 150]
+data_generator/font/fzltxh.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5860>
+调整前[280,35]
+调整后[256,32]
+文件名：10val/459.png 
+--------------------
+截取内容[袁庄村1354]，7
+background: paper4.png
+338 292
+width, height: 196,35
+font_color： [75, 74, 72]
+data_generator/font/msyhbd.ttf
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5f28>
+调整前[196,35]
+调整后[179,32]
+文件名：10val/460.png 
+--------------------
+截取内容[、百货销售。anh]，9
+background: paper4.png
+338 292
+width, height: 252,35
+font_color： [62, 63, 62]
+data_generator/font/STXIHEI.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[252,35]
+调整后[230,32]
+文件名：10val/461.png 
+--------------------
+截取内容[许可证经营]，5
+background: paper4.png
+338 292
+width, height: 140,35
+font_color： [46, 47, 49]
+data_generator/font/simkai.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[140,35]
+调整后[108,27]
+文件名：10val/462.png 
+--------------------
+截取内容[能化系统集]，5
+background: paper2.png
+364 250
+width, height: 140,35
+font_color： [38, 38, 31]
+data_generator/font/msyhbd.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[140,35]
+调整后[140,35]
+文件名：10val/463.png 
+--------------------
+截取内容[空压机配件、机械铸造件。]，12
+background: paper2.png
+364 250
+width, height: 336,35
+font_color： [84, 81, 89]
+data_generator/font/STXIHEI.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[336,35]
+调整后[278,29]
+文件名：10val/464.png 
+--------------------
+截取内容[任公司(台港澳与境]，9
+background: paper2.png
+364 250
+width, height: 252,35
+font_color： [132, 132, 132]
+data_generator/font/FZSTK.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cfa2b0>
+需要旋转
+调整前[252,35]
+调整后[187,26]
+文件名：10val/465.png 
+--------------------
+截取内容[003-11-1]，8
+background: paper4.png
+338 292
+width, height: 224,35
+font_color： [67, 57, 60]
+data_generator/font/fzmmt.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[224,35]
+调整后[204,32]
+文件名：10val/466.png 
+--------------------
+截取内容[明峰1980-01]，9
+background: paper2.png
+364 250
+width, height: 252,35
+font_color： [155, 149, 157]
+data_generator/font/Songti SC Regular.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[252,35]
+调整后[237,33]
+文件名：10val/467.png 
+--------------------
+截取内容[目:网络通信、市]，8
+background: paper4.png
+338 292
+width, height: 224,35
+font_color： [80, 73, 77]
+data_generator/font/STXINGKA.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cfa8d0>
+调整前[224,35]
+调整后[204,32]
+文件名：10val/468.png 
+--------------------
+截取内容[02-12有限责任公]，10
+background: paper4.png
+338 292
+width, height: 280,35
+font_color： [38, 28, 38]
+data_generator/font/STXIHEI.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[280,35]
+调整后[264,33]
+文件名：10val/469.png 
+--------------------
+截取内容[销吊销，未]，5
+background: paper2.png
+364 250
+width, height: 140,35
+font_color： [51, 53, 53]
+data_generator/font/STSONG.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[140,35]
+调整后[104,26]
+文件名：10val/470.png 
+--------------------
+截取内容[有限责任公司(]，7
+background: paper5.png
+448 234
+width, height: 196,35
+font_color： [152, 146, 149]
+data_generator/font/msyhbd.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[196,35]
+调整后[196,35]
+文件名：10val/471.png 
+--------------------
+截取内容[，未注销吊销，未注]，9
+background: paper2.png
+364 250
+width, height: 252,35
+font_color： [87, 93, 90]
+data_generator/font/MSYH.TTC
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[252,35]
+调整后[230,32]
+文件名：10val/472.png 
+--------------------
+截取内容[）及策划；电子产品]，9
+background: paper2.png
+364 250
+width, height: 252,35
+font_color： [131, 132, 134]
+data_generator/font/STZHONGS.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[252,35]
+调整后[244,34]
+文件名：10val/473.png 
+--------------------
+截取内容[目除外）beiji]，9
+background: paper4.png
+338 292
+width, height: 252,35
+font_color： [119, 119, 113]
+data_generator/font/STXIHEI.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[252,35]
+调整后[252,35]
+文件名：10val/474.png 
+--------------------
+截取内容[460界首市]，6
+background: paper5.png
+448 234
+width, height: 168,35
+font_color： [101, 101, 107]
+data_generator/font/STHUPO.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[168,35]
+调整后[144,30]
+文件名：10val/475.png 
+--------------------
+截取内容[-06-281]，7
+background: paper3.png
+612 426
+width, height: 196,35
+font_color： [133, 139, 137]
+data_generator/font/SIMLI.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[196,35]
+调整后[179,32]
+文件名：10val/476.png 
+--------------------
+截取内容[批准的项目，经相关部门]，11
+background: paper1.png
+448 234
+width, height: 308,35
+font_color： [140, 143, 145]
+data_generator/font/FZLTCHJW.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[308,35]
+调整后[255,29]
+文件名：10val/477.png 
+--------------------
+截取内容[、服务；销]，5
+background: paper5.png
+448 234
+width, height: 140,35
+font_color： [42, 46, 42]
+data_generator/font/MSYH.TTC
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[140,35]
+调整后[140,35]
+文件名：10val/478.png 
+--------------------
+截取内容[气材料的销售。]，7
+background: paper2.png
+364 250
+width, height: 196,35
+font_color： [30, 27, 26]
+data_generator/font/simhei.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[196,35]
+调整后[156,28]
+文件名：10val/479.png 
+--------------------
+截取内容[电线电缆。sichuan]，12
+background: paper5.png
+448 234
+width, height: 336,35
+font_color： [35, 38, 35]
+data_generator/font/simfang.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[336,35]
+调整后[288,30]
+文件名：10val/480.png 
+--------------------
+截取内容[责任公司武齐龙2001-]，12
+background: paper4.png
+338 292
+width, height: 336,35
+font_color： [112, 111, 113]
+data_generator/font/SIMYOU.TTF
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[336,35]
+调整后[316,33]
+文件名：10val/481.png 
+--------------------
+截取内容[栋四楼401-404]，10
+background: paper3.png
+612 426
+width, height: 280,35
+font_color： [15, 20, 21]
+data_generator/font/simfang.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[280,35]
+调整后[256,32]
+文件名：10val/482.png 
+--------------------
+截取内容[jing2019-05]，11
+background: paper4.png
+338 292
+width, height: 308,35
+font_color： [24, 21, 21]
+data_generator/font/SIMYOU.TTF
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf52b0>
+需要旋转
+调整前[308,35]
+调整后[281,32]
+文件名：10val/483.png 
+--------------------
+截取内容[路青阳县市场监督管理局存]，12
+background: paper4.png
+338 292
+width, height: 336,35
+font_color： [83, 83, 79]
+data_generator/font/fzmmt.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[336,35]
+调整后[326,34]
+文件名：10val/484.png 
+--------------------
+截取内容[6-024]，5
+background: paper5.png
+448 234
+width, height: 140,35
+font_color： [89, 90, 85]
+data_generator/font/msyhbd.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+需要旋转
+调整前[140,35]
+调整后[128,32]
+文件名：10val/485.png 
+--------------------
+截取内容[生许可证有效期]，7
+background: paper3.png
+612 426
+width, height: 196,35
+font_color： [153, 151, 155]
+data_generator/font/STSONG.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[196,35]
+调整后[162,29]
+文件名：10val/486.png 
+--------------------
+截取内容[2002-06-1]，9
+background: paper1.png
+448 234
+width, height: 252,35
+font_color： [96, 91, 87]
+data_generator/font/msyhbd.ttc
+模糊函数：<PIL.ImageFilter.GaussianBlur object at 0x119cf5198>
+调整前[252,35]
+调整后[223,31]
+文件名：10val/487.png 
+--------------------
+截取内容[27有限责任]，6
+background: paper2.png
+364 250
+width, height: 168,35
+font_color： [28, 36, 29]
+data_generator/font/msyh.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[168,35]
+调整后[153,32]
+文件名：10val/488.png 
+--------------------
+截取内容[北京市平谷区]，6
+background: paper1.png
+448 234
+width, height: 168,35
+font_color： [87, 89, 82]
+data_generator/font/STHUPO.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+需要旋转
+调整前[168,35]
+调整后[158,33]
+文件名：10val/489.png 
+--------------------
+截取内容[盟村桐城市市]，6
+background: paper4.png
+338 292
+width, height: 168,35
+font_color： [128, 125, 127]
+data_generator/font/yahei_mono.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+调整前[168,35]
+调整后[168,35]
+文件名：10val/490.png 
+--------------------
+截取内容[01053950]，8
+background: paper2.png
+364 250
+width, height: 224,35
+font_color： [38, 28, 35]
+data_generator/font/msyh.ttf
+模糊函数：<class 'PIL.ImageFilter.SMOOTH'>
+需要旋转
+调整前[224,35]
+调整后[185,29]
+文件名：10val/491.png 
+--------------------
+截取内容[12-0656]，7
+background: paper4.png
+338 292
+width, height: 196,35
+font_color： [61, 61, 56]
+data_generator/font/华文细黑.ttf
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[196,35]
+调整后[173,31]
+文件名：10val/492.png 
+--------------------
+截取内容[内经营）；竹木制品、]，10
+background: paper3.png
+612 426
+width, height: 280,35
+font_color： [79, 86, 81]
+data_generator/font/STFANGSO.TTF
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[280,35]
+调整后[240,30]
+文件名：10val/493.png 
+--------------------
+截取内容[。anhui19]，8
+background: paper1.png
+448 234
+width, height: 224,35
+font_color： [61, 52, 52]
+data_generator/font/FZSTK.TTF
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[224,35]
+调整后[192,30]
+文件名：10val/494.png 
+--------------------
+截取内容[办公设备、交电]，7
+background: paper3.png
+612 426
+width, height: 196,35
+font_color： [36, 32, 28]
+data_generator/font/SIMLI.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[196,35]
+调整后[151,27]
+文件名：10val/495.png 
+--------------------
+截取内容[9-10-12集体所]，10
+background: paper1.png
+448 234
+width, height: 280,35
+font_color： [64, 66, 64]
+data_generator/font/simkai.ttf
+模糊函数：<class 'PIL.ImageFilter.DETAIL'>
+调整前[280,35]
+调整后[280,35]
+文件名：10val/496.png 
+--------------------
+截取内容[京市朝阳区望京中环南]，10
+background: paper1.png
+448 234
+width, height: 280,35
+font_color： [43, 53, 51]
+data_generator/font/simkai.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+需要旋转
+调整前[280,35]
+调整后[272,34]
+文件名：10val/497.png 
+--------------------
+截取内容[D中央广场2幢1]，8
+background: paper1.png
+448 234
+width, height: 224,35
+font_color： [139, 136, 138]
+data_generator/font/yahei_mono.ttf
+模糊函数：<class 'PIL.ImageFilter.EDGE_ENHANCE'>
+调整前[224,35]
+调整后[166,26]
+文件名：10val/498.png 
+--------------------
+截取内容[销售业务代理，快]，8
+background: paper3.png
+612 426
+width, height: 224,35
+font_color： [82, 86, 88]
+data_generator/font/fzltxh.TTF
+模糊函数：<class 'PIL.ImageFilter.SHARPEN'>
+调整前[224,35]
+调整后[179,28]
+文件名：10val/499.png 
+--------------------
