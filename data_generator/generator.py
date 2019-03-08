@@ -20,6 +20,7 @@ MAX_LENGTH=12   # 可能的最大长度（字符数）
 MIN_LENGTH=5    # 可能的最小长度（字符数）
 MAX_HEIGHT=35   # 最大的高度（像素）
 MIN_HEIGHT=26   # 最大的高度（像素）
+
 # 颜色的算法是，产生一个基准，然后RGB上下浮动FONT_COLOR_NOISE
 MAX_FONT_COLOR = 150    # 最大的可能颜色
 FONT_COLOR_NOISE = 10   # 最大的可能颜色
