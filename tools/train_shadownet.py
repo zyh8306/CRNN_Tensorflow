@@ -56,7 +56,9 @@ def read_labeled_image_list(image_list_file):
     filenames = []
     labels = []
     for line in f:
-        filename, label = line[:-1].split(' ')
+        # logger.debug("line=%s",line)
+        # filename, label = line[:-1].split(' ')
+        filename , _ , label = line[:-1].partition(' ') # partition函数只读取第一次出现的标志，分为左右两个部分,[:-1]去掉回车
         filenames.append(filename)
         labels.append(label)
     return filenames, labels
@@ -82,6 +84,9 @@ def convert_to_id(labels,characters):
     for one in labels:
         # print(one)
         one = one.replace('；', ';') # ;和；不分，在词表里只有一个;
+        one = one.replace('：',':')
+        one = one.replace('＊','*')
+        one = one.replace('〓','=')
         _lables.append( [characters.index(l) for l in one] )
     return _lables
 

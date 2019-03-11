@@ -26,8 +26,8 @@ class FeatureIO(object):
         Implement the base writer class
     """
     def __init__(self, char_dict_path, ord_map_dict_path):
-        self.__char_dict = establish_char_dict.CharDictBuilder.read_char_dict(char_dict_path)
-        self.__ord_map = establish_char_dict.CharDictBuilder.read_ord_map_dict(ord_map_dict_path)
+        #self.__char_dict = establish_char_dict.CharDictBuilder.read_char_dict(char_dict_path)
+        #self.__ord_map = establish_char_dict.CharDictBuilder.read_ord_map_dict(ord_map_dict_path)
         return
 
     @property
