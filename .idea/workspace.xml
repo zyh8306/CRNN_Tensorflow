@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9d7162d6-97d8-473f-b2c9-42b0ff26d2fe" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/char_std_5990.txt" afterPath="$PROJECT_DIR$/char_std_5990.txt" />
-      <change beforePath="$PROJECT_DIR$/global_configuration/config.py" afterPath="$PROJECT_DIR$/global_configuration/config.py" />
-      <change beforePath="$PROJECT_DIR$/imgen.sh" afterPath="$PROJECT_DIR$/imgen.sh" />
-      <change beforePath="$PROJECT_DIR$/local_utils/data_utils.py" afterPath="$PROJECT_DIR$/local_utils/data_utils.py" />
-      <change beforePath="$PROJECT_DIR$/tools/train_shadownet.py" afterPath="$PROJECT_DIR$/tools/train_shadownet.py" />
-    </list>
+    <list default="true" id="9d7162d6-97d8-473f-b2c9-42b0ff26d2fe" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />

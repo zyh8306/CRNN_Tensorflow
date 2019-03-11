@@ -1,0 +1,9 @@
+if [ "$1" = "" ]; then
+    echo "Usage: submit <注释>"
+    exit -1
+fi
+#echo "$*"
+
+git add .
+git commit -m"$*"
+git push
