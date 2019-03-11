@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9d7162d6-97d8-473f-b2c9-42b0ff26d2fe" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/char_std_5990.txt" afterPath="$PROJECT_DIR$/char_std_5990.txt" />
+      <change beforePath="$PROJECT_DIR$/global_configuration/config.py" afterPath="$PROJECT_DIR$/global_configuration/config.py" />
+      <change beforePath="$PROJECT_DIR$/imgen.sh" afterPath="$PROJECT_DIR$/imgen.sh" />
       <change beforePath="$PROJECT_DIR$/local_utils/data_utils.py" afterPath="$PROJECT_DIR$/local_utils/data_utils.py" />
       <change beforePath="$PROJECT_DIR$/tools/train_shadownet.py" afterPath="$PROJECT_DIR$/tools/train_shadownet.py" />
     </list>
@@ -23,7 +25,7 @@
         <entry file="file://$PROJECT_DIR$/char_std_5990.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -51,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="train_shadownet.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="train_shadownet.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tools/train_shadownet.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="673">
-              <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+            <state relative-caret-position="128">
+              <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
               <folding>
                 <element signature="e#231#240#0" expanded="true" />
               </folding>
@@ -73,11 +75,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="data_utils.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="data_utils.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/local_utils/data_utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2812">
-              <caret line="28" column="17" lean-forward="false" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
+            <state relative-caret-position="228">
+              <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
               <folding>
                 <element signature="e#289#312#0" expanded="true" />
               </folding>
@@ -109,7 +111,7 @@
         <entry file="file://$PROJECT_DIR$/global_configuration/config.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="424">
-              <caret line="47" column="41" lean-forward="true" selection-start-line="47" selection-start-column="41" selection-end-line="47" selection-end-column="41" />
+              <caret line="47" column="41" lean-forward="false" selection-start-line="47" selection-start-column="41" selection-end-line="47" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -204,9 +206,9 @@
         <option value="$PROJECT_DIR$/train.sh" />
         <option value="$PROJECT_DIR$/global_configuration/config.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/local_utils/data_utils.py" />
         <option value="$PROJECT_DIR$/char_std_5990.txt" />
         <option value="$PROJECT_DIR$/tools/train_shadownet.py" />
+        <option value="$PROJECT_DIR$/local_utils/data_utils.py" />
       </list>
     </option>
   </component>
@@ -979,18 +981,8 @@
     <entry file="file://$PROJECT_DIR$/global_configuration/config.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="424">
-          <caret line="47" column="41" lean-forward="true" selection-start-line="47" selection-start-column="41" selection-end-line="47" selection-end-column="41" />
+          <caret line="47" column="41" lean-forward="false" selection-start-line="47" selection-start-column="41" selection-end-line="47" selection-end-column="41" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/local_utils/data_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2812">
-          <caret line="28" column="17" lean-forward="false" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
-          <folding>
-            <element signature="e#289#312#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1007,17 +999,27 @@
     <entry file="file://$PROJECT_DIR$/char_std_5990.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tools/train_shadownet.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="673">
-          <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+        <state relative-caret-position="128">
+          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
           <folding>
             <element signature="e#231#240#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/local_utils/data_utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding>
+            <element signature="e#289#312#0" expanded="true" />
           </folding>
         </state>
       </provider>
