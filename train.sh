@@ -6,6 +6,7 @@
 
 python \
     -m tools.train_shadownet \
-    --dataset_dir=data
-#    --weights_path=model/shadownet/shadownet_2017-10-17-11-47-46.ckpt-199999
+    --dataset_dir=data \
+    --weights_path=model/shadownet/shadownet_2019-03-11-15-13-38.ckpt-8 \
+    >> /logs/crnn.log 2>&1
 
