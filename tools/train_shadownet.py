@@ -93,7 +93,6 @@ def convert_to_id(labels,characters):
 
         # print(one)
         one = one.replace('；', ';') # ;和；不分，在词表里只有一个;
-<<<<<<< HEAD
         one = one.replace('＊','*')
         one = one.replace('〓','=')
         one = one.replace('：',':')
@@ -102,11 +101,6 @@ def convert_to_id(labels,characters):
             logger.error("[%s]从labels样本无效",one)
             continue
 
-=======
-        one = one.replace('：',':')
-        one = one.replace('＊','*')
-        one = one.replace('〓','=')
->>>>>>> d507c4b241306b091a4993cc14691b9e357de0f0
         _lables.append( [characters.index(l) for l in one] )
 
     return _lables
