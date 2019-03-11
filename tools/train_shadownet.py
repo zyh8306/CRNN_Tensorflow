@@ -56,7 +56,8 @@ def read_labeled_image_list(image_list_file):
     filenames = []
     labels = []
     for line in f:
-        filename, label = line[:-1].split(' ')
+        logger.debug("line=%s",line)
+        filename , _ , label = line.partition(' ') # partition函数只读取第一次出现的标志，分为左右两个部分
         filenames.append(filename)
         labels.append(label)
     return filenames, labels
@@ -73,6 +74,13 @@ def read_images_from_disk(input_queue,characters):
 
     return example, labels
 
+def _is_all_words_in_dict(words,dict):
+    for l in words:
+        if l not in dict:
+            logger.error("这个字[%s]不在词表里！", l)
+            return False
+    return True
+
 
 # labels是所有的标签的数组['我爱北京','我爱天安门',...,'他说的法定']
 # characters:词表
@@ -80,9 +88,20 @@ def convert_to_id(labels,characters):
 
     _lables = []
     for one in labels:
+        _original_one = one
+
         # print(one)
         one = one.replace('；', ';') # ;和；不分，在词表里只有一个;
+        one = one.replace('＊','*')
+        one = one.replace('〓','=')
+        one = one.replace('：',':')
+
+        if not _is_all_words_in_dict(one, characters):
+            logger.error("[%s]从labels样本无效",one)
+            continue
+
         _lables.append( [characters.index(l) for l in one] )
+
     return _lables
 
 # 原文：https://blog.csdn.net/he_wen_jie/article/details/80586345
