@@ -432,7 +432,10 @@ def train_shadownet(dataset_dir, weights_path=None, num_threads=4):
                     epoch + 1, c, seq_distance, accuracy))
 
             summary_writer.add_summary(summary=summary, global_step=epoch)
-            saver.save(sess=sess, save_path=model_save_path, global_step=epoch)
+
+            if (epoch + 1) % 100 == 0:
+                # 每隔100个epochs，存一次模型
+                saver.save(sess=sess, save_path=model_save_path, global_step=epoch)
 
         coord.request_stop()
         coord.join(threads=threads)
