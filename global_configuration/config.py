@@ -33,6 +33,8 @@ __C.TRAIN = edict()
 __C.TRAIN.EPOCHS = 10000
 # Set the display step
 __C.TRAIN.DISPLAY_STEP = 1
+# Set the checkpoint interval steps
+__C.TRAIN.CHECKPOINT_STEP = 20
 # Set the test display step during training process
 __C.TRAIN.TEST_DISPLAY_STEP = 100
 # Set the momentum parameter of the optimizer

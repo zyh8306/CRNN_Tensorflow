@@ -433,7 +433,8 @@ def train_shadownet(dataset_dir, weights_path=None, num_threads=4):
 
             summary_writer.add_summary(summary=summary, global_step=epoch)
 
-            if (epoch + 1) % 100 == 0:
+            # 10万个样本，一个epoch是3.5分钟，CHECKPOINT_STEP=20，大约是70分钟存一次
+            if epoch % config.cfg.CHECKPOINT_STEP == 0:
                 # 每隔100个epochs，存一次模型
                 saver.save(sess=sess, save_path=model_save_path, global_step=epoch)
 
