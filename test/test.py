@@ -53,6 +53,25 @@ def test_expand_array():
     print (new_data)
 
 
+def process_unknown_charactors(sentence):
+    unkowns = "０１２３４５６７８９ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ！＠＃＄％＾＆＊（）－＿＋＝｛｝［］｜＼＜＞，．。；：､？／"
+    knows = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()-_+={}[]|\<>,.。;:、?/"
+
+    result = ""
+    for one in sentence:
+
+        i = unkowns.find(one)
+
+        if i == -1:
+            letter = one
+        else:
+            letter = knows[i]
+
+        result += letter
+    return result
+
+
 if __name__ == '__main__':
     # test_sparse_tuple_from()
-    test_expand_array()
+    #test_expand_array()
+    print(process_unknown_charactors("０我爱北京［天安门］Ａ"))

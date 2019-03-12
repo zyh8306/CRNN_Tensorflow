@@ -13,7 +13,7 @@ import os
 # 设置各种的参数：
 # #############
 
-DEBUG=True
+DEBUG=False
 ROOT="data_generator"   # 定义运行时候的数据目录，原因是imgen.sh在根部运行
 DATA_DIR="data"
 MAX_LENGTH=12   # 可能的最大长度（字符数）
@@ -216,7 +216,7 @@ if __name__ == '__main__':
         main(label_dir, num, label_file)
         if DEBUG: print("--------------------")
         if num % 1000 == 0:
-            if DEBUG: print('[%d/%d]'%(num,total))
+            print('生成了样本[%d/%d]'%(num,total))
     file.close()
 
 

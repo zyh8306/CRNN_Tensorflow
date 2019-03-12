@@ -51,16 +51,29 @@ def get_file_list(dir):
     return file_names
 
 
-def read_labeled_image_list(image_list_file):
+def read_labeled_image_list(image_list_file,dict):
     f = open(image_list_file, 'r')
     filenames = []
     labels = []
+    # 从文件中读取样本路径和标签值
+    # >data/train/21.png )beiji
+    # >data/train/22.png 市平谷区金海
+    # >data/train/23.png 江中路53
     for line in f:
         # logger.debug("line=%s",line)
         # filename, label = line[:-1].split(' ')
         filename , _ , label = line[:-1].partition(' ') # partition函数只读取第一次出现的标志，分为左右两个部分,[:-1]去掉回车
+
+        label = process_unknown_charactors(label,dict)
+
+        # 如果此样本属于剔除样本，忽略之
+        if label is None: continue
+
         filenames.append(filename)
         labels.append(label)
+
+    logger.info("最终样本标签数量[%d],样本图像数量[%d]",len(labels),len(filenames))
+
     return filenames, labels
 
 
@@ -75,12 +88,30 @@ def read_images_from_disk(input_queue,characters):
 
     return example, labels
 
-def _is_all_words_in_dict(words,dict):
-    for l in words:
-        if l not in dict:
-            logger.error("这个字[%s]不在词表里！", l)
-            return False
-    return True
+def process_unknown_charactors(sentence,dict):
+    unkowns = "０１２３４５６７８９ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ！＠＃＄％＾＆＊（）－＿＋＝｛｝［］｜＼＜＞，．。；：､？／"
+    knows = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()-_+={}[]|\<>,.。;:、?/"
+
+    result = ""
+    for one in sentence:
+        # 对一些特殊字符进行替换，替换成词表的词
+        i = unkowns.find(one)
+        if i==-1:
+            letter = one
+        else:
+            letter = knows[i]
+            logger.debug("字符[%s]被替换成[%s]", one, letter)
+
+        # 看是否在里面
+        if letter not in dict:
+            logger.error("句子[%s]的字[%s]不属于词表,剔除此样本",sentence,letter)
+            return None
+
+        result+= letter
+    return result
+
+
+
 
 
 # labels是所有的标签的数组['我爱北京','我爱天安门',...,'他说的法定']
@@ -89,18 +120,6 @@ def convert_to_id(labels,characters):
 
     _lables = []
     for one in labels:
-        _original_one = one
-
-        # print(one)
-        one = one.replace('；', ';') # ;和；不分，在词表里只有一个;
-        one = one.replace('＊','*')
-        one = one.replace('〓','=')
-        one = one.replace('：',':')
-
-        if not _is_all_words_in_dict(one, characters):
-            logger.error("[%s]从labels样本无效",one)
-            continue
-
         _lables.append( [characters.index(l) for l in one] )
 
     return _lables
@@ -184,24 +203,17 @@ def train_shadownet(dataset_dir, weights_path=None, num_threads=4):
     # 参考：https://saicoco.github.io/tf3/
     # 参考：https://stackoverflow.com/questions/34340489/tensorflow-read-images-with-labels
 
-    image_file_names, labels = read_labeled_image_list("data/train.txt")
+    image_file_names, labels = read_labeled_image_list("data/train.txt",characters)
     # logger.debug("读出")
     # logger.debug("image_file_names")
     # logger.debug(image_file_names)
     # logger.debug("lables")
     # logger.debug(labels)
 
-    # # 返回一个队列，同时一个绑定该队列的QueueRunner会被加入到graph 的QueueRunner中
-    # filename_queue = tf.train.string_input_producer(file_list)
-    # reader = tf.TextLineReader()
-    # image_file_names, labels = reader.read(filename_queue)
-    # logger.debug("image_file_names, labels")
-    # logger.debug(image_file_names)
-    # logger.debug(labels)
-
+    # 把图像路径转化成张量
     image_file_names_tensor = tf.convert_to_tensor(image_file_names, dtype=tf.string)
+    # 把标签变成词表ID
     labels = convert_to_id(labels, characters)
-
     labels = expand_array(labels)
     labels_tensor = tf.convert_to_tensor(labels, dtype=tf.int32)
 
@@ -247,6 +259,9 @@ def train_shadownet(dataset_dir, weights_path=None, num_threads=4):
     images, labels = read_images_from_disk(input_queue,characters)
     labels = _to_sparse_tensor(labels)
 
+    # capacity是这个queue的大小，min_after_dequeue出queue里面最少元素
+    # 一旦新的进来填充满，还要做一次shuffle，然后再出队，直到剩min_after_dequeue的数量
+    # https://blog.csdn.net/ying86615791/article/details/73864381
     images, labels = tf.train.shuffle_batch(
         tensors=[images, labels],
         batch_size=config.cfg.TRAIN.BATCH_SIZE,
@@ -257,7 +272,6 @@ def train_shadownet(dataset_dir, weights_path=None, num_threads=4):
     # 这块，把批次给转给inputdata了，直接就进入图的构建了
     # 并没有一个类似于传统feed_dict的绑定过程
     inputdata = tf.cast(x=images, dtype=tf.float32) # tf.cast：用于改变某个张量的数据类型
-
 
     # initialise the net model
     shadownet = crnn_model.ShadowNet(phase='Train',
