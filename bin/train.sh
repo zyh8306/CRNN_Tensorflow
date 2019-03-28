@@ -3,8 +3,8 @@ CUDA_VISIBLE_DEVICES=0 \
 python \
     -m tools.train_shadownet \
     --dataset_dir=data \
-    --validate_steps=10 \
-    --debug=True
+    --validate_steps=1 \
+    --debug=True \
+    >> ./logs/crnn.log 2>&1
 #    --weights_path=model/shadownet/shadownet_2019-03-11-15-13-38.ckpt-8 \
-#    >> ./logs/crnn.log 2>&1
 

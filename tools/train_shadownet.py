@@ -220,7 +220,7 @@ def train_shadownet(dataset_dir, weights_path=None, num_threads=4):
             if epoch % FLAGS.validate_steps == 0:
                 _, c, seq_distance, preds, labels_sparse, summary = sess.run(
                     [optimizer, cost, sequence_dist, decoded, train_labels_tensor, merge_summary_op])
-                _accuracy = caculate_accuracy(preds, labels_sparse)
+                _accuracy = caculate_accuracy(preds, labels_sparse,characters)
                 tf.assign(accuracy, _accuracy) # 更新正确率变量
                 logger.info('Epoch: {:d} Train accuracy= {:9f}'.format(epoch + 1, _accuracy))
             else:

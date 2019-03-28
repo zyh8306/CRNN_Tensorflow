@@ -30,7 +30,7 @@ __C.ARCH.INPUT_SIZE = (32, 256) # 宽都统一了？，对，我看了几个别�
 __C.TRAIN = edict()
 
 # Set the shadownet training epochs
-__C.TRAIN.EPOCHS = 400
+__C.TRAIN.EPOCHS = 1000
 # Set the display step
 __C.TRAIN.DISPLAY_STEP = 10
 # Set the checkpoint interval steps
