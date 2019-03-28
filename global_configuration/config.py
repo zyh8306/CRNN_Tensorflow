@@ -22,7 +22,7 @@ __C.ARCH.HIDDEN_UNITS = 256
 # Number of stacked LSTM cells
 __C.ARCH.HIDDEN_LAYERS = 2
 # Sequence length.  This has to be the width of the final feature map of the CNN, which is input size width / 4
-__C.ARCH.SEQ_LENGTH = 25
+__C.ARCH.SEQ_LENGTH = 64
 # Width x height into which training / testing images are resized before feeding into the network
 __C.ARCH.INPUT_SIZE = (32, 256) # 宽都统一了？，对，我看了几个别的crnn的项目代码，都是这样做的
 
@@ -32,7 +32,7 @@ __C.TRAIN = edict()
 # Set the shadownet training epochs
 __C.TRAIN.EPOCHS = 400
 # Set the display step
-__C.TRAIN.DISPLAY_STEP = 1
+__C.TRAIN.DISPLAY_STEP = 10
 # Set the checkpoint interval steps
 __C.TRAIN.CHECKPOINT_STEP = 20
 # Set the test display step during training process

@@ -12,9 +12,30 @@ import logging
 from logging import handlers
 import os
 import os.path as ops
+import tensorflow as tf
+import datetime
+FLAGS = tf.app.flags.FLAGS
+
+def _p(tensor,msg):
+    if (FLAGS.debug):
+        dt = datetime.datetime.now().strftime('TF_DEBUG: %m-%d %H:%M:%S: ')
+        msg = dt +  msg
+        return tf.Print(tensor, [tensor], msg,summarize= 100)
+    else:
+        return tensor
 
 
-def init_logger(level=logging.DEBUG, when="D", backup=7,
+def _p_shape(tensor,msg):
+    if (FLAGS.debug):
+        dt = datetime.datetime.now().strftime('TF_DEBUG: %m-%d %H:%M:%S: ')
+        msg = dt +  msg
+        return tf.Print(tensor, [tf.shape(tensor)], msg,summarize= 100)
+    else:
+        return tensor
+
+def init_logger(level=logging.DEBUG,
+                when="D",
+                backup=7,
                 _format="%(levelname)s: %(asctime)s: %(filename)s:%(lineno)d * %(thread)d %(message)s",
                 datefmt="%m-%d %H:%M:%S"):
     """
@@ -35,27 +56,23 @@ def init_logger(level=logging.DEBUG, when="D", backup=7,
     :param datefmt:
     :return:
     """
-    formatter = logging.Formatter(_format, datefmt)
-    logger = logging.getLogger()
-    logger.setLevel(level)
-
     log_path = ops.join(os.getcwd(), 'logs/shadownet.log')
     _dir = os.path.dirname(log_path)
     if not os.path.isdir(_dir):
         os.makedirs(_dir)
 
-    handler = handlers.TimedRotatingFileHandler(log_path, when=when, backupCount=backup)
-    handler.setLevel(level)
-    handler.setFormatter(formatter)
-    logger.addHandler(handler)
+    logger = logging.getLogger()
+    if not logger.handlers:
+        formatter = logging.Formatter(_format, datefmt)
+        logger.setLevel(level)
 
-    handler = handlers.TimedRotatingFileHandler(log_path + ".log.wf", when=when, backupCount=backup)
-    handler.setLevel(logging.WARNING)
-    handler.setFormatter(formatter)
-    logger.addHandler(handler)
+        handler = handlers.TimedRotatingFileHandler(log_path, when=when, backupCount=backup)
+        handler.setLevel(level)
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
 
-    handler = logging.StreamHandler()
-    handler.setLevel(level)
-    handler.setFormatter(formatter)
-    logger.addHandler(handler)
+        handler = logging.StreamHandler()
+        handler.setLevel(level)
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
     return logger

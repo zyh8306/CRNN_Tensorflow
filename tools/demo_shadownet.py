@@ -25,21 +25,11 @@ from local_utils import log_utils, data_utils
 
 logger = log_utils.init_logger()
 
-
-def init_args() -> argparse.Namespace:
-    """
-
-    :return:
-    """
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--image_path', type=str, help='Where you store the image',
-                        default='data/test_images/test_01.jpg')
-    parser.add_argument('--weights_path', type=str, help='Where you store the weights',
-                        default='model/shadownet/shadownet_2017-09-29-19-16-33.ckpt-39999')
-    parser.add_argument('-c', '--num_classes', type=int, default=37,
-                        help='Force number of character classes to this number. Set to 0 for auto.')
-
-    return parser.parse_args()
+tf.app.flags.DEFINE_boolean('debug', False, 'debug mode')
+tf.app.flags.DEFINE_string('image_path', '', ' data dir')
+tf.app.flags.DEFINE_string('weights_path', None, 'model path')
+tf.app.flags.DEFINE_integer('num_classes', 9, '')
+FLAGS = tf.app.flags.FLAGS
 
 
 def recognize(image_path: str, weights_path: str, is_vis: bool=True, num_classes: int=0):
@@ -51,16 +41,24 @@ def recognize(image_path: str, weights_path: str, is_vis: bool=True, num_classes
     :param num_classes:
     """
 
+    # image读出来是H,W,C
     image = cv2.imread(image_path, cv2.IMREAD_COLOR)
 
-    image = cv2.resize(image, tuple(config.cfg.ARCH.INPUT_SIZE))
+    # size要求是(Width,Height)，但是定义的是Height,Width
+    size = (config.cfg.ARCH.INPUT_SIZE[1],config.cfg.ARCH.INPUT_SIZE[0])
+
+    # size 的格式是(w,h)，这个和cv2的格式是不一样的，他的是(H,W,C)，看，反的
+    image = cv2.resize(image, size)
+
+    cv2.imwrite(image_path+".resize.png",image)
+
     image = np.expand_dims(image, axis=0).astype(np.float32) #增加第一个维度，变成了(1,32,100,3),1就是expand_dims的功劳
 
-    w, h = config.cfg.ARCH.INPUT_SIZE #100，32
+    h,w = config.cfg.ARCH.INPUT_SIZE #32,256 H,W
     inputdata = tf.placeholder(dtype=tf.float32, shape=[1, h, w, 3], name='input')
 
-    codec = data_utils.TextFeatureIO()
-    num_classes = len(codec.reader.char_dict) + 1 if num_classes == 0 else num_classes#这个是在读词表，37个类别，没想清楚？？？为何是37个，26个字母+空格不是37个，噢，对了，还有数字0-9
+    # num_classes = len(codec.reader.char_dict) + 1 if num_classes == 0 else num_classes#这个是在读词表，37个类别，没想清楚？？？为何是37个，26个字母+空格不是37个，噢，对了，还有数字0-9
+    characters , num_classes = data_utils.get_charset()
 
     net = crnn_model.ShadowNet(phase='Test',
                                hidden_nums=config.cfg.ARCH.HIDDEN_UNITS,
@@ -70,8 +68,13 @@ def recognize(image_path: str, weights_path: str, is_vis: bool=True, num_classes
     with tf.variable_scope('shadow'):
         net_out = net.build_shadownet(inputdata=inputdata)
 
-    decodes, _ = tf.nn.ctc_beam_search_decoder(inputs=net_out, sequence_length=config.cfg.ARCH.SEQ_LENGTH*np.ones(1),
+    decodes, prob = tf.nn.ctc_beam_search_decoder(inputs=net_out,
+                                               sequence_length=config.cfg.ARCH.SEQ_LENGTH*np.ones(1),
                                                merge_repeated=False)
+
+    logger.debug("CTC后的结果：")
+    logger.debug("decode:%r",decodes)
+    logger.debug("prob:%r",prob)
 
     # config tf session
     sess_config = tf.ConfigProto()
@@ -86,25 +89,32 @@ def recognize(image_path: str, weights_path: str, is_vis: bool=True, num_classes
     with sess.as_default():
 
         saver.restore(sess=sess, save_path=weights_path)
+        logger.debug("恢复模型：%s",weights_path)
 
-        preds = sess.run(decodes, feed_dict={inputdata: image})
+        logger.debug("预测的输入为：%r", image.shape)
+        preds,__prob = sess.run([decodes,prob], feed_dict={inputdata: image})
+        logger.debug("预测的结果preds为：%r",  preds)
+        logger.debug("预测的结果prob为：%r",  __prob)
+
         #将结果，从张量变成字符串数组，session.run(arg)arg是啥类型，就ruturn啥类型
-        preds = codec.writer.sparse_tensor_to_str(preds[0])
+        preds = data_utils.sparse_tensor_to_str(preds[0],characters)
 
-        logger.info('Predict image {:s} label {:s}'.format(ops.split(image_path)[1], preds[0]))
+        logger.info('解析图片{:s}为：{:s}'.format(ops.split(image_path)[1], preds[0]))
 
-        if is_vis:
-            plt.figure('CRNN Model Demo')
-            plt.imshow(cv2.imread(image_path, cv2.IMREAD_COLOR)[:, :, (2, 1, 0)])
-            plt.show()
+        # if is_vis:
+        #     plt.figure('CRNN Model Demo')
+        #     plt.imshow(cv2.imread(image_path, cv2.IMREAD_COLOR)[:, :, (2, 1, 0)])
+        #     plt.show()
 
         sess.close()
 
 
 if __name__ == '__main__':
-    args = init_args()
-    if not ops.exists(args.image_path):
-        raise ValueError('{:s} doesn\'t exist'.format(args.image_path))
+
+    if not ops.exists(FLAGS.image_path):
+        raise ValueError('{:s} doesn\'t exist'.format(FLAGS.image_path))
 
     # recognize the image
-    recognize(image_path=args.image_path, weights_path=args.weights_path, num_classes=args.num_classes)
+    recognize(image_path=FLAGS.image_path, weights_path=FLAGS.weights_path, num_classes=FLAGS.num_classes)
+
+    print("Done")
