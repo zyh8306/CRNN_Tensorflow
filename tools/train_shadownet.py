@@ -12,24 +12,20 @@ import os
 import tensorflow as tf
 import time
 import numpy as np
-from local_utils.log_utils import  _p_shape
+import datetime
 from crnn_model import crnn_model
 from local_utils import data_utils, log_utils
 from global_configuration import config
 
 
 tf.app.flags.DEFINE_boolean('debug', False, 'debug mode')
-tf.app.flags.DEFINE_string('dataset_dir', '', 'train data dir')
+tf.app.flags.DEFINE_string('tboard_dir', 'tboard', 'tboard data dir')
 tf.app.flags.DEFINE_string('weights_path', None, 'model path')
 tf.app.flags.DEFINE_integer('validate_steps', 10, 'model path')
 tf.app.flags.DEFINE_integer('num_threads', 4, 'read train data threads')
-
-
 FLAGS = tf.app.flags.FLAGS
 
-
 logger = log_utils.init_logger()
-
 
 def caculate_accuracy(preds,labels_sparse,characters):
     # calculate the precision
@@ -68,7 +64,7 @@ CRNN的训练epoch耗时：
 350分钟100个epochs  5.8小时，1000万次样本
 3500分钟，1000个epochs 58小时，1亿次样本
 '''
-def train_shadownet(dataset_dir, weights_path=None, num_threads=4):
+def train_shadownet(weights_path=None):
 
     logger.info("开始训练")
 
@@ -157,10 +153,6 @@ def train_shadownet(dataset_dir, weights_path=None, num_threads=4):
         optimizer = tf.train.AdadeltaOptimizer(learning_rate=learning_rate)\
             .minimize(loss=cost, global_step=global_step) #<--- 这个loss是CTC的似然概率值
 
-    # Set tf summary
-    tboard_save_path = 'tboard/shadownet'
-    if not os.path.exists(tboard_save_path): os.makedirs(tboard_save_path)
-
     accuracy = tf.Variable(0, name='accuracy', trainable=False)
     tf.summary.scalar(name='Accuracy', tensor=accuracy)
     tf.summary.scalar(name='Cost', tensor=cost)
@@ -171,11 +163,11 @@ def train_shadownet(dataset_dir, weights_path=None, num_threads=4):
 
     # Set saver configuration
     saver = tf.train.Saver()
-    model_save_dir = 'model/shadownet'
+    model_save_dir = 'model'
     if not os.path.exists(model_save_dir):
         os.makedirs(model_save_dir)
     train_start_time = time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime(time.time()))
-    model_name = 'shadownet_{:s}.ckpt'.format(str(train_start_time))
+    model_name = 'crnn_{:s}.ckpt'.format(str(train_start_time))
     model_save_path = os.path.join(model_save_dir, model_name)
 
     # Set sess configuration
@@ -186,7 +178,12 @@ def train_shadownet(dataset_dir, weights_path=None, num_threads=4):
     sess = tf.Session(config=sess_config)
     logger.debug("创建session")
 
-    summary_writer = tf.summary.FileWriter(tboard_save_path)
+    # 按照日期，一天生成一个Summary/Tboard数据目录
+    # Set tf summary
+    if not os.path.exists(FLAGS.tboard_dir): os.makedirs(FLAGS.tboard_dir)
+    today = datetime.datetime.now().strftime("%Y%m%d")
+    summary_dir = os.path.join(FLAGS.tboard_dir,today)
+    summary_writer = tf.summary.FileWriter(summary_dir)
     summary_writer.add_graph(sess.graph)
 
     # Set the training parameters
@@ -209,7 +206,7 @@ def train_shadownet(dataset_dir, weights_path=None, num_threads=4):
         # 只不过搞定这事是在不同线程和队列里完成的
 
         for epoch in range(train_epochs):
-            logger.debug("第%d次训练",epoch)
+            logger.debug("训练: 第%d次",epoch)
             # session.run(): 第一个参数fetches: The fetches argument may be a single graph element,
             # or an arbitrarily nested list, tuple, namedtuple, dict,
             # or OrderedDict containing graph elements at its leaves.
@@ -222,18 +219,19 @@ def train_shadownet(dataset_dir, weights_path=None, num_threads=4):
                     [optimizer, cost, sequence_dist, decoded, train_labels_tensor, merge_summary_op])
                 _accuracy = caculate_accuracy(preds, labels_sparse,characters)
                 tf.assign(accuracy, _accuracy) # 更新正确率变量
-                logger.info('Epoch: {:d} Train accuracy= {:9f}'.format(epoch + 1, _accuracy))
+                logger.info('训练: Epoch: {:d}训练结束， Train accuracy= {:9f}'.format(epoch + 1, _accuracy))
             else:
                 _, ctc_lost, summary = sess.run([optimizer, cost, merge_summary_op])
 
 
             if epoch % config.cfg.TRAIN.DISPLAY_STEP == 0:
-                logger.info('Epoch: {:d} cost= {:9f} seq distance= {:9f}'.format(epoch + 1, c, seq_distance))
+                logger.info('训练: Epoch: {:d}训练结束， cost= {:9f} seq distance= {:9f}'.format(epoch + 1, c, seq_distance))
 
             summary_writer.add_summary(summary=summary, global_step=epoch)
 
             # 10万个样本，一个epoch是3.5分钟，CHECKPOINT_STEP=20，大约是70分钟存一次
             if epoch % config.cfg.TRAIN.CHECKPOINT_STEP == 0:
+                logger.info("训练: 保存了模型：%s",model_save_path)
                 saver.save(sess=sess, save_path=model_save_path, global_step=epoch)
 
         coord.request_stop()
@@ -248,9 +246,6 @@ def train_shadownet(dataset_dir, weights_path=None, num_threads=4):
 
 if __name__ == '__main__':
 
-    if not os.path.exists(FLAGS.dataset_dir):
-        raise ValueError('{:s} doesn\'t exist'.format(FLAGS.dataset_dir))
-
     print("开始训练")
-    train_shadownet(FLAGS.dataset_dir, FLAGS.weights_path, FLAGS.num_threads)
+    train_shadownet(FLAGS.weights_path)
 
