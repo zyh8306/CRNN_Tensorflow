@@ -17,7 +17,7 @@ from crnn_model import crnn_model
 from local_utils import data_utils, log_utils
 from global_configuration import config
 
-
+tf.app.flags.DEFINE_boolean('name', 'CRNN', 'no use ,just a flag for shell batch')
 tf.app.flags.DEFINE_boolean('debug', False, 'debug mode')
 tf.app.flags.DEFINE_string('tboard_dir', 'tboard', 'tboard data dir')
 tf.app.flags.DEFINE_string('weights_path', None, 'model path')

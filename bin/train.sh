@@ -1,6 +1,6 @@
 if [ "$1" = "stop" ]; then
     echo "停止训练"
-    kill -9 `ps aux|grep shadow| grep -v grep|awk '{print $2}'`
+    kill -9 `ps aux|grep crnn| grep -v grep|awk '{print $2}'`
     exit
 fi
 
@@ -8,6 +8,7 @@ fi
 CUDA_VISIBLE_DEVICES=0 \
 python \
     -m tools.train \
+    --name=crnn \
     --validate_steps=10 \
     --tboard_dir=tboard \
     --debug=True \
