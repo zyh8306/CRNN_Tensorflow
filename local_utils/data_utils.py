@@ -46,9 +46,9 @@ def sparse_tensor_to_str( sparse_tensor: tf.SparseTensor,characters) -> List[str
     :return: String value of the sparse tensor
     """
     indices = sparse_tensor.indices
-    logger.debug(indices)
+    # logger.debug(indices)
     values = sparse_tensor.values
-    logger.debug(values)
+    # logger.debug(values)
     values = np.array([characters[id] for id in values])
     dense_shape = sparse_tensor.dense_shape
 

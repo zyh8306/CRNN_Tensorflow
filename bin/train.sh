@@ -4,7 +4,7 @@ python \
     -m tools.train_shadownet \
     --validate_steps=10 \
     --tboard_dir=tboard \
-    --debug=True
-#    >> ./logs/crnn.log 2>&1
+    --debug=True \
+    >> ./logs/crnn.log 2>&1
 #    --weights_path=model/shadownet/shadownet_2019-03-11-15-13-38.ckpt-8 \
 

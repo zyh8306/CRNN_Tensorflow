@@ -252,19 +252,14 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
         # 是一个20层的卷积网络，返回的是 [W/16,H/4,512] 的结果
         # 对了，输入的高度被归一化成32了
         cnn_out = self.__feature_sequence_extraction(inputdata=inputdata)
-
         cnn_out = _p_shape(cnn_out,"CNN网络抽取了特征后的输出")
-
 
         # second apply the map to sequence stage
         sequence = self.__map_to_sequence(inputdata=cnn_out)
 
-
-
         # third apply the sequence label stage
         net_out, raw_pred = self.__sequence_label(inputdata=sequence)
-
         net_out = _p_shape(net_out, "LTSM的输出net_out")
-        raw_pred = _p_shape(raw_pred, "LTSM的输出raw_pred")
+        # raw_pred = _p_shape(raw_pred, "LTSM的输出raw_pred")
 
         return net_out

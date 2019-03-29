@@ -116,6 +116,7 @@ def train_shadownet(weights_path=None):
     cost = tf.reduce_mean(tf.nn.ctc_loss(labels=train_labels_tensor,
                                          inputs=net_out,
                                          sequence_length=config.cfg.ARCH.SEQ_LENGTH*np.ones(config.cfg.TRAIN.BATCH_SIZE)))
+    cost = log_utils._p_shape(cost, "计算CTC loss完毕")
 
     logger.debug("cost损失函数构建完毕")
 
@@ -207,11 +208,6 @@ def train_shadownet(weights_path=None):
 
         for epoch in range(train_epochs):
             logger.debug("训练: 第%d次",epoch)
-            # session.run(): 第一个参数fetches: The fetches argument may be a single graph element,
-            # or an arbitrarily nested list, tuple, namedtuple, dict,
-            # or OrderedDict containing graph elements at its leaves.
-            _, c, seq_distance, preds, labels_sparse_tensor, summary = sess.run(
-                [optimizer, cost, sequence_dist, decoded, train_labels_tensor, merge_summary_op])
 
             # 每个一定步骤（目前设置是10），就计算一下编辑距离，并且验证一下
             if epoch % FLAGS.validate_steps == 0:
@@ -222,6 +218,7 @@ def train_shadownet(weights_path=None):
                 logger.info('训练: Epoch: {:d}训练结束， Train accuracy= {:9f}'.format(epoch + 1, _accuracy))
             else:
                 _, ctc_lost, summary = sess.run([optimizer, cost, merge_summary_op])
+                logger.debug("训练: 优化完成、cost计算完成、Summary写入完成", epoch)
 
 
             if epoch % config.cfg.TRAIN.DISPLAY_STEP == 0:
