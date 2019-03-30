@@ -19,7 +19,7 @@ try:
 except ImportError:
     pass
 
-from global_configuration import config
+from config import config
 from data_provider import base_data_provider
 
 

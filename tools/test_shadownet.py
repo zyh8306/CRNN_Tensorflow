@@ -18,7 +18,7 @@ import math
 
 from local_utils import data_utils
 from crnn_model import crnn_model
-from global_configuration import config
+from config import config
 
 
 def init_args():

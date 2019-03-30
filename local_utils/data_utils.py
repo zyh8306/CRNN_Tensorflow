@@ -11,7 +11,7 @@ Implement some utils used to convert image and it's corresponding label into tfr
 from typing import List
 import numpy as np
 import tensorflow as tf
-from global_configuration import config
+from config import config
 from local_utils import log_utils
 from local_utils.log_utils import  _p_shape,_p
 

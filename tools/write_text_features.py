@@ -13,7 +13,7 @@ import os.path as ops
 import argparse
 from functools import reduce
 import numpy as np
-from global_configuration import config
+from config import config
 
 from data_provider import data_provider
 from data_provider.data_provider import TextDataset

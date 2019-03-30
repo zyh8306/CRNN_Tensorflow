@@ -15,9 +15,9 @@ import numpy as np
 import datetime
 from crnn_model import crnn_model
 from local_utils import data_utils, log_utils
-from global_configuration import config
+from config import config
 
-tf.app.flags.DEFINE_boolean('name', 'CRNN', 'no use ,just a flag for shell batch')
+tf.app.flags.DEFINE_string('name', 'CRNN', 'no use ,just a flag for shell batch')
 tf.app.flags.DEFINE_boolean('debug', False, 'debug mode')
 tf.app.flags.DEFINE_string('tboard_dir', 'tboard', 'tboard data dir')
 tf.app.flags.DEFINE_string('weights_path', None, 'model path')
@@ -218,7 +218,7 @@ def train_shadownet(weights_path=None):
                 logger.info('训练: Epoch: {:d}训练结束， Train accuracy= {:9f}'.format(epoch + 1, _accuracy))
             else:
                 _, ctc_lost, summary = sess.run([optimizer, cost, merge_summary_op])
-                logger.debug("训练: 优化完成、cost计算完成、Summary写入完成", epoch)
+                logger.debug("训练: 优化完成、cost计算完成、Summary写入完成")
 
 
             if epoch % config.cfg.TRAIN.DISPLAY_STEP == 0:

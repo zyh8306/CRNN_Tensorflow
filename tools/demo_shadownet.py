@@ -20,7 +20,7 @@ except ImportError:
     pass
 
 from crnn_model import crnn_model
-from global_configuration import config
+from config import config
 from local_utils import log_utils, data_utils
 
 logger = log_utils.init_logger()
