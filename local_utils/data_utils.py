@@ -38,7 +38,7 @@ FLAGS = tf.app.flags.FLAGS
     tensor:
     [[1, 2, 3, 0, 0, 0, 0, 0, 0]
     [4, 5, 6, 7, 0, 0, 0, 0, 0]
-    [1, 2, 3, 4, 5, 6, 7, 8, 9]]
+    [1, 2, 3, 4, 5, 6, 7, 8, 9]] 
 '''
 def sparse_tensor_to_str( sparse_tensor: tf.SparseTensor,characters) -> List[str]:
     """
@@ -46,9 +46,7 @@ def sparse_tensor_to_str( sparse_tensor: tf.SparseTensor,characters) -> List[str
     :return: String value of the sparse tensor
     """
     indices = sparse_tensor.indices
-    # logger.debug(indices)
-    values = sparse_tensor.values
-    # logger.debug(values)
+    values = sparse_tensor.values #<------------------------ 这个里面存的是string的id，所以要查找字符表，找到对应字符
     values = np.array([characters[id] for id in values])
     dense_shape = sparse_tensor.dense_shape
 
@@ -109,17 +107,18 @@ def read_labeled_image_list(image_list_file,dict):
 
 # 这个是在定义操作，注意不是直接的运行，会在session.run后执行
 def read_images_from_disk(input_queue,characters):
-    input_queue[0] = _p(input_queue[0],"从磁盘上读取图片和标注")
-
+    # input_queue[0] = _p(input_queue[0],"从磁盘上读取图片和标注")
     image_content = tf.read_file(input_queue[0])
+
     example = tf.image.decode_png(image_content, channels=3)
-    logger.debug("原始图像shape：%r", example.get_shape().as_list())
+    # logger.debug("原始图像shape：%r", example.get_shape().as_list())
+
     # 第2个参数size: A 1-D int32 Tensor of 2 elements: `new_height, new_width`.  The new size for the images.
     # 对，是Height，Width
     example = tf.image.resize_images(example, config.cfg.ARCH.INPUT_SIZE, method=0)
     labels = input_queue[1]
-    labels = _p_shape(labels, "解析完的labels")
-    example = _p_shape(example, "解析完的图片")
+    # labels = _p_shape(labels, "解析完的labels")
+    # example = _p_shape(example, "解析完的图片")
     return example, labels
 
 def process_unknown_charactors(sentence,dict):
@@ -203,12 +202,12 @@ def _to_sparse_tensor(dense):
     #labels_tensor = to_sparse_tensor(labels)  # 把label从id数组，变成张量
 
 
-def prepare_image_labels(characters):
+def prepare_image_labels(label_file,characters):
 
     # 修改了他的加载，讨厌TFRecord方式，直接用文件方式加载
     # 参考：https://saicoco.github.io/tf3/
     # 参考：https://stackoverflow.com/questions/34340489/tensorflow-read-images-with-labels
-    image_file_names, labels = read_labeled_image_list("data/train.txt", characters)
+    image_file_names, labels = read_labeled_image_list(label_file, characters)
     logger.debug("读出训练数据：%d条", len(labels))
 
     # 把图像路径转化成张量

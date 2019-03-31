@@ -10,6 +10,8 @@ Implement the crnn model mentioned in An End-to-End Trainable Neural Network for
 Recognition and Its Application to Scene Text Recognition paper
 """
 from typing import Tuple
+import numpy as np
+from config import config
 import tensorflow as tf
 from tensorflow.contrib import rnn
 from local_utils import log_utils
@@ -242,7 +244,7 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
 
         return rnn_out, raw_pred #返回的是一个张量（rnn length,batch,class)，和每个rnn步骤 预测的最可能的字符
 
-    def build_shadownet(self, inputdata: tf.Tensor) -> tf.Tensor:
+    def build(self, inputdata: tf.Tensor) -> tf.Tensor:
         """ Main routine to construct the network
 
         :param inputdata:
@@ -261,5 +263,94 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
         net_out, raw_pred = self.__sequence_label(inputdata=sequence)
         net_out = _p_shape(net_out, "LTSM的输出net_out")
         # raw_pred = _p_shape(raw_pred, "LTSM的输出raw_pred")
+        logger.debug("网络构建完毕")
 
         return net_out
+
+
+    def loss(self,net_out,labels):
+        # net_out是啥，[W, N * H, Cls]
+        # [width, batch, n_classes]，是一个包含各个字符的概率表
+        # TF的ctc_loss:http://ilovin.me/2017-04-23/tensorflow-lstm-ctc-input-output/
+        '''
+        net_out:
+                输入（训练）数据，是一个三维float型的数据结构[max_time_step , batch_size , num_classes]
+
+        labels:
+                标签序列,是一个稀疏矩阵SparseTensor,由3项组成：http://ilovin.me/2017-04-23/tensorflow-lstm-ctc-input-output/
+                   * indices: 二维int32的矩阵，代表非0的坐标点
+                   * values: 二维tensor，代表indice位置的数据值
+                   * dense_shape: 一维，代表稀疏矩阵的大小
+                比如有3幅图，分别是123,4567,123456789那么
+                indecs = [[0, 0], [0, 1], [0, 2],
+                          [1, 0], [1, 1], [1, 2], [1, 3],
+                          [3, 0], [3, 1], [3, 2], [3, 3], [3, 4], [3, 5], [3, 6], [3, 7], [3, 8]]
+                values = [1, 2, 3
+                          4, 5, 6, 7,
+                          1, 2, 3, 4, 5, 6, 7, 8, 9]
+                dense_shape = [3, 9]
+                代表dense
+                tensor:
+                [[1, 2, 3, 0, 0, 0, 0, 0, 0]
+                 [4, 5, 6, 7, 0, 0, 0, 0, 0]
+                 [1, 2, 3, 4, 5, 6, 7, 8, 9]]
+        '''
+        # CTC的loss，实际上是p(l|x)，l是要探测的字符串，x就是Bi-LSTM输出的x序列
+        # 其实就是各个可能的PI的似然概率的和，这个求最大的过程涉及到前向和后向算法了，可以参见CRNN的CTC原理部分
+        # 对！对！对！损失函数就是p(l|x)，似然概率之和，使丫最大化。：https://blog.csdn.net/luodongri/article/details/77005948
+        cost = tf.reduce_mean(tf.nn.ctc_loss(labels=labels,
+                                             inputs=net_out,
+                                             sequence_length=config.cfg.ARCH.SEQ_LENGTH * np.ones(
+                                                 config.cfg.TRAIN.BATCH_SIZE)))
+        cost = log_utils._p_shape(cost, "计算CTC loss")
+
+        #  把lost放到里面去
+        tf.summary.scalar(name='train.Cost', tensor=cost)
+
+        logger.debug("cost损失函数构建完毕")
+
+        global_step = tf.Variable(0, name='global_step', trainable=False)
+
+        learning_rate = tf.train.exponential_decay(config.cfg.TRAIN.LEARNING_RATE,
+                                                   global_step,
+                                                   config.cfg.TRAIN.LR_DECAY_STEPS,
+                                                   config.cfg.TRAIN.LR_DECAY_RATE,
+                                                   staircase=True)
+        update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
+
+        with tf.control_dependencies(update_ops):
+            optimizer = tf.train.AdadeltaOptimizer(learning_rate=learning_rate) \
+                .minimize(loss=cost, global_step=global_step)  # <--- 这个loss是CTC的似然概率值
+
+        tf.summary.scalar(name='train.Learning_Rate', tensor=learning_rate)
+
+        return cost, optimizer
+
+    def validate(self,net_out,labels):
+
+        # 这步是在干嘛？是说，你LSTM算出每个时间片的字符分布，然后我用它来做Inference，也就是前向计算
+        # 得到一个最大可能的序列，比如"我爱北京天安门"，然后下一步算编辑距离，和标签对比
+        # ？？？ B变化，也就是去掉空格和重复的过程在这里面做了么？
+        # 答：没有做，原因是：merge_repeated=False
+        # 原因：摘自tf.nn.ctc_beam_search_decoder()
+        #       If `merge_repeated` is `True`, merge repeated classes in the output beams.
+        #       This means that if consecutive entries in a beam are the same,
+        #       only the first of these is emitted.  That is, when the sequence is
+        #       `A B B * B * B` (where '*' is the blank label), the return value is:
+        #          * `A B` if `merge_repeated = True`.
+        #          * `A B B B` if `merge_repeated = False`.
+        #
+        decoded, log_prob = tf.nn.ctc_beam_search_decoder(net_out,
+                                                          config.cfg.ARCH.SEQ_LENGTH * np.ones(
+                                                              config.cfg.TRAIN.BATCH_SIZE),
+                                                          merge_repeated=False)
+        #decoded = _p_shape(decoded,"通过beam search解码完")
+        logger.debug("CTC网络构建完毕")
+
+        # 看，这就是我上面说的编辑距离的差，最小化丫呢
+        sequence_dist = tf.reduce_mean(tf.edit_distance(tf.cast(decoded[0], tf.int32), labels))
+        sequence_dist = _p_shape(sequence_dist,"计算完编辑距离")
+
+        tf.summary.scalar(name='validate.Seq_Dist', tensor=sequence_dist)  # 这个只是看错的有多离谱，并没有当做损失函数，CTC loss才是核心
+
+        return decoded,sequence_dist

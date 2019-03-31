@@ -66,7 +66,7 @@ def recognize(image_path: str, weights_path: str, is_vis: bool=True, num_classes
                                num_classes=num_classes)
 
     with tf.variable_scope('shadow'):
-        net_out = net.build_shadownet(inputdata=inputdata)
+        net_out = net.build(inputdata=inputdata)
 
     decodes, prob = tf.nn.ctc_beam_search_decoder(inputs=net_out,
                                                sequence_length=config.cfg.ARCH.SEQ_LENGTH*np.ones(1),
