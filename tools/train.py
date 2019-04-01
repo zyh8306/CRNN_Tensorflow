@@ -25,6 +25,7 @@ FLAGS = tf.app.flags.FLAGS
 
 logger = log_utils.init_logger()
 
+
 def caculate_accuracy(preds,labels_sparse,characters):
     # calculate the precision
     preds = data_utils.sparse_tensor_to_str(preds[0], characters)
@@ -70,6 +71,7 @@ def save_model(saver,sess,epoch):
     saver.save(sess=sess, save_path=model_save_path, global_step=epoch)
     logger.info("训练: 保存了模型：%s", model_save_path)
 
+
 def create_summary_writer(sess):
     # 按照日期，一天生成一个Summary/Tboard数据目录
     # Set tf summary
@@ -80,14 +82,15 @@ def create_summary_writer(sess):
     summary_writer.add_graph(sess.graph)
     return summary_writer
 
-'''
-CRNN的训练epoch耗时：
-3.5分钟1个epochs，10万次样本，3000个batches
-35分钟10个epochs，100万次样本
-350分钟100个epochs  5.8小时，1000万次样本
-3500分钟，1000个epochs 58小时，1亿次样本
-'''
+
 def train(weights_path=None):
+    '''
+    CRNN的训练epoch耗时：
+    3.5分钟1个epochs，10万次样本，3000个batches
+    35分钟10个epochs，100万次样本
+    350分钟100个epochs  5.8小时，1000万次样本
+    3500分钟，1000个epochs 58小时，1亿次样本
+    '''
 
     logger.info("开始训练")
 
@@ -106,7 +109,7 @@ def train(weights_path=None):
         net_out = network.build(inputdata=train_images_tensor)
 
     # 创建优化器和损失函数的op
-    cost,optimizer = network.loss(net_out,train_labels_tensor)
+    cost,optimizer,global_step = network.loss(net_out,train_labels_tensor)
 
     # 创建校验用的decode和编辑距离
     decode, sequence_dist = network.validate(net_out,train_labels_tensor)
@@ -146,6 +149,8 @@ def train(weights_path=None):
         else:
             logger.info('从文件{:s}恢复模型，继续训练'.format(weights_path))
             saver.restore(sess=sess, save_path=weights_path)
+            global_step = log_utils._p(global_step,"加载模型的时候，得到的global_step")
+            tf.assign(global_step,0)
 
         coord = tf.train.Coordinator() # 创建一个协调器：http://wiki.jikexueyuan.com/project/tensorflow-zh/how_tos/threading_and_queues.html
         threads = tf.train.start_queue_runners(sess=sess, coord=coord)

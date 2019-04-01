@@ -324,7 +324,7 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
 
         tf.summary.scalar(name='train.Learning_Rate', tensor=learning_rate)
 
-        return cost, optimizer
+        return cost, optimizer, global_step
 
     def validate(self,net_out,labels):
 
