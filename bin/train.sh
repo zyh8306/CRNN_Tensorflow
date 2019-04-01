@@ -5,7 +5,7 @@ if [ "$1" = "stop" ]; then
 fi
 
 if [ "$1" = "console" ]; then
-
+    echo "调试模式"
     # 第一句表明使用第0个GPU，CRNN用第0个GPU，CTPN用第1个GPU，恩，我这么分配的
     CUDA_VISIBLE_DEVICES=0 \
     python \
@@ -18,7 +18,7 @@ if [ "$1" = "console" ]; then
         --debug=True
 
 else
-
+    echo "生产模式"
     # 第一句表明使用第0个GPU，CRNN用第0个GPU，CTPN用第1个GPU，恩，我这么分配的
     CUDA_VISIBLE_DEVICES=0 \
     python \
@@ -26,7 +26,7 @@ else
         --train_dir=data/train \
         --label_file=train.txt \
         --name=crnn \
-        --validate_steps=1000 \
+        --validate_steps=10000 \
         --tboard_dir=tboard \
         --debug=True \
         >> ./logs/crnn.log 2>&1
