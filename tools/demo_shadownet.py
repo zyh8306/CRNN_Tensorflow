@@ -25,6 +25,7 @@ from local_utils import log_utils, data_utils
 
 logger = log_utils.init_logger()
 
+tf.app.flags.DEFINE_string('model_dir', "model/", 'model dir')
 tf.app.flags.DEFINE_boolean('debug', False, 'debug mode')
 tf.app.flags.DEFINE_string('image_path', '', ' data dir')
 tf.app.flags.DEFINE_string('weights_path', None, 'model path')
@@ -88,7 +89,13 @@ def recognize(image_path: str, weights_path: str, is_vis: bool=True, num_classes
 
     with sess.as_default():
 
-        saver.restore(sess=sess, save_path=weights_path)
+        if FLAGS.weights_path:
+            saver.restore(sess,FLAGS.weights_path)
+        else:
+            ckpt = tf.train.latest_checkpoint(FLAGS.model_dir)
+            logger.debug("最新的模型文件:%s", ckpt)  # 有点担心learning rate也被恢复
+            saver.restore(sess, ckpt)
+
         logger.debug("恢复模型：%s",weights_path)
 
         logger.debug("预测的输入为：%r", image.shape)

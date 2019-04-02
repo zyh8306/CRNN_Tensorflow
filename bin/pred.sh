@@ -4,7 +4,8 @@ if [ "$1" = "" ]; then
 fi
 
 python -m tools.demo_shadownet \
+    --model_dir=model \
     --image_path=data/test/$1 \
-    --debug=True \
-    --weights_path=model/shadownet/shadownet_2019-03-15-16-23-16.ckpt-380
+    --debug=True
+#    --weights_path=model/shadownet/shadownet_2019-03-15-16-23-16.ckpt-380
 

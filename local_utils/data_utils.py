@@ -83,7 +83,8 @@ def get_file_list(dir):
 
 def read_labeled_image_list(image_list_file,dict):
     f = open(image_list_file, 'r')
-    re.compile(' ')
+
+    rex = re.compile(' ')
     filenames = []
     labels = []
     # 从文件中读取样本路径和标签值
@@ -102,7 +103,7 @@ def read_labeled_image_list(image_list_file,dict):
 
         filenames.append(filename)
 
-        label = re.sub('',label)
+        label = rex.sub('',label)
         labels.append(label)
 
     logger.info("最终样本标签数量[%d],样本图像数量[%d]",len(labels),len(filenames))
