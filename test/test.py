@@ -3,6 +3,7 @@ import numpy as np
 '''
     这是一个沙盒程序，专门用来测试各类小函数
 '''
+import cv2
 
 
 def sparse_tuple_from(sequences, dtype=np.int32):

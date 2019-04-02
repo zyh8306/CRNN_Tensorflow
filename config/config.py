@@ -84,11 +84,6 @@ __C.TRAIN.LR_DECAY_RATE = 0.1
 
 
 
-
-
-
-
-
 # Test options
 __C.TEST = edict()
 

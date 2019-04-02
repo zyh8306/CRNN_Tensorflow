@@ -150,7 +150,9 @@ def train(weights_path=None):
             logger.info('从文件{:s}恢复模型，继续训练'.format(weights_path))
             saver.restore(sess=sess, save_path=weights_path)
             global_step = log_utils._p(global_step,"加载模型的时候，得到的global_step")
+            print(global_step.eval())
             tf.assign(global_step,0)
+            sess.run(global_step)
 
         coord = tf.train.Coordinator() # 创建一个协调器：http://wiki.jikexueyuan.com/project/tensorflow-zh/how_tos/threading_and_queues.html
         threads = tf.train.start_queue_runners(sess=sess, coord=coord)

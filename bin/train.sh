@@ -24,7 +24,7 @@ else
     python \
         -m tools.train \
         --train_dir=data/train \
-        --label_file=train.txt \
+        --label_file=data/train.txt \
         --name=crnn \
         --validate_steps=10000 \
         --tboard_dir=tboard \

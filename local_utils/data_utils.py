@@ -14,6 +14,7 @@ import tensorflow as tf
 from config import config
 from local_utils import log_utils
 from local_utils.log_utils import  _p_shape,_p
+import re
 
 logger = log_utils.init_logger()
 
@@ -82,6 +83,7 @@ def get_file_list(dir):
 
 def read_labeled_image_list(image_list_file,dict):
     f = open(image_list_file, 'r')
+    re.compile(' ')
     filenames = []
     labels = []
     # 从文件中读取样本路径和标签值
@@ -99,6 +101,8 @@ def read_labeled_image_list(image_list_file,dict):
         if label is None: continue
 
         filenames.append(filename)
+
+        label = re.sub('',label)
         labels.append(label)
 
     logger.info("最终样本标签数量[%d],样本图像数量[%d]",len(labels),len(filenames))
