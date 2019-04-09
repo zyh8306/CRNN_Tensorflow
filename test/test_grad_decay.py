@@ -31,7 +31,7 @@ def sgd(grad,epslon=0.01):
             print("%20f%20f" % (delta,g))
 
 
-def momentum(grad,epslon = 0.001,step = 10000,alpha=0.9):
+def momentum(grad,epslon = 0.001,alpha=0.9):
     print("\nMomentum算法：epslon=%f" % epslon)
     print("---------------------------------")
     print("%20s%20s" % ("delta", "g"))
@@ -128,7 +128,7 @@ def generate_grad(step):
 
     # 尝试生成一个模拟真实梯度递减的一个序列
     grad = np.exp(np.linspace(-10,5,step))[::-1]
-    # print(grad)
+    print(grad)
     print("产生一个指数衰减的梯度：数量[%d],最大梯度[%20f]，最小梯度[%20f]" % (len(grad), grad[0],grad[-1]))
 
     return grad
@@ -140,7 +140,7 @@ def draw(x,y):
     plt.show()
 
 STEP = 10000
-EPSLON = 0.01
+EPSLON = 0.1
 
 
 # 产生梯度序列，模拟一个梯度序列，只有一个维度，便于理解
@@ -148,10 +148,15 @@ grad = generate_grad(10000)
 
 #draw(linear_decay())
 
-sgd(grad,EPSLON)
-linear_decay(grad,EPSLON)
-momentum(grad,EPSLON)
-AdaGrad(grad,EPSLON)
-RMSPro(grad,EPSLON)
-Adam(grad,EPSLON)
+sgd(grad,0.1)
+# sgd(grad,0.5)
+# sgd(grad,5)
+# linear_decay(grad,EPSLON)
+# momentum(grad,0.1,0.9)
+# AdaGrad(grad,EPSLON)
+RMSPro(grad,0.1)
+Adam(grad,0.1)
+# Adam(grad,0.01)
+# Adam(grad,0.001)
+# Adam(grad,0.000001)
 AdaDelta(grad)

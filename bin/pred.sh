@@ -3,7 +3,7 @@ if [ "$1" = "" ]; then
     exit
 fi
 
-python -m tools.demo_shadownet \
+python -m tools.pred \
     --model_dir=model \
     --image_path=data/test/$1 \
     --debug=True

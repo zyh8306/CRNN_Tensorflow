@@ -26,39 +26,6 @@ FLAGS = tf.app.flags.FLAGS
 logger = log_utils.init_logger()
 
 
-def caculate_accuracy(preds,labels_sparse,characters):
-    # calculate the precision
-    preds = data_utils.sparse_tensor_to_str(preds[0], characters)
-    logger.debug("预测结果为：%r", preds)
-
-    # 为何要绕这么一圈，是因为，要通过tensorflow的计算图来读取一遍labels
-    labels = data_utils.sparse_tensor_to_str(labels_sparse, characters)
-    logger.debug("标签为：%r", labels)
-
-    accuracy = []
-
-    # 挨个遍历标签，
-    for index, _label in enumerate(labels):
-        pred = preds[index]
-        total_count = len(_label)
-        correct_count = 0
-        try:
-            for i, tmp in enumerate(_label):
-                if tmp == pred[i]:
-                    correct_count += 1
-        except IndexError:
-            continue
-        finally:
-            try:
-                accuracy.append(correct_count / total_count)
-            except ZeroDivisionError:
-                if len(pred) == 0:
-                    accuracy.append(1)
-                else:
-                    accuracy.append(0)
-    accuracy = np.mean(np.array(accuracy).astype(np.float32), axis=0)
-
-    return accuracy
 
 
 def save_model(saver,sess,epoch):
@@ -171,7 +138,7 @@ def train(weights_path=None):
                 [optimizer, sequence_dist, decode, train_labels_tensor,validate_summary_op,train_summary_op])
                 logger.info('训练: Epoch: {:d}训练结束'.format(epoch + 1))
 
-                _accuracy = caculate_accuracy(preds, labels_sparse,characters)
+                _accuracy = data_utils.caculate_accuracy(preds, labels_sparse,characters)
                 tf.assign(accuracy, _accuracy) # 更新正确率变量
                 logger.info('正确率计算完毕：%f', _accuracy)
 
