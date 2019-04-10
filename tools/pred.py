@@ -29,6 +29,12 @@ FLAGS = tf.app.flags.FLAGS
 def initialize():
     g = tf.Graph()
     with g.as_default():
+        # num_classes = len(codec.reader.char_dict) + 1 if num_classes == 0 else num_classes#这个是在读词表，37个类别，没想清楚？？？为何是37个，26个字母+空格不是37个，噢，对了，还有数字0-9
+        charset  = data_utils.get_charset()
+        logger.info("加载词表，共%d个",len(charset))
+
+        decodes, prob, inputdata = build_graph(charset)
+
         # config tf session
         sess_config = tf.ConfigProto()
         sess_config.gpu_options.per_process_gpu_memory_fraction = config.cfg.TRAIN.GPU_MEMORY_FRACTION
@@ -45,29 +51,20 @@ def initialize():
             logger.debug("最新的CRNN模型文件:%s", ckpt)  # 有点担心learning rate也被恢复
             saver.restore(sess, ckpt)
 
-        # num_classes = len(codec.reader.char_dict) + 1 if num_classes == 0 else num_classes#这个是在读词表，37个类别，没想清楚？？？为何是37个，26个字母+空格不是37个，噢，对了，还有数字0-9
-        charset  = data_utils.get_charset()
-        logger.info("加载词表，共%d个",len(charset))
 
-    return sess,charset
+    return sess,charset,decodes,prob,inputdata
 
 
 def recognize(image_path):
-    sess,charset = initialize()
+    sess,charset,decodes,prob,inputdata = initialize()
     # image读出来是H,W,C
     image = cv2.imread(image_path, cv2.IMREAD_COLOR)
     # cv2.imwrite(image_path + ".resize.png", image)
-    pred_result = pred(image,sess,charset)
+    pred_result = pred(image,sess,charset,decodes,prob,inputdata)
     logger.info('解析图片%s为：%s',image_path, pred_result)
 
-def pred(image,sess,charset):
 
-    # size要求是(Width,Height)，但是定义的是Height,Width
-    size = (config.cfg.ARCH.INPUT_SIZE[1],config.cfg.ARCH.INPUT_SIZE[0])
-    # size 的格式是(w,h)，这个和cv2的格式是不一样的，他的是(H,W,C)，看，反的
-    logger.debug("首先图像调整尺寸：%r",size)
-    image = cv2.resize(image, size)
-    image = np.expand_dims(image, axis=0).astype(np.float32) #增加第一个维度，变成了(1,32,100,3),1就是expand_dims的功劳
+def build_graph(charset):
 
     logger.debug("定义TF的OP")
     net = crnn_model.ShadowNet(phase='Test',
@@ -76,21 +73,30 @@ def pred(image,sess,charset):
                                num_classes=len(charset))
     h, w = config.cfg.ARCH.INPUT_SIZE  # 32,256 H,W
     inputdata = tf.placeholder(dtype=tf.float32, shape=[1, h, w, 3], name='input')
-    global_step = tf.get_variable('global_step', [], initializer=tf.constant_initializer(0), trainable=False)
+
     with tf.variable_scope('shadow'):
         net_out = net.build(inputdata=inputdata)
-    decodes, prob = tf.nn.ctc_beam_search_decoder(inputs=net_out,
+    decodes, prob = tf.nn.ctc_beam_search_decoder(inputs=net_out,beam_width=10,
                                                sequence_length=config.cfg.ARCH.SEQ_LENGTH*np.ones(1),
                                                merge_repeated=False)
+    return decodes,prob,inputdata
+
+def pred(image,sess,charset,decodes,prob,inputdata):
+    # size要求是(Width,Height)，但是定义的是Height,Width
+    size = (config.cfg.ARCH.INPUT_SIZE[1],config.cfg.ARCH.INPUT_SIZE[0])
+    # size 的格式是(w,h)，这个和cv2的格式是不一样的，他的是(H,W,C)，看，反的
+    logger.debug("首先图像调整尺寸：%r",size)
+    image = cv2.resize(image, size)
+    image = np.expand_dims(image, axis=0).astype(np.float32) #增加第一个维度，变成了(1,32,100,3),1就是expand_dims的功劳
+
 
     with sess.as_default():
         logger.debug("开始预测,输入为：%r", image.shape)
         preds,__prob = sess.run([decodes,prob], feed_dict={inputdata: image})
-        logger.debug("预测的结果结果为：%r",  preds)
-        logger.debug("预测的结果概率为：%r",  __prob)
-
         #将结果，从张量变成字符串数组，session.run(arg)arg是啥类型，就ruturn啥类型
         preds = data_utils.sparse_tensor_to_str(preds[0],charset)
+        logger.debug("预测的结果结果为：%r",  preds)
+        logger.debug("预测的结果概率为：%r",  __prob)
 
     # sess.close()
     return preds[0]
