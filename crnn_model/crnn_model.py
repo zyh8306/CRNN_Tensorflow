@@ -200,7 +200,7 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
     #       我理解是 [N , W , 512]
     # 输出：
     #       应该是概率矩阵把
-    def __sequence_label(self, inputdata: tf.Tensor) -> Tuple[tf.Tensor, tf.Tensor]:
+    def __sequence_label(self, inputdata: tf.Tensor,sequence_len) -> Tuple[tf.Tensor, tf.Tensor]:
         """ Implements the sequence label part of the network
 
         :param inputdata:
@@ -215,6 +215,7 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
             bw_cell_list = [rnn.BasicLSTMCell(nh, forget_bias=1.0) for nh in [self.__hidden_nums]*self.__layers_nums]
 
             stack_lstm_layer, _, _ = rnn.stack_bidirectional_dynamic_rnn(fw_cell_list, bw_cell_list, inputdata,
+                                                                         sequence_length = sequence_len,
                                                                          dtype=tf.float32)
             # Bi-LSTM，输入是[N*H , W , 512]，输出是[N*H , W , 512]
             # 为何呢？因为隐含层是256，输出是256维度，但是由于是Bi-LSTM，俩LSTM要concat到一起，得~，变成512了又
@@ -222,10 +223,15 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
             if self.phase.lower() == 'train':#dropout好像只能在某个方向上丢来着？？？忘了，这个LSTM的正则化还得去回忆下
                 stack_lstm_layer = self.dropout(inputdata=stack_lstm_layer, keep_prob=0.5)
 
-            [batch_s, _, hidden_nums] = inputdata.get_shape().as_list()  # [batch, width, 2*n_hidden]
+            # [batch_s, _, hidden_nums] = inputdata.get_shape().as_list()  # [batch, width, 2*n_hidden]
+            # [batch_s, _, hidden_nums] = tf.shape(inputdata)# 靠！又发现一个大bug：原代码：.get_shape().as_list()  # [batch, width, 2*n_hidden]
+            shape = tf.shape(inputdata)
+            batch_s = shape[0]
+            hidden_nums = shape[2]
+            hidden_nums = 2 * self.__hidden_nums
 
             # [ N*H*W, 512 ]
-            rnn_reshaped = tf.reshape(stack_lstm_layer, [-1, hidden_nums])  # [batch x width, 2*n_hidden]
+            rnn_reshaped = tf.reshape(stack_lstm_layer, [-1, 2*self.__hidden_nums])  # [batch x width, 2*n_hidden]
 
             # 在做一个全连接，隐含层个数是类别数，类别是啥，就是字典里面字的数量
             w = tf.Variable(tf.truncated_normal([hidden_nums, self.__num_classes], stddev=0.1), name="w")
@@ -233,18 +239,20 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
 
             logits = tf.matmul(rnn_reshaped, w) # 全连接
 
-            logits = tf.reshape(logits, [batch_s, -1, self.__num_classes]) #reshape回来，折腾啥呢
+            # [batch,W*H,class_num]
+            logits = tf.reshape(logits,[ batch_s, -1, self.__num_classes]) #reshape回来，折腾啥呢
 
             #看！做softmax呢，小样！我一直等着你呢，卧槽，还求了个argmax，得到最大的可能的那个字符了？
             raw_pred = tf.argmax(tf.nn.softmax(logits), axis=2, name='raw_prediction')
 
             # Swap batch and batch axis 转置(1, 0, 2)，=>列没变，行和高置换，也就是 （batch,rnn length,class)=>（rnn length,batch,class)
-            # transpose(0,1,2)=>(1,0,2)，就是维度0和维度1互换了，呢，变成了[W, N*H, Cls]
+            # transpose(0,1,2)=>(1,0,2)，就是维度0和维度1互换了，呢，变成了[N,W*H, Cls]
+            # 知道为何这么操作么？就是batch到第二列去。是因为，CTC的输入，批次在第二维上。
             rnn_out = tf.transpose(logits, (1, 0, 2), name='transpose_time_major')  # [width, batch, n_classes]
-
+            logger.debug("LSTM输出的Shape:%r", self.shape(rnn_out))
         return rnn_out, raw_pred #返回的是一个张量（rnn length,batch,class)，和每个rnn步骤 预测的最可能的字符
 
-    def build(self, inputdata: tf.Tensor) -> tf.Tensor:
+    def build(self, inputdata: tf.Tensor,sequence_len) -> tf.Tensor:
         """ Main routine to construct the network
 
         :param inputdata:
@@ -260,8 +268,8 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
         sequence = self.__map_to_sequence(inputdata=cnn_out)
 
         # third apply the sequence label stage
-        net_out, raw_pred = self.__sequence_label(inputdata=sequence)
-        net_out = _p_shape(net_out, "LTSM的输出net_out")
+        net_out, raw_pred = self.__sequence_label(inputdata=sequence,sequence_len=sequence_len)
+        net_out = _p_shape(net_out, "LTSM的运行态输出net_out")
         # raw_pred = _p_shape(raw_pred, "LTSM的输出raw_pred")
         logger.debug("网络构建完毕")
 

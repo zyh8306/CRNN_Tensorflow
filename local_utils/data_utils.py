@@ -102,7 +102,7 @@ def sparse_tensor_to_str( sparse_tensor: tf.SparseTensor,characters) -> List[str
     return res
 
 def get_charset():
-    charset = open('char_std_5990.txt', 'r', encoding='utf-8').readlines()
+    charset = open(FLAGS.charset, 'r', encoding='utf-8').readlines()
     charset = [ch.strip('\n') for ch in charset]
     return charset
 

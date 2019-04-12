@@ -17,6 +17,7 @@ tf.app.flags.DEFINE_string('name', 'CRNN', 'no use ,just a flag for shell batch'
 tf.app.flags.DEFINE_boolean('debug', False, 'debug mode')
 tf.app.flags.DEFINE_string('train_dir','data/train','')
 tf.app.flags.DEFINE_string('label_file','train.txt','')
+tf.app.flags.DEFINE_string('charset','','')
 tf.app.flags.DEFINE_string('tboard_dir', 'tboard', 'tboard data dir')
 tf.app.flags.DEFINE_string('weights_path', None, 'model path')
 tf.app.flags.DEFINE_integer('validate_steps', 10000, 'model path')
@@ -24,8 +25,6 @@ tf.app.flags.DEFINE_integer('num_threads', 4, 'read train data threads')
 FLAGS = tf.app.flags.FLAGS
 
 logger = log_utils.init_logger()
-
-
 
 
 def save_model(saver,sess,epoch):
