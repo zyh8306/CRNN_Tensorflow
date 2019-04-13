@@ -60,19 +60,23 @@ def train(weights_path=None):
 
     logger.info("开始训练")
 
-    characters, num_classes = data_utils.get_charset()
+    characters = data_utils.get_charset()
 
     # 注意噢，这俩都是张量
     train_images_tensor,train_labels_tensor = \
         data_utils.prepare_image_labels(FLAGS.label_file,characters)
 
+    # 长度是batch个，数组每个元素是sequence长度，也就是64个像素 [64,64,...64]一共batch个。
+    # 这里不定义，当做placeholder，后期session.run时候传入
+    batch_size = tf.placeholder(tf.int32, shape=[None])
+
     # 创建模型
     network = crnn_model.ShadowNet(phase='Train',
                                      hidden_nums=config.cfg.ARCH.HIDDEN_UNITS, # 256
                                      layers_nums=config.cfg.ARCH.HIDDEN_LAYERS,# 2层
-                                     num_classes=num_classes)
+                                     num_classes=len(characters))
     with tf.variable_scope('shadow', reuse=False):
-        net_out = network.build(inputdata=train_images_tensor)
+        net_out = network.build(inputdata=train_images_tensor,sequence_len=batch_size)
 
     # 创建优化器和损失函数的op
     cost,optimizer,global_step = network.loss(net_out,train_labels_tensor)
@@ -125,6 +129,11 @@ def train(weights_path=None):
         # 哦，协调器，不用关系数据的批量获取，他只是一个线程和Queue操作模型，数据的获取动作是由shuffle_batch来搞定的
         # 只不过搞定这事是在不同线程和队列里完成的
 
+        # batch_size，也就是CTC的sequence_length数组要求的格式是：
+        # 长度是batch个，数组每个元素是sequence长度，也就是64个像素 [64,64,...64]一共batch个。
+        _batch_size = np.array( config.cfg.TRAIN.BATCH_SIZE *
+                               [config.cfg.ARCH.SEQ_LENGTH]).astype(np.int32)
+
         for epoch in range(train_epochs):
             logger.debug("训练: 第%d次",epoch)
 
@@ -134,7 +143,8 @@ def train(weights_path=None):
                 # 梯度下降，并且采集各种数据：编辑距离、预测结果、输入结果、训练summary和校验summary
                 # 这过程非常慢，32batch的实测在K40的显卡上，实测需要15分钟
                 _,          seq_distance,  preds,  labels_sparse,      v_summary,          t_summary = sess.run(
-                [optimizer, sequence_dist, decode, train_labels_tensor,validate_summary_op,train_summary_op])
+                [optimizer, sequence_dist, decode, train_labels_tensor,validate_summary_op,train_summary_op],
+                    feed_dict={batch_size: _batch_size})
                 logger.info('训练: Epoch: {:d}训练结束'.format(epoch + 1))
 
                 _accuracy = data_utils.caculate_accuracy(preds, labels_sparse,characters)
@@ -149,7 +159,8 @@ def train(weights_path=None):
 
             else:
                 # 单纯训练
-                _, ctc_lost, t_summary = sess.run([optimizer, cost, train_summary_op])
+                _, ctc_lost, t_summary = sess.run([optimizer, cost, train_summary_op],
+                    feed_dict={batch_size: _batch_size})
                 logger.debug("训练: 优化完成、cost计算完成、Summary写入完成")
                 summary_writer.add_summary(summary=t_summary, global_step=epoch)
                 logger.debug("写入训练Summary")

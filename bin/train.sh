@@ -14,7 +14,7 @@ if [ "$1" = "console" ]; then
         --label_file=data/train.txt \
         --charset=charset.txt \
         --name=crnn \
-        --validate_steps=10000 \
+        --validate_steps=1 \
         --tboard_dir=tboard \
         --debug=True
 
