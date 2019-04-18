@@ -60,7 +60,7 @@ def train(weights_path=None):
 
     logger.info("开始训练")
 
-    characters = data_utils.get_charset()
+    characters = data_utils.get_charset(FLAGS.charset)
 
     # 注意噢，这俩都是张量
     train_images_tensor,train_labels_tensor = \

@@ -26,7 +26,7 @@ def initialize():
     g = tf.Graph()
     with g.as_default():
         # num_classes = len(codec.reader.char_dict) + 1 if num_classes == 0 else num_classes#这个是在读词表，37个类别，没想清楚？？？为何是37个，26个字母+空格不是37个，噢，对了，还有数字0-9
-        charset  = data_utils.get_charset()
+        charset  = data_utils.get_charset(FLAGS.charset)
         logger.info("加载词表，共%d个",len(charset))
 
         decodes, prob, inputdata, batch_size = build_graph(g,charset)
@@ -103,7 +103,7 @@ def build_graph(g,charset):
 
         # inputs: 3-D tensor,shape[max_time x batch_size x num_classes]
         decodes, prob = tf.nn.ctc_beam_search_decoder(inputs=net_out,
-                                                      beam_width=10,
+                                                      beam_width=5,
                                                       sequence_length = batch_size,
                                                       merge_repeated=False)
                                                       #sequence_length=np.array(batch*[config.cfg.ARCH.SEQ_LENGTH]),

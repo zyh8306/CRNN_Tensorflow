@@ -3,4 +3,4 @@ if [ "$3" = "" ]; then
     exit
 fi
 
-python data_generator/generator.py --type=$1 --dir=$2 --num=$3
+python -m data_generator.crnn_generator --type=$1 --dir=$2 --num=$3

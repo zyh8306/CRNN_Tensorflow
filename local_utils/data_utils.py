@@ -14,7 +14,7 @@ import tensorflow as tf
 from config import config
 from local_utils import log_utils
 from local_utils.log_utils import  _p_shape,_p
-import re
+import re,cv2
 
 logger = log_utils.init_logger()
 
@@ -101,9 +101,16 @@ def sparse_tensor_to_str( sparse_tensor: tf.SparseTensor,characters) -> List[str
 
     return res
 
-def get_charset():
-    charset = open(FLAGS.charset, 'r', encoding='utf-8').readlines()
-    charset = [ch.strip('\n') for ch in charset]
+# 加载字符集，charset.txt，最后一个是空格
+# 为了兼容charset.txt和charset6k.txt，增加鲁棒性，改一下
+# 先读入内存，除去
+def get_charset(charset_file):
+    charset = open(charset_file, 'r', encoding='utf-8').readlines()
+    charset = [ch.strip("\n") for ch in charset]
+    charset = "".join(charset)
+    charset = list(charset)
+    if charset[-1]!=" ":
+        charset.append(" ")
     return charset
 
 
@@ -160,6 +167,7 @@ def read_images_from_disk(input_queue,characters):
     # example = _p_shape(example, "解析完的图片")
     return example, labels
 
+
 def process_unknown_charactors(sentence,dict):
     unkowns = "０１２３４５６７８９ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ！＠＃＄％＾＆＊（）－＿＋＝｛｝［］｜＼＜＞，．。；：､？／"
     knows = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()-_+={}[]|\<>,.。;:、?/"
@@ -183,9 +191,6 @@ def process_unknown_charactors(sentence,dict):
     return result
 
 
-
-
-
 # labels是所有的标签的数组['我爱北京','我爱天安门',...,'他说的法定']
 # characters:词表
 def convert_to_id(labels,characters):
@@ -195,6 +200,7 @@ def convert_to_id(labels,characters):
         _lables.append( [characters.index(l) for l in one] )
 
     return _lables
+
 
 # 原文：https://blog.csdn.net/he_wen_jie/article/details/80586345
 # 入参：
@@ -230,6 +236,7 @@ def expand_array(data):
         one.extend( [0] * (max - len(one)) )
 
     return data
+
 
 def _to_sparse_tensor(dense):
     zero = tf.constant(0, dtype=tf.int32)
@@ -314,3 +321,39 @@ def prepare_image_labels(label_file,characters):
     inputdata = _p_shape(inputdata, "灌入网络之前的数据")
 
     return inputdata,labels
+
+
+# 给图片加白色padding
+def padding(image):
+    H,W = config.cfg.ARCH.INPUT_SIZE
+    h,w,c = image.shape
+    logger.debug("原图大小:%d,%d" ,h,w)
+
+    x_scale = W/w
+    y_scale = H/h
+    if x_scale<y_scale:
+        y_scale = x_scale
+    else:
+        x_scale = y_scale
+
+    logger.debug("缩放x，y方向:%f,%f" % (x_scale,y_scale))
+
+    # https://www.jianshu.com/p/11879a49d1a0 关于resize
+    image =  cv2.resize(image, None, fx=x_scale, fy=y_scale, interpolation=cv2.INTER_AREA)
+
+    h, w, c = image.shape
+
+    # top,bottom,left,right对应边界的像素数目
+    top = bottom = int((H - h) /2)
+    left = right = int((W - w) /2)
+
+    image = cv2.copyMakeBorder(image, top,bottom,left,right, cv2.BORDER_CONSTANT, value=[255,255,255])
+
+    print("resize后的图像:",image.shape)
+    return image
+
+
+if __name__=="__main__":
+    tf.app.flags.DEFINE_string('charset', 'charset6k.txt', '')
+    chrset = get_charset()
+    print(chrset)
