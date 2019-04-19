@@ -200,7 +200,7 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
     #       我理解是 [N , W , 512]
     # 输出：
     #       应该是概率矩阵把
-    def __sequence_label(self, inputdata: tf.Tensor,sequence_len) -> Tuple[tf.Tensor, tf.Tensor]:
+    def __sequence_label(self, inputdata: tf.Tensor, sequence_len ) -> Tuple[tf.Tensor, tf.Tensor]:
         """ Implements the sequence label part of the network
 
         :param inputdata:
@@ -276,7 +276,7 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
         return net_out
 
 
-    def loss(self,net_out,labels):
+    def loss(self,net_out,labels,batch_size):
         # net_out是啥，[W, N * H, Cls]
         # [width, batch, n_classes]，是一个包含各个字符的概率表
         # TF的ctc_loss:http://ilovin.me/2017-04-23/tensorflow-lstm-ctc-input-output/
@@ -308,8 +308,9 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
         # 对！对！对！损失函数就是p(l|x)，似然概率之和，使丫最大化。：https://blog.csdn.net/luodongri/article/details/77005948
         cost = tf.reduce_mean(tf.nn.ctc_loss(labels=labels,
                                              inputs=net_out,
-                                             sequence_length=config.cfg.ARCH.SEQ_LENGTH * np.ones(
-                                                 config.cfg.TRAIN.BATCH_SIZE)))
+                                             sequence_length=batch_size))
+                                             # config.cfg.ARCH.SEQ_LENGTH *
+                                             # np.ones(config.cfg.TRAIN.BATCH_SIZE)))
         cost = log_utils._p_shape(cost, "计算CTC loss")
 
         #  把lost放到里面去
@@ -334,7 +335,7 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
 
         return cost, optimizer, global_step
 
-    def validate(self,net_out,labels):
+    def validate(self,net_out,labels,batch_size):
 
         # 这步是在干嘛？是说，你LSTM算出每个时间片的字符分布，然后我用它来做Inference，也就是前向计算
         # 得到一个最大可能的序列，比如"我爱北京天安门"，然后下一步算编辑距离，和标签对比
@@ -349,8 +350,7 @@ class ShadowNet(cnn_basenet.CNNBaseModel):
         #          * `A B B B` if `merge_repeated = False`.
         #
         decoded, log_prob = tf.nn.ctc_beam_search_decoder(net_out,
-                                                          config.cfg.ARCH.SEQ_LENGTH * np.ones(
-                                                              config.cfg.TRAIN.BATCH_SIZE),
+                                                          sequence_length=batch_size,
                                                           merge_repeated=False)
         #decoded = _p_shape(decoded,"通过beam search解码完")
         logger.debug("CTC网络构建完毕")

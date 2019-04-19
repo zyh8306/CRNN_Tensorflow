@@ -12,9 +12,10 @@ if [ "$1" = "console" ]; then
         -m tools.train \
         --train_dir=data/train \
         --label_file=data/train.txt \
-        --charset=charset.txt \
+        --charset=charset6k.txt \
         --name=crnn \
         --validate_steps=1 \
+        --validate_file=data/test.txt \
         --tboard_dir=tboard \
         --debug=True
 
@@ -26,9 +27,10 @@ else
         -m tools.train \
         --train_dir=data/train \
         --label_file=data/train.txt \
-        --charset=charset.txt \
+        --charset=charset6k.txt \
         --name=crnn \
         --validate_steps=10000 \
+        --validate_file=data/test.txt \
         --tboard_dir=tboard \
         --debug=True \
         >> ./logs/crnn.log 2>&1

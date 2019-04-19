@@ -74,8 +74,11 @@ def recognize():
             image_list.append(image)
 
     sess = initialize()
+    # batch_size，也就是CTC的sequence_length数组要求的格式是：
+    # 长度是batch个，数组每个元素是sequence长度，也就是64个像素 [64,64,...64]一共batch个。
+    _batch_size = np.array(len(image_list)*[config.cfg.ARCH.SEQ_LENGTH]).astype(np.int32)
 
-    pred_result = pred(image_list,sess)
+    pred_result = pred(image_list,_batch_size,sess)
 
     logger.info('解析图片%s为：%s',image_path, pred_result)
 
@@ -117,40 +120,42 @@ def prepare_data(image_list):
         # size要求是(Width,Height)，但是定义的是Height,Width
         size = (config.cfg.ARCH.INPUT_SIZE[1],config.cfg.ARCH.INPUT_SIZE[0])
         # size 的格式是(w,h)，这个和cv2的格式是不一样的，他的是(H,W,C)，看，反的
-        image = cv2.resize(image, size)
+        # image = cv2.resize(image, size) 2019.4.19 piginzoo，resize改成padding操作
+        image = data_utils.padding(image)
         image = image[:,:,::-1] # 每张图片要BGR=>RGB顺序
         input_data.append(image)
     return np.array(input_data)
 
 
 # 输入是图像numpy数据，注意，顺序是RGB，注意OpenCV read的数据是BGR，要提前转化后再传给我
-def pred(image_list,sess):
+def pred(image_list,_batch_size,sess):
     global charset, decodes, prob, inputdata, batch_size
 
-    _input_data = prepare_data(image_list)
+    result = []
+    for i in range(0,len(image_list),_batch_size):
+        batch_num = _batch_size
+        if i+_batch_size> len(image_list):
+            batch_num = len(image_list)
 
-    # batch_size，也就是CTC的sequence_length数组要求的格式是：
-    # 长度是batch个，数组每个元素是sequence长度，也就是64个像素 [64,64,...64]一共batch个。
-    _batch_size = np.array(len(image_list)*[config.cfg.ARCH.SEQ_LENGTH]).astype(np.int32)
+        _input_data = image_list[i:batch_num]
 
-    logger.debug(_batch_size.shape)
-    logger.debug(_batch_size)
+        _input_data = prepare_data(_input_data)
 
-    with sess.as_default():
-        logger.debug("开始预测,输入的数据为：%r", _input_data.shape)
-        preds,__prob = sess.run(
-            [decodes,prob],
-            feed_dict={
-                inputdata :_input_data,
-                batch_size:_batch_size
-            })
-        # 将结果，从张量变成字符串数组，session.run(arg)arg是啥类型，就ruturn啥类型
-        preds = data_utils.sparse_tensor_to_str(preds[0],charset)
-        logger.debug("预测的结果结果为：%r",  preds)
-        logger.debug("预测的结果概率为：%r",  __prob)
+        with sess.as_default():
+            logger.debug("开始预测,输入的数据为：%r", _input_data.shape)
+            preds,__prob = sess.run(
+                [decodes,prob],
+                feed_dict={
+                    inputdata :_input_data,
+                    batch_size:_batch_size
+                })
+            # 将结果，从张量变成字符串数组，session.run(arg)arg是啥类型，就ruturn啥类型
+            preds = data_utils.sparse_tensor_to_str(preds[0],charset)
+            logger.debug("预测的结果结果为：%r",  preds)
+            logger.debug("预测的结果概率为：%r",  __prob)
+            result+= preds
 
-    # sess.close()
-    return preds[0]
+    return result
 
 # 如果不指定文件名，识别data/test/目录下的所有图片，否则具体的照片
 if __name__ == '__main__':

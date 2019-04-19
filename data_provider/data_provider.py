@@ -10,7 +10,7 @@ Provide the training and testing data for shadow net
 """
 import os.path as ops
 from typing import Tuple, Union
-
+from local_utils import data_utils
 import numpy as np
 import copy
 import cv2
@@ -181,7 +181,9 @@ class TextDataProvider(object):
                 images_orig = [cv2.imread(ops.join(dir, imgname), cv2.IMREAD_COLOR) for imgname in info[:, 0]]
                 assert not any(map(lambda x: x is None, images_orig)),\
                     "Could not read some images. Check for whitespace in file names or invalid files"
-                images = np.array([cv2.resize(img, tuple(self.__input_size)) for img in images_orig])
+                # images = np.array([cv2.resize(img, tuple(self.__input_size)) for img in images_orig])
+                # 2019.4.18 piginzoo,把图像padding一下
+                images = np.array([ data_utils.padding(img) for img in images_orig])
                 labels = info[:, 1]
                 imagenames = np.array([ops.basename(imgname) for imgname in info[:, 0]])
 

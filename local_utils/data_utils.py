@@ -248,7 +248,7 @@ def _to_sparse_tensor(dense):
     #labels_tensor = to_sparse_tensor(labels)  # 把label从id数组，变成张量
 
 
-def prepare_image_labels(label_file,characters):
+def prepare_image_labels(label_file,characters,batch_size):
 
     # 修改了他的加载，讨厌TFRecord方式，直接用文件方式加载
     # 参考：https://saicoco.github.io/tf3/
@@ -307,20 +307,20 @@ def prepare_image_labels(label_file,characters):
     # capacity是这个queue的大小，min_after_dequeue出queue里面最少元素
     # 一旦新的进来填充满，还要做一次shuffle，然后再出队，直到剩min_after_dequeue的数量
     # https://blog.csdn.net/ying86615791/article/details/73864381
-    images, labels = tf.train.shuffle_batch(
+    images_tensor, labels_tensor = tf.train.shuffle_batch(
         tensors=[images, labels],
-        batch_size=config.cfg.TRAIN.BATCH_SIZE,
-        capacity=1000 + 2 * config.cfg.TRAIN.BATCH_SIZE,  # ？？？？啥意思
-        min_after_dequeue=100,
+        batch_size=batch_size,
+        capacity=100 + 2 * batch_size,
+        min_after_dequeue=50,
         num_threads=FLAGS.num_threads)
 
     # 这块，把批次给转给inputdata了，直接就进入图的构建了
     # 并没有一个类似于传统feed_dict的绑定过程
-    inputdata = tf.cast(x=images, dtype=tf.float32)  # tf.cast：用于改变某个张量的数据类型
+    inputdata = tf.cast(x=images_tensor, dtype=tf.float32)  # tf.cast：用于改变某个张量的数据类型
 
     inputdata = _p_shape(inputdata, "灌入网络之前的数据")
 
-    return inputdata,labels
+    return inputdata,labels_tensor
 
 
 # 给图片加白色padding
@@ -344,8 +344,10 @@ def padding(image):
     h, w, c = image.shape
 
     # top,bottom,left,right对应边界的像素数目
-    top = bottom = int((H - h) /2)
-    left = right = int((W - w) /2)
+    top = round((H - h) /2)
+    bottom = H - top - h
+    left = round((W - w) /2)
+    right = W - left - w
 
     image = cv2.copyMakeBorder(image, top,bottom,left,right, cv2.BORDER_CONSTANT, value=[255,255,255])
 

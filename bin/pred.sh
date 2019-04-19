@@ -3,7 +3,7 @@ echo "\t如果指定model名字，就加载，否则，加载最新的模型名�
 python -m tools.pred \
     --crnn_model_dir=model \
     --image_dir=data/test \
-    --charset=charset.txt \
+    --charset=charset6k.txt \
     --image_file= \
     --debug=False \
     --crnn_model_file=crnn_2019-04-03-06-55-13.ckpt-199000
