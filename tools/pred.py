@@ -13,9 +13,10 @@ from local_utils import log_utils, data_utils
 import tensorflow as tf
 import numpy as np
 
+FLAGS = tf.app.flags.FLAGS
+
 logger = log_utils.init_logger()
 
-FLAGS = tf.app.flags.FLAGS
 
 # 初始化3任务：1、构建图 2、加载model=>session 3、加载字符集，都放到全局变量里
 def initialize():
@@ -74,9 +75,6 @@ def recognize():
             image_list.append(image)
 
     sess = initialize()
-    # batch_size，也就是CTC的sequence_length数组要求的格式是：
-    # 长度是batch个，数组每个元素是sequence长度，也就是64个像素 [64,64,...64]一共batch个。
-    _batch_size = np.array(len(image_list)*[config.cfg.ARCH.SEQ_LENGTH]).astype(np.int32)
 
     pred_result = pred(image_list,_batch_size,sess)
 
@@ -106,40 +104,52 @@ def build_graph(g,charset):
 
         # inputs: 3-D tensor,shape[max_time x batch_size x num_classes]
         decodes, prob = tf.nn.ctc_beam_search_decoder(inputs=net_out,
-                                                      beam_width=5,
+                                                      beam_width=config.cfg.ARCH.BEAM_WIDTH,
                                                       sequence_length = batch_size,
                                                       merge_repeated=False)
                                                       #sequence_length=np.array(batch*[config.cfg.ARCH.SEQ_LENGTH]),
+
 
         return decodes,prob,inputdata,batch_size
 
 # 把传入的图片数组(opencv BGR格式的)转成神经网络的张量的样子=>[Batch,H,W,C]
 def prepare_data(image_list):
     input_data = []
+    logger.debug("预测Pred准备数据，将%d个图像增加padding",len(image_list))
     for image in image_list:
         # size要求是(Width,Height)，但是定义的是Height,Width
-        size = (config.cfg.ARCH.INPUT_SIZE[1],config.cfg.ARCH.INPUT_SIZE[0])
+        # size = (config.cfg.ARCH.INPUT_SIZE[1],config.cfg.ARCH.INPUT_SIZE[0])
         # size 的格式是(w,h)，这个和cv2的格式是不一样的，他的是(H,W,C)，看，反的
         # image = cv2.resize(image, size) 2019.4.19 piginzoo，resize改成padding操作
         image = data_utils.padding(image)
         image = image[:,:,::-1] # 每张图片要BGR=>RGB顺序
         input_data.append(image)
-    return np.array(input_data)
+    return np.stack(input_data,axis=0)
 
 
 # 输入是图像numpy数据，注意，顺序是RGB，注意OpenCV read的数据是BGR，要提前转化后再传给我
 def pred(image_list,_batch_size,sess):
     global charset, decodes, prob, inputdata, batch_size
 
+    logger.debug("开始预测，需要预测的图片有%d张，一个批次为%d",image_list,_batch_size)
     result = []
     for i in range(0,len(image_list),_batch_size):
-        batch_num = _batch_size
-        if i+_batch_size> len(image_list):
-            batch_num = len(image_list)
 
-        _input_data = image_list[i:batch_num]
+        # 计算实际的batch大小，最后一批数量可能会少一些
+        begin = i
+        end   = i+_batch_size
+        if begin+_batch_size> len(image_list):
+            end = len(image_list)
+        count = end - begin
+
+        logger.debug("准备图像批次，从%d=>%d",begin,end)
+        _input_data = image_list[begin:end]
 
         _input_data = prepare_data(_input_data)
+
+        # batch_size，也就是CTC的sequence_length数组要求的格式是：
+        # 长度是batch个，数组每个元素是sequence长度，也就是64个像素 [64,64,...64]一共batch个。
+        _batch_size_array = np.array(count * [config.cfg.ARCH.SEQ_LENGTH]).astype(np.int32)
 
         with sess.as_default():
             logger.debug("开始预测,输入的数据为：%r", _input_data.shape)
@@ -147,7 +157,7 @@ def pred(image_list,_batch_size,sess):
                 [decodes,prob],
                 feed_dict={
                     inputdata :_input_data,
-                    batch_size:_batch_size
+                    batch_size:_batch_size_array # 这个是为了指导LSTM，以及CTC Beam Seach的参数
                 })
             # 将结果，从张量变成字符串数组，session.run(arg)arg是啥类型，就ruturn啥类型
             preds = data_utils.sparse_tensor_to_str(preds[0],charset)

@@ -336,7 +336,7 @@ def padding(image):
     else:
         x_scale = y_scale
 
-    logger.debug("缩放x，y方向:%f,%f" % (x_scale,y_scale))
+    logger.debug("缩放x，y方向比例:%f,%f" % (x_scale,y_scale))
 
     # https://www.jianshu.com/p/11879a49d1a0 关于resize
     image =  cv2.resize(image, None, fx=x_scale, fy=y_scale, interpolation=cv2.INTER_AREA)
@@ -351,7 +351,7 @@ def padding(image):
 
     image = cv2.copyMakeBorder(image, top,bottom,left,right, cv2.BORDER_CONSTANT, value=[255,255,255])
 
-    print("resize后的图像:",image.shape)
+    logger.debug("padding后的图像:%r",image.shape)
     return image
 
 

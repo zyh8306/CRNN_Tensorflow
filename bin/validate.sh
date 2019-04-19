@@ -5,5 +5,5 @@ python -m tools.validate \
     --label_file=data/test.txt \
     --debug=False \
     --validate_num=1000 \
-    --crnn_model_file=crnn_2019-04-03-06-55-13.ckpt-199000
+    --crnn_model_file=crnn_2019-04-19-11-42-50.ckpt-0
 

@@ -25,6 +25,10 @@ __C.ARCH.HIDDEN_LAYERS = 2
 __C.ARCH.SEQ_LENGTH = 64
 # Width x height into which training / testing images are resized before feeding into the network
 __C.ARCH.INPUT_SIZE = (32, 512) # 宽都统一了？，对，我看了几个别的crnn的项目代码，都是这样做的
+# Width x height into which training / testing images are resized before feeding into the network
+__C.ARCH.BEAM_WIDTH = 1
+
+
 
 # Train options
 __C.TRAIN = edict()
@@ -91,5 +95,7 @@ __C.TEST = edict()
 __C.TEST.GPU_MEMORY_FRACTION = 0.5
 # Set the GPU allow growth parameter during tensorflow testing process
 __C.TEST.TF_ALLOW_GROWTH = False
+# Set the test batch size
+__C.TEST.BATCH_SIZE = 32
 # Set the test batch size
 __C.TEST.BATCH_SIZE = 32
