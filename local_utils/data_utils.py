@@ -16,6 +16,8 @@ from local_utils import log_utils
 from local_utils.log_utils import  _p_shape,_p
 import re,cv2
 
+from local_utils.preprocess_utils import image_resize_with_pad
+
 logger = log_utils.init_logger()
 
 FLAGS = tf.app.flags.FLAGS
@@ -159,9 +161,10 @@ def read_images_from_disk(input_queue,characters):
     example = tf.image.decode_png(image_content, channels=3)
     # logger.debug("原始图像shape：%r", example.get_shape().as_list())
 
+    example = tf.py_func(image_resize_with_pad, [example, config.cfg.ARCH.INPUT_SIZE[0], config.cfg.ARCH.INPUT_SIZE[1], 255], [tf.uint8])
     # 第2个参数size: A 1-D int32 Tensor of 2 elements: `new_height, new_width`.  The new size for the images.
     # 对，是Height，Width
-    example = tf.image.resize_images(example, config.cfg.ARCH.INPUT_SIZE, method=0)
+    # example = tf.image.resize_images(example, config.cfg.ARCH.INPUT_SIZE, method=0)
     labels = input_queue[1]
     # labels = _p_shape(labels, "解析完的labels")
     # example = _p_shape(example, "解析完的图片")
