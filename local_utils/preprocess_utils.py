@@ -6,25 +6,25 @@ logger = log_utils.init_logger()
 
 
 def image_resize_with_pad(image, target_height, target_width, pad_val):
-    logger.debug("开始做padding转换...")
+    # logger.debug("开始做padding转换...")
 
-    logger.debug("image.shape:%r",image.shape)
-    logger.debug("target_height:%r",target_height)
-    logger.debug("target_width:%r",target_width)
-    logger.debug("pad_val:%r",pad_val)
+    # logger.debug("image.shape:%r",image.shape)
+    # logger.debug("target_height:%r",target_height)
+    # logger.debug("target_width:%r",target_width)
+    # logger.debug("pad_val:%r",pad_val)
 
     height, width, _ = image.shape
 
     x_scale = target_width/width
     y_scale = target_height/height
-    logger.debug("x_scale:%r", x_scale)
-    logger.debug("y_scale:%r", y_scale)
+    # logger.debug("x_scale:%r", x_scale)
+    # logger.debug("y_scale:%r", y_scale)
 
     min_scale = min(x_scale, y_scale)
-    logger.debug("scale:%r", min_scale)
+    # logger.debug("scale:%r", min_scale)
 
     image = cv2.resize(image, None, fx=min_scale, fy=min_scale, interpolation=cv2.INTER_AREA)
-    logger.debug("resize_image.shape:%r", image.shape)
+    # logger.debug("resize_image.shape:%r", image.shape)
 
     after_resize_height, after_resize_width, _ = image.shape
 
@@ -36,7 +36,7 @@ def image_resize_with_pad(image, target_height, target_width, pad_val):
     right = target_width - left - after_resize_width
 
     image = cv2.copyMakeBorder(image, top, bottom, left, right, cv2.BORDER_CONSTANT, value=[255,255,255])
-    logger.debug("padding后的图像:%r",image.shape)
+    # logger.debug("padding后的图像:%r",image.shape)
 
     return image
 
