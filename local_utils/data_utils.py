@@ -162,6 +162,7 @@ def read_images_from_disk(input_queue,characters):
     # logger.debug("原始图像shape：%r", example.get_shape().as_list())
 
     example = tf.py_func(image_resize_with_pad, [example, config.cfg.ARCH.INPUT_SIZE[0], config.cfg.ARCH.INPUT_SIZE[1], 255], [tf.uint8])
+    example = tf.convert_to_tensor(tf.cast(example, tf.int32), name='img_padded')
     # 第2个参数size: A 1-D int32 Tensor of 2 elements: `new_height, new_width`.  The new size for the images.
     # 对，是Height，Width
     # example = tf.image.resize_images(example, config.cfg.ARCH.INPUT_SIZE, method=0)
