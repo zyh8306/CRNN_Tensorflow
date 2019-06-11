@@ -38,7 +38,7 @@ __C.TRAIN.EPOCHS = 200000
 # Set the display step
 __C.TRAIN.DISPLAY_STEP = 100
 # Set the checkpoint interval steps
-__C.TRAIN.CHECKPOINT_STEP = 2
+__C.TRAIN.CHECKPOINT_STEP = 1000
 # Set the test display step during training process
 __C.TRAIN.TEST_DISPLAY_STEP = 100
 # Set the momentum parameter of the optimizer
