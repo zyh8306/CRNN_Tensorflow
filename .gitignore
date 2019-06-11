@@ -1,10 +1,25 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
+.idea/
+.idea/workspace.xml
+data/
+test/out/
+model/
 *.py[cod]
 *$py.class
-
+logs/
 # C extensions
 *.so
+
+data_generator/background/
+data/train
+data/test
+data/validate
+data/valid
+
+model/
+logs/
+tboard/
 
 # Distribution / packaging
 .Python
@@ -99,9 +114,3 @@ ENV/
 
 # mypy
 .mypy_cache/
-
-
-# Artifacts:
-tboard/
-.idea/
-
