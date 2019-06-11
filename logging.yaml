@@ -16,7 +16,7 @@ handlers:
             stream: ext://sys.stdout
     crnn_file_handler:
             class: logging.handlers.TimedRotatingFileHandler
-            level: INFO
+            level: DEBUG
             formatter: simple
             filename: ./logs/crnn.log
             backupCount: 20
@@ -25,7 +25,7 @@ handlers:
             interval: 1
     factory_file_handler:
             class: logging.handlers.TimedRotatingFileHandler
-            level: INFO
+            level: DEBUG
             formatter: simple
             filename: ./logs/factory.log
             backupCount: 20
@@ -43,12 +43,12 @@ handlers:
 loggers:
     # CRNN网络输出
     crnn:
-            level: INFO
+            level: DEBUG
             handlers: [crnn_file_handler]
             propagate: no
     # 图像加载器
     factory:
-            level: INFO
+            level: DEBUG
             handlers: [factory_file_handler]
             propagate: no
 root:

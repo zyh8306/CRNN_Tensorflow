@@ -139,7 +139,7 @@ class DataFactory:
 
         try:
             # 工厂开始工作
-            factory.start(max_queue_size=24, workers=num_workers)
+            factory.start(max_queue_size=100, workers=num_workers)
 
             # 开始从工厂里面获取数据
             while True:

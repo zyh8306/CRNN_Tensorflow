@@ -134,7 +134,7 @@ def train(weights_path=None):
         data_generator = DataFactory.get_batch(data_dir=FLAGS.train_dir, charsets=characters, data_type='train',
                                                batch_size=config.cfg.TRAIN.BATCH_SIZE, num_workers=FLAGS.num_threads)
         for epoch in range(1, train_epochs+1):
-            logger.debug("训练: 第%d次", epoch)
+            logger.info("训练: 第%d次", epoch)
 
             # 获取数据
             data = next(data_generator)
@@ -163,7 +163,7 @@ def train(weights_path=None):
                 logger.info('正确率计算完毕：%f', _accuracy)
 
                 summary_writer.add_summary(summary=v_summary, global_step=epoch)
-                logger.debug("写入校验、距离计算、正确率Summary")
+                logger.info("写入校验、距离计算、正确率Summary")
 
             # 单纯训练
             else:
@@ -173,9 +173,9 @@ def train(weights_path=None):
                                         sparse_label:tf.SparseTensorValue(data_label[0], data_label[1], data_label[2]),
                                         sequence_size: data_seq})
 
-                logger.debug("训练: 优化完成、cost计算完成、Summary写入完成")
+                logger.info("训练: 优化完成、cost计算完成、Summary写入完成")
                 summary_writer.add_summary(summary=t_summary, global_step=epoch)
-                logger.debug("写入训练Summary")
+                logger.info("写入训练Summary")
 
             # 10万个样本，一个epoch是3.5分钟，CHECKPOINT_STEP=20，大约是70分钟存一次
             if epoch % config.cfg.TRAIN.CHECKPOINT_STEP == 0:
